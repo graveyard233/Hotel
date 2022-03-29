@@ -7,9 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static volatile RetrofitClient mInstance;
 
-    private static final String BASE_URL = "https://tenapi.cn/wether/";
+    private static final String BASE_URL = "https://tenapi.cn/";
 
-    private Retrofit retrofit;
+    private Retrofit retrofit;//
 
     private RetrofitClient(){
 
@@ -27,12 +27,12 @@ public class RetrofitClient {
     }
 
     public <T> T getService(Class<T> cls){
-        return getRerofit().create(cls);
+        return getRetrofit().create(cls);//传递实例对象，retrotifit会帮我生成对应的接口代理对象
     }
 
-    private synchronized Retrofit getRerofit() {
-        if (retrofit == null){
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+    private synchronized Retrofit getRetrofit() {
+        if (retrofit == null){//通过接口代理对象来访问网络
+            retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .build();

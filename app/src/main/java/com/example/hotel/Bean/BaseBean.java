@@ -1,6 +1,6 @@
 package com.example.hotel.Bean;
 
-public class BaseBean {
+public class BaseBean  {
         private Data data;
         private int status;
         private String desc;
