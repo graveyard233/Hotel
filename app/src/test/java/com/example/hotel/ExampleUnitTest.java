@@ -37,23 +37,21 @@ public class ExampleUnitTest {
 
         RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
         System.out.println("hahaha");
-//        Call<ResponseBody> call = roomService.postForm("lyd","1230");
-//
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                try {
-//                    Log.i("TAG", "onResponse: " + response.body().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
+        roomService.getForecast().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    Log.i("TAG", "onResponse: " + response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
 
 //        RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
 

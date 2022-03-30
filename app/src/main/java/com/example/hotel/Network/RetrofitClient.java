@@ -7,8 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static volatile RetrofitClient mInstance;
 
-//    private static final String BASE_URL = "https://tenapi.cn/";
-    private static final String BASE_URL = "https://www.httpbin.org/";
+    private static final String BASE_URL = "https://tenapi.cn/";
+//    private static final String BASE_URL = "https://www.httpbin.org/";
 
     private Retrofit retrofit;//
 

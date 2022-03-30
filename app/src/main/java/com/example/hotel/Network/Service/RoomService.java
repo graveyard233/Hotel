@@ -18,12 +18,12 @@ import retrofit2.http.POST;
 
 public interface RoomService {
 
-//    @GET("wether/?city=广州")
-//    Flowable<BaseBean> getForecast();
+    @GET("wether/?city=广州")
+    Call<ResponseBody> getForecast();
 
-    @POST("post")
-    @FormUrlEncoded
-    Call<ResponseBody> postForm(@Field("username") String username,@Field("password") String pwd);
+//    @POST("post")
+//    @FormUrlEncoded
+//    Call<ResponseBody> postForm(@Field("username") String username,@Field("password") String pwd);
 
 //    @GET("wether/?city=广州")
 //    Flowable<BaseBean<Yesterday>> getYesterday();

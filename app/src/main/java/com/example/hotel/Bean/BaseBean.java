@@ -24,4 +24,13 @@ public class BaseBean  {
         public String getDesc() {
             return desc;
         }
+
+    @Override
+    public String toString() {
+        return "BaseBean{" +
+                "data=" + data +
+                ", status=" + status +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
 }
