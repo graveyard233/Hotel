@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Hotel</string>
+
+    <string name="bottom_title_room">房源</string>
+    <string name="bottom_title_order">订单</string>
+    <string name="bottom_title_mine">我的</string>
+    
+    <string name="bottom_title_user_manage">用户管理</string>
+    <string name="bottom_title_room_manage">客房管理</string>
+    <string name="bottom_title_order_manage">订单管理</string>
+    <string name="bottom_title_announcement">公告与留言</string>
+    <string name="bottom_title_report_form">报表</string>
 </resources>
