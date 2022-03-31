@@ -48,4 +48,16 @@ public class Forecast {
     public String getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "Forecast{" +
+                "date='" + date + '\'' +
+                ", high='" + high + '\'' +
+                ", fengli='" + fengli + '\'' +
+                ", low='" + low + '\'' +
+                ", fengxiang='" + fengxiang + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

@@ -42,4 +42,15 @@ public class Data {
     public String getWendu() {
         return wendu;
     }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "yesterday=" + yesterday.toString() +
+                ", city='" + city + '\'' +
+                ", forecast=" + forecast.toString() +
+                ", ganmao='" + ganmao + '\'' +
+                ", wendu='" + wendu + '\'' +
+                '}';
+    }
 }

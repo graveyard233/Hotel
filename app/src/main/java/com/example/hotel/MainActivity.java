@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.hotel.Bean.BaseBean;
+import com.example.hotel.Bean.Data;
 import com.example.hotel.Network.RetrofitClient;
 import com.example.hotel.Network.Service.RoomService;
 
 import java.io.IOException;
 
+import io.reactivex.rxjava3.functions.Consumer;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_Hotel);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         link();
@@ -54,21 +57,22 @@ public class MainActivity extends AppCompatActivity {
 //                .build();
 //        RoomService roomService = retrofit.create(RoomService.class);
         RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
-        roomService.getForecast().enqueue(new Callback<ResponseBody>() {
+//        roomService.getForecast().enqueue(new Callback<BaseBean<Data>>() {
+//            @Override
+//            public void onResponse(Call<BaseBean<Data>> call, Response<BaseBean<Data>> response) {
+//                Log.i("TAG", "onResponse: " + response.body().getData());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BaseBean<Data>> call, Throwable t) {
+//
+//            }
+//        });
+        roomService.getData().subscribe(new Consumer<BaseBean<Data>>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    Log.i("TAG", "onResponse: " + response.body().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+            public void accept(BaseBean<Data> dataBaseBean) throws Throwable {
+                System.out.println(dataBaseBean.toString());
             }
         });
-
     }
 }

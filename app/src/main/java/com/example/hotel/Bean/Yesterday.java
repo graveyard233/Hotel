@@ -48,4 +48,16 @@ public class Yesterday {
     public String getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "Yesterday{" +
+                "date='" + date + '\'' +
+                ", high='" + high + '\'' +
+                ", fx='" + fx + '\'' +
+                ", low='" + low + '\'' +
+                ", fl='" + fl + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

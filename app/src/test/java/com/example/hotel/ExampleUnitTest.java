@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import android.util.Log;
 
 import com.example.hotel.Bean.BaseBean;
+import com.example.hotel.Bean.Data;
 import com.example.hotel.Bean.Forecast;
 import com.example.hotel.Network.RetrofitClient;
 import com.example.hotel.Network.Service.RoomService;
@@ -32,26 +33,18 @@ public class ExampleUnitTest {
 
 
     @Test
-    public void addition_isCorrect() throws IOException {
+    public void addition_isCorrect()  {
 //        assertEquals(4, 2 + 2);
 
         RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
         System.out.println("hahaha");
-        roomService.getForecast().enqueue(new Callback<ResponseBody>() {
+        roomService.getData().subscribe(new Consumer<BaseBean<Data>>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    Log.i("TAG", "onResponse: " + response.body().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+            public void accept(BaseBean<Data> dataBaseBean) {
+                System.out.println(dataBaseBean.toString());
             }
         });
+
 
 //        RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
 

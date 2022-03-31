@@ -1,6 +1,7 @@
 package com.example.hotel.Network.Service;
 
 import com.example.hotel.Bean.BaseBean;
+import com.example.hotel.Bean.Data;
 import com.example.hotel.Bean.Forecast;
 import com.example.hotel.Bean.Yesterday;
 
@@ -19,12 +20,14 @@ import retrofit2.http.POST;
 public interface RoomService {
 
     @GET("wether/?city=广州")
-    Call<ResponseBody> getForecast();
+    Call<BaseBean<Data>> getForecast();
+
+
 
 //    @POST("post")
 //    @FormUrlEncoded
 //    Call<ResponseBody> postForm(@Field("username") String username,@Field("password") String pwd);
 
-//    @GET("wether/?city=广州")
-//    Flowable<BaseBean<Yesterday>> getYesterday();
+    @GET("wether/?city=广州")
+    Flowable<BaseBean<Data>> getData();
 }

@@ -1,13 +1,13 @@
 package com.example.hotel.Bean;
 
-public class BaseBean  {
-        private Data data;
+public class BaseBean <T> {
+        private T data;
         private int status;
         private String desc;
-        public void setData(Data data) {
+        public void setData(T data) {
             this.data = data;
         }
-        public Data getData() {
+        public T getData() {
             return data;
         }
 
@@ -28,7 +28,7 @@ public class BaseBean  {
     @Override
     public String toString() {
         return "BaseBean{" +
-                "data=" + data +
+                "data=" + data.toString() +
                 ", status=" + status +
                 ", desc='" + desc + '\'' +
                 '}';
