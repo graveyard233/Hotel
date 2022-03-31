@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/bottom_title_room"
+        android:icon="@drawable/ic_bottom_room_24"/>
+
+    <item android:title="@string/bottom_title_order"
+        android:icon="@drawable/ic_bottom_order_24"/>
+
+    <item android:title="@string/bottom_title_mine"
+        android:icon="@drawable/ic_bottom_mine_24"/>
+</menu>
