@@ -15,13 +15,13 @@ import com.example.hotel.Network.Service.RoomService;
 import java.io.IOException;
 import java.util.List;
 
-import io.reactivex.rxjava3.functions.Consumer;
-import okhttp3.FormBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+//import io.reactivex.rxjava3.functions.Consumer;
+//import okhttp3.FormBody;
+//import okhttp3.ResponseBody;
+//import retrofit2.Call;
+//import retrofit2.Callback;
+//import retrofit2.Response;
+//import retrofit2.Retrofit;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -36,14 +36,14 @@ public class ExampleUnitTest {
     public void addition_isCorrect()  {
 //        assertEquals(4, 2 + 2);
 
-        RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
-        System.out.println("hahaha");
-        roomService.getData().subscribe(new Consumer<BaseBean<Data>>() {
-            @Override
-            public void accept(BaseBean<Data> dataBaseBean) {
-                System.out.println(dataBaseBean.toString());
-            }
-        });
+//        RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
+//        System.out.println("hahaha");
+//        roomService.getData().subscribe(new Consumer<BaseBean<Data>>() {
+//            @Override
+//            public void accept(BaseBean<Data> dataBaseBean) {
+//                System.out.println(dataBaseBean.toString());
+//            }
+//        });
 
 
 //        RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);

@@ -7,9 +7,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.hotel.Bean.BaseBean;
 import com.example.hotel.Bean.Data;
+import com.example.hotel.Bean.Person;
 import com.example.hotel.Network.RetrofitClient;
 import com.example.hotel.Network.Service.RoomService;
 import com.example.hotel.R;
@@ -19,7 +21,11 @@ import com.example.hotel.UI.Order.OrderFragment;
 import com.example.hotel.UI.Room.RoomFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import io.reactivex.rxjava3.functions.Consumer;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+
+//import io.reactivex.rxjava3.functions.Consumer;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -33,7 +39,21 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         setTheme(R.style.Theme_Hotel);
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
-        link();
+//        link();
+        Bmob.initialize(this,"f6017516ea38b947a8214fa98dbec40f");
+        Person p2 = new Person();
+        p2.setName("lucky");
+        p2.setAddress("北京海淀");
+        p2.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if(e==null){
+                    Toast.makeText(MainActivity.this,"添加数据成功，返回objectId为："+objectId,Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(MainActivity.this,"创建数据失败：" + e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -45,6 +65,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         BottomNavigationView bottomNavigationView =
                 findViewById(R.id.main_bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+
 
         fragments = new Fragment[] {
                 new RoomFragment(),
@@ -118,7 +140,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //                .addConverterFactory(GsonConverterFactory.create())
 //                .build();
 //        RoomService roomService = retrofit.create(RoomService.class);
-        RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
+//        RoomService roomService = RetrofitClient.getmInstance().getService(RoomService.class);
 //        roomService.getForecast().enqueue(new Callback<BaseBean<Data>>() {
 //            @Override
 //            public void onResponse(Call<BaseBean<Data>> call, Response<BaseBean<Data>> response) {
@@ -130,12 +152,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //
 //            }
 //        });
-        roomService.getData().subscribe(new Consumer<BaseBean<Data>>() {
-            @Override
-            public void accept(BaseBean<Data> dataBaseBean) throws Throwable {
-                System.out.println(dataBaseBean.toString());
-            }
-        });
+
+//        roomService.getData().subscribe(new Consumer<BaseBean<Data>>() {
+//            @Override
+//            public void accept(BaseBean<Data> dataBaseBean) throws Throwable {
+//                System.out.println(dataBaseBean.toString());
+//            }
+//        });
     }
 
 
