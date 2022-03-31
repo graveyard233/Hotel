@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_main.xml" value="0.16979166666666667" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/bottom_nav_menu.xml" value="0.24010416666666667" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_mine.xml" value="0.203125" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_order.xml" value="0.203125" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_room.xml" value="0.38229166666666664" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu" value="0.2546875" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu_manager.xml" value="0.1" />
