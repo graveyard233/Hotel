@@ -2,20 +2,16 @@ package com.example.hotel.UI;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.hotel.Bean.BaseBean;
-import com.example.hotel.Bean.Data;
 import com.example.hotel.Bean.Person;
-import com.example.hotel.Network.RetrofitClient;
-import com.example.hotel.Network.Service.RoomService;
+import com.example.hotel.Bean.User;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Mine.MineFragment;
@@ -23,20 +19,17 @@ import com.example.hotel.UI.Order.OrderFragment;
 import com.example.hotel.UI.Room.RoomFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FetchUserInfoListener;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
@@ -57,38 +50,119 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
 //        link();
-        Bmob.initialize(this,"f6017516ea38b947a8214fa98dbec40f");
+        Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
 //        insert();
 //        searchById();
 //        updateById();
 //        deleteById();
 //        searchAll();
 //        searchByCondition();
-        queryByBql();
+//        queryByBql();
+//        signUp();
+//        login();
+        getMsg();
+//        isLogin1();
     }
 
-    private void queryByBql() {//注意，不能用模糊查询
-        String bql = "select * from Person where name = '刘粤鼎'";
-        BmobQuery<Person> bmobQuery = new BmobQuery<Person>();
-
-        bmobQuery.setSQL(bql);
-        bmobQuery.doSQLQuery(new SQLQueryListener<Person>() {
+    private void getMsg(){
+        BmobUser.fetchUserJsonInfo(new FetchUserInfoListener<String>() {
             @Override
-            public void done(BmobQueryResult<Person> bmobQueryResult, BmobException e) {
-                if(e ==null){
-                    List<Person> list = (List<Person>) bmobQueryResult.getResults();
-                    if(list!=null && list.size()>0){
-                        for (int i = 0; i < list.size(); i++) {
-                            Log.i("search by sql", "name: " + list.get(i).getName());
-                        }
-                    }else{
-                        Log.i("smile", "查询成功，无数据返回");
-                    }
-                }else{
-                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
+            public void done(String s, BmobException e) {
+                if (e == null){
+                    Log.i("TAG", "获取控制台最新数据成功：" + s);
+                }else {
+                    Log.e("TAG", "获取控制台最新数据失败：" + e.getMessage());
                 }
             }
         });
+    }
+
+    private void isLogin1(){
+        if (BmobUser.isLogin()){
+            User user = BmobUser.getCurrentUser(User.class);
+            Log.i("TAG", "isLogin1: 已经登录，" + user.getUsername());
+        }
+        else {
+            Log.e("TAG", "isLogin1: 尚未登录");
+        }
+    }
+
+    //登录
+    private void login(){
+//        final User user = new User();
+//        //此处替换为你的用户名
+//        user.setUsername("刘粤鼎");
+//        //此处替换为你的密码
+//        user.setPassword("123");
+//        user.login(new SaveListener<User>() {
+//            @Override
+//            public void done(User user, BmobException e) {
+//                if (e == null){
+//                    Log.i("TAG", "登录成功:" + user.getIDcard());
+//                }else {
+//                    Log.e("TAG", "登录失败," + e.getMessage());
+//                }
+//            }
+//        });
+        BmobUser.loginByAccount("刘粤鼎", "123", new LogInListener<User>() {
+            @Override
+            public void done(User user, BmobException e) {
+                if (e == null){
+                    Log.i("TAG", "登录成功:" + user.getIDcard());
+                }else {
+                    Log.e("TAG", "登录失败," + e.getMessage());
+                }
+            }
+        });
+    }
+
+
+
+    //注册
+    private void signUp(){
+        final User user = new User("1","男",22,"123456789");
+        user.setUsername("刘粤鼎");
+        user.setPassword("123");
+        user.signUp(new SaveListener<User>() {
+            @Override
+            public void done(User user, BmobException e) {
+                if (e == null){
+                    Log.i("TAG", "注册成功:" + user.getUsername());
+                }else {
+                    Log.e("TAG", "注册失败," + e.getMessage());
+                }
+            }
+        });
+    }
+
+
+
+    //注意，不能用模糊查询
+    private void queryByBql() {
+
+//        String bql = "select * from Person where address = '湖南工业大学'";
+//        BmobQuery<Person> bmobQuery = new BmobQuery<Person>();
+//
+//        bmobQuery.setSQL(bql);
+//        bmobQuery.doSQLQuery(new SQLQueryListener<Person>() {
+//            @Override
+//            public void done(BmobQueryResult<Person> bmobQueryResult, BmobException e) {
+//                if(e ==null){
+//                    List<Person> list = (List<Person>) bmobQueryResult.getResults();
+//                    if(list!=null && list.size()>0){
+//                        for (int i = 0; i < list.size(); i++) {
+//                            Log.i("search by sql", "name: " + list.get(i).getName() + ",objId = " + list.get(i).getObjectId());
+//                        }
+//                    }else{
+//                        Log.i("smile", "查询成功，无数据返回");
+//                    }
+//                }else{
+//                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
+//                }
+//            }
+//        });
+
+
     }
 
 
@@ -189,8 +263,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private void insert() {
         Person p2 = new Person();
-        p2.setName("刘粤鼎");
-        p2.setAddress("广州黄埔");
+        p2.setName("杨桓");
+        p2.setAddress("湖南工业大学");
+        p2.setObjectId("1");
         p2.save(new SaveListener<String>() {
             @Override
             public void done(String objectId, BmobException e) {
@@ -201,6 +276,30 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 }
             }
         });
+
+//        Person p2 = new Person();
+//        Person p3 = new Person();
+//        p2.setName("cjh");
+//        p2.setAddress("湖南工业大学");
+//        p2.setName("lh");
+//        p2.setAddress("吉林大学");
+//        List<Person> list = new ArrayList<>();
+//        list.add(p2);
+//        list.add(p3);
+//        MysqlTest mysqlTest = new MysqlTest();
+//        mysqlTest.setId(1);
+//        mysqlTest.setName("my test");
+//        mysqlTest.setPersonList(list);
+//        mysqlTest.save(new SaveListener<String>() {
+//            @Override
+//            public void done(String s, BmobException e) {
+//                if(e==null){
+//                    Log.i("TAG", "done: " + s);
+//                }else{
+//                    Log.e("TAG", "error: " + e.getMessage());
+//                }
+//            }
+//        });
     }
 
     @Override

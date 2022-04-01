@@ -1,6 +1,7 @@
 package com.example.hotel.Bean;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobFile;
 
 public class Person extends BmobObject {
     private String name;

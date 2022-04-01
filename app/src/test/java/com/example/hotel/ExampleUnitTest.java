@@ -2,19 +2,6 @@ package com.example.hotel;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import android.util.Log;
-
-import com.example.hotel.Bean.BaseBean;
-import com.example.hotel.Bean.Data;
-import com.example.hotel.Bean.Forecast;
-import com.example.hotel.Network.RetrofitClient;
-import com.example.hotel.Network.Service.RoomService;
-
-import java.io.IOException;
-import java.util.List;
-
 //import io.reactivex.rxjava3.functions.Consumer;
 //import okhttp3.FormBody;
 //import okhttp3.ResponseBody;
