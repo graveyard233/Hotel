@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.hotel.Bean.Person;
+import com.example.hotel.Bean.Room;
 import com.example.hotel.Bean.User;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
@@ -19,6 +20,7 @@ import com.example.hotel.UI.Order.OrderFragment;
 import com.example.hotel.UI.Room.RoomFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,9 +62,30 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //        queryByBql();
 //        signUp();
 //        login();
-        getMsg();
+//        getMsg();
 //        isLogin1();
+        addRoom();
     }
+
+    private void addRoom() {
+        List<String> list = new ArrayList<>();
+        list.add("适合有钱人");
+        list.add("价格有点贵");
+        list.add("服务配得上这个价位");
+        Room room = new Room("301","豪华套房",300.0,
+                "空闲",1.0,4,list);
+        room.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null){
+                    Log.i("TAG", "添加数据成功，返回objectId为：" + s);
+                }else {
+                    Log.e("TAG", "创建数据失败：" + e.getMessage());
+                }
+            }
+        });
+    }
+
 
     private void getMsg(){
         BmobUser.fetchUserJsonInfo(new FetchUserInfoListener<String>() {
@@ -115,9 +138,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             }
         });
     }
-
-
-
     //注册
     private void signUp(){
         final User user = new User("1","男",22,"123456789");
@@ -134,9 +154,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             }
         });
     }
-
-
-
     //注意，不能用模糊查询
     private void queryByBql() {
 
