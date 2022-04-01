@@ -6,7 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.hotel.Bean.BaseBean;
@@ -21,9 +23,24 @@ import com.example.hotel.UI.Order.OrderFragment;
 import com.example.hotel.UI.Room.RoomFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobDate;
+import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FetchUserInfoListener;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 //import io.reactivex.rxjava3.functions.Consumer;
 
@@ -41,9 +58,139 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //        setContentView(R.layout.activity_main);
 //        link();
         Bmob.initialize(this,"f6017516ea38b947a8214fa98dbec40f");
+//        insert();
+//        searchById();
+//        updateById();
+//        deleteById();
+//        searchAll();
+//        searchByCondition();
+        queryByBql();
+    }
+
+    private void queryByBql() {//注意，不能用模糊查询
+        String bql = "select * from Person where name = '刘粤鼎'";
+        BmobQuery<Person> bmobQuery = new BmobQuery<Person>();
+
+        bmobQuery.setSQL(bql);
+        bmobQuery.doSQLQuery(new SQLQueryListener<Person>() {
+            @Override
+            public void done(BmobQueryResult<Person> bmobQueryResult, BmobException e) {
+                if(e ==null){
+                    List<Person> list = (List<Person>) bmobQueryResult.getResults();
+                    if(list!=null && list.size()>0){
+                        for (int i = 0; i < list.size(); i++) {
+                            Log.i("search by sql", "name: " + list.get(i).getName());
+                        }
+                    }else{
+                        Log.i("smile", "查询成功，无数据返回");
+                    }
+                }else{
+                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
+                }
+            }
+        });
+    }
+
+
+    private void searchByCondition() {
+        BmobQuery<Person> bmobQuery = new BmobQuery<Person>();
+//        bmobQuery.addWhereEqualTo("name","刘粤");//相等的
+//        bmobQuery.addWhereNotEqualTo("name","刘粤");//不等的
+        String[] names = {"刘粤鼎","lucky"};
+        bmobQuery.addWhereContainedIn("name", Arrays.asList(names));//多项查询
+//        Date cad = new Date();
+//        String createAt = "2022-04-02 00:00:00";
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        try {
+//            cad = sdf.parse(createAt);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        BmobDate bmobDate = new BmobDate(cad);
+//        bmobQuery.addWhereLessThan("createdAt",bmobDate);//查询某时间之间创建的数据
+
+        bmobQuery.findObjects(new FindListener<Person>() {
+            @Override
+            public void done(List<Person> list, BmobException e) {
+                if (!list.equals("[]")) {
+//                    Log.i("TAG", "done: " + list.get(0).getAddress());
+//                    Log.i("TAG", "done: " + list.get(0).getName());
+                    for (int i = 0; i < list.size(); i++) {
+                        Log.i("TAG", "done: " + list.get(i).getAddress());
+                    }
+                } else {
+                    Log.e("BMOB", "error");
+                }
+            }
+        });
+    }
+
+    private void searchAll() {
+        BmobQuery<Person> bmobQuery = new BmobQuery<Person>();
+        bmobQuery.findObjects(new FindListener<Person>() {
+            @Override
+            public void done(List<Person> list, BmobException e) {
+                if (e == null) {
+                    Log.i("TAG", "done: " + list.get(0).getAddress());
+                } else {
+                    Log.e("BMOB", e.toString());
+                }
+            }
+        });
+    }
+
+    private void deleteById() {
         Person p2 = new Person();
-        p2.setName("lucky");
-        p2.setAddress("北京海淀");
+        p2.setObjectId("6269230407");
+        p2.delete(new UpdateListener() {
+
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Log.i("TAG", "done: "+p2.getUpdatedAt());
+                }else{
+                    Log.e("TAG", "删除失败," + e.getMessage());
+                }
+            }
+
+        });
+    }
+
+    private void updateById() {
+        Person p2 = new Person();
+        p2.setAddress("北京zy");
+        p2.update("6269230407", new UpdateListener() {
+
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Log.i("TAG", "done: " + p2.getAddress());
+                }else{
+                    Log.e("TAG", "更新失败," + e.getMessage());
+                }
+            }
+
+        });
+    }
+
+    private void searchById() {
+        BmobQuery<Person> bmobQuery = new BmobQuery<Person>();
+        bmobQuery.getObject("c88e4286d1", new QueryListener<Person>() {
+            @Override
+            public void done(Person person, BmobException e) {
+                if (e == null){
+                    Log.i("TAG", "done: " + person.getAddress());
+                }else {
+                    Log.i("TAG", "done: 查询失败," + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void insert() {
+        Person p2 = new Person();
+        p2.setName("刘粤鼎");
+        p2.setAddress("广州黄埔");
         p2.save(new SaveListener<String>() {
             @Override
             public void done(String objectId, BmobException e) {
