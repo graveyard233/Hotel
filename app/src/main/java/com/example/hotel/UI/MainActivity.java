@@ -10,8 +10,11 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.hotel.Bean.Announcement;
+import com.example.hotel.Bean.Order;
 import com.example.hotel.Bean.Person;
 import com.example.hotel.Bean.Room;
+import com.example.hotel.Bean.Traveller;
 import com.example.hotel.Bean.User;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
@@ -20,13 +23,17 @@ import com.example.hotel.UI.Order.OrderFragment;
 import com.example.hotel.UI.Room.RoomFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FetchUserInfoListener;
@@ -64,7 +71,69 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //        login();
 //        getMsg();
 //        isLogin1();
-        addRoom();
+//        addRoom();
+//        addOrder();
+        addPA();
+    }
+
+    private void addPA() {
+        Announcement announcement = new Announcement("第一个公告","这是我第一次创建公告");
+        announcement.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null){
+                    Log.i("TAG", "添加公告成功，返回objectId为：" + s);
+                }else {
+                    Log.e("TAG", "创建公告失败：" + e.getMessage());
+                }
+            }
+        });
+    }
+
+
+    private void addOrder(){
+        if (BmobUser.isLogin()){
+            User user = BmobUser.getCurrentUser(User.class);
+            List<Traveller> list = new ArrayList<>();
+            list.add(new Traveller(user.getUsername(),user.getIDcard()));
+            list.add(new Traveller("杨桓","123"));
+            Order order = new Order();
+            order.setUser(user);
+            order.setRoomId("201");
+
+            Date start = new Date();
+            Date end = new Date();
+            String startAt = "2022-04-05 12:30:00";
+            String endAt = "2022-04-07 09:00:00";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            try {
+                start = sdf.parse(startAt);
+                end = sdf.parse(endAt);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            order.setStartTime(new BmobDate(start));
+            order.setEndTime(new BmobDate(end));
+            order.setPrice(150.0);
+            order.setIsPay(0);
+            order.setUserMassage("希望能提供多一个枕头.");
+            order.setMsgId(user.getObjectId());
+            order.setTravellerList(list);
+            order.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+                    if (e == null){
+                        Log.i("TAG", "添加订单成功，返回objectId为：" + s);
+                    }else {
+                        Log.e("TAG", "创建订单失败：" + e.getMessage());
+                    }
+                }
+            });
+        }
+        else {
+            Log.e("TAG", "addOrder: 尚未登录");
+        }
     }
 
     private void addRoom() {
@@ -78,14 +147,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             @Override
             public void done(String s, BmobException e) {
                 if (e == null){
-                    Log.i("TAG", "添加数据成功，返回objectId为：" + s);
+                    Log.i("TAG", "添加房间成功，返回objectId为：" + s);
                 }else {
-                    Log.e("TAG", "创建数据失败：" + e.getMessage());
+                    Log.e("TAG", "创建房间失败：" + e.getMessage());
                 }
             }
         });
     }
-
 
     private void getMsg(){
         BmobUser.fetchUserJsonInfo(new FetchUserInfoListener<String>() {
@@ -104,6 +172,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         if (BmobUser.isLogin()){
             User user = BmobUser.getCurrentUser(User.class);
             Log.i("TAG", "isLogin1: 已经登录，" + user.getUsername());
+            BmobUser.logOut();
         }
         else {
             Log.e("TAG", "isLogin1: 尚未登录");
@@ -141,7 +210,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     //注册
     private void signUp(){
         final User user = new User("1","男",22,"123456789");
+//        final User user = new User();
         user.setUsername("刘粤鼎");
+//        user.setUsername("Manager" + "Admin");
         user.setPassword("123");
         user.signUp(new SaveListener<User>() {
             @Override
