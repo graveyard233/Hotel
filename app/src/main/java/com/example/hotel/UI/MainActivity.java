@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,7 +21,10 @@ import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Mine.MineFragment;
 import com.example.hotel.UI.Order.OrderFragment;
+import com.example.hotel.UI.Room.MyInterface;
 import com.example.hotel.UI.Room.RoomFragment;
+import com.example.hotel.UI.Room.RoomModel;
+import com.example.hotel.UI.Room.RoomPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.ParseException;
@@ -46,20 +50,34 @@ import cn.bmob.v3.listener.UpdateListener;
 
 //import io.reactivex.rxjava3.functions.Consumer;
 
-public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements MyInterface,BottomNavigationView.OnNavigationItemSelectedListener  {
 
     private Fragment[] fragments;
 
     private int lastFragmentIndex = 0;
+
+    private static Context mContext;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Hotel);
         super.onCreate(savedInstanceState);
+        Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
+        mContext = getApplicationContext();
+        try {
+            RoomModel roomModel = new RoomModel();
+//            roomModel.testData();
+            roomModel.getandtest(this);
+            System.out.println("haha");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 //        setContentView(R.layout.activity_main);
 //        link();
-        Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
+//        Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
 //        insert();
 //        searchById();
 //        updateById();
@@ -73,7 +91,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //        isLogin1();
 //        addRoom();
 //        addOrder();
-        addPA();
+//        addPA();
     }
 
     private void addPA() {
@@ -138,10 +156,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private void addRoom() {
         List<String> list = new ArrayList<>();
-        list.add("适合有钱人");
-        list.add("价格有点贵");
-        list.add("服务配得上这个价位");
-        Room room = new Room("301","豪华套房",300.0,
+        list.add("隔音好");
+        list.add("这跟双人房有什么区别");
+        list.add("就这还贵25块？");
+        Room room = new Room("401","情侣双人房",175.0,
                 "空闲",1.0,4,list);
         room.save(new SaveListener<String>() {
             @Override
@@ -496,4 +514,36 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     }
 
 
+    @Override
+    public void getMyR() {
+//        String bql = "select * from Room";
+//        BmobQuery<Room> bmobQuery = new BmobQuery<Room>();
+//
+//        bmobQuery.setSQL(bql);
+//        List<Room> mylist = new ArrayList<>();
+//        bmobQuery.doSQLQuery(new SQLQueryListener<Room>() {
+//            @Override
+//            public void done(BmobQueryResult<Room> bmobQueryResult, BmobException e) {
+//                if(e ==null){
+//                    List<Room> list = (List<Room>) bmobQueryResult.getResults();
+//                    if(list!=null && list.size()>0){
+//                        for (int i = 0; i < list.size(); i++) {
+//                            Log.i("search by sql", "name: " + list.get(i).getType() + ",objId = " + list.get(i).getObjectId());
+//                            if (list.get(i)!=null)
+//                                mylist.add(list.get(i));
+//                        }
+//                    }else{
+//                        Log.i("smile", "查询成功，无数据返回");
+//                    }
+//                }else{
+//                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
+//                }
+//
+//
+//            }
+//
+//
+//        });
+        System.out.println("aaaaa");
+    }
 }

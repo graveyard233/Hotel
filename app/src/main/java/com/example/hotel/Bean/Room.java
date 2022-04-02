@@ -8,7 +8,7 @@ public class Room extends BmobObject {
     private String roomId;
     private String type;
     private Double price;
-    private String isBusy;
+    private String isBusy;//0是没人，1是有人
     private Double discount;
     private int spanSize;
     private List<String> commentList;
