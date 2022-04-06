@@ -4,16 +4,18 @@ import com.example.hotel.Bean.Room;
 
 import java.util.List;
 //P层调用model层获取数据
-public class RoomPresenter implements RoomContract.IRoomPresenter{
+public class RoomPresenter{
 
-    private final RoomContract.IRoomModel roomModel;
-
-    public RoomPresenter(){
-        roomModel = new RoomModel();
+    public void getRoomsPresenter(RoomViewInterface viewInterface){
+        RoomModel roomModel = new RoomModel();
+        roomModel.getRooms(new RoomContract() {
+            @Override
+            public void getRooms(List<Room> rooms) {
+                if (viewInterface != null){
+                    viewInterface.getRoomsSucceed(rooms);
+                }
+            }
+        });
     }
 
-    @Override
-    public void getRooms() {
-        roomModel.getRooms();
-    }
 }

@@ -41,12 +41,12 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         recyclerView.setAdapter(adapter);
 
         roomPresenter = new RoomPresenter();
-        roomPresenter.getRooms();
+//        roomPresenter.getRooms();
     }
 
 
     @Override
     public void onRefresh() {
-        roomPresenter.getRooms();
+//        roomPresenter.getRooms();
     }
 }

@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -25,6 +28,7 @@ import com.example.hotel.UI.Room.MyInterface;
 import com.example.hotel.UI.Room.RoomFragment;
 import com.example.hotel.UI.Room.RoomModel;
 import com.example.hotel.UI.Room.RoomPresenter;
+import com.example.hotel.UI.Room.RoomViewInterface;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.ParseException;
@@ -33,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
@@ -58,8 +63,9 @@ public class MainActivity extends BaseActivity implements MyInterface,BottomNavi
 
     private static Context mContext;
 
+    RoomModel roomModel = new RoomModel();
 
-
+    Handler handler = roomModel.mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Hotel);
@@ -67,9 +73,19 @@ public class MainActivity extends BaseActivity implements MyInterface,BottomNavi
         Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
         mContext = getApplicationContext();
         try {
-            RoomModel roomModel = new RoomModel();
+
 //            roomModel.testData();
             roomModel.getandtest(this);
+            List<Room> thelist = new ArrayList<>();
+           // thelist = roomModel.getRooms();
+            RoomPresenter roomPresenter = new RoomPresenter();
+            roomPresenter.getRoomsPresenter(new RoomViewInterface() {
+                @Override
+                public void getRoomsSucceed(List<Room> rooms) {
+                    System.out.println("room's size = " + rooms.size());
+                }
+            });
+
             System.out.println("haha");
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +100,7 @@ public class MainActivity extends BaseActivity implements MyInterface,BottomNavi
 //        deleteById();
 //        searchAll();
 //        searchByCondition();
-//        queryByBql();
+        queryByBql();
 //        signUp();
 //        login();
 //        getMsg();
@@ -514,36 +530,75 @@ public class MainActivity extends BaseActivity implements MyInterface,BottomNavi
     }
 
 
+//    private Handler mHandler = new Handler(new Handler.Callback() {
+//        @Override
+//        public boolean handleMessage(@NonNull Message message) {
+//            switch (message.what){
+//                case 10:{
+//                    System.out.println("yesyesyes");
+////                    EditText editText = findViewById(R.id.edit_query);
+//                    List<Room> theList = (List<Room>) message.obj;
+//                    for (int i = 0; i < theList.size(); i++) {
+//                        System.out.println(theList.get(i).getType());
+//                    }
+//                }
+//            }
+//            return false;
+//        }
+//    });
+
+
+
     @Override
     public void getMyR() {
-//        String bql = "select * from Room";
-//        BmobQuery<Room> bmobQuery = new BmobQuery<Room>();
-//
-//        bmobQuery.setSQL(bql);
-//        List<Room> mylist = new ArrayList<>();
-//        bmobQuery.doSQLQuery(new SQLQueryListener<Room>() {
-//            @Override
-//            public void done(BmobQueryResult<Room> bmobQueryResult, BmobException e) {
-//                if(e ==null){
-//                    List<Room> list = (List<Room>) bmobQueryResult.getResults();
-//                    if(list!=null && list.size()>0){
-//                        for (int i = 0; i < list.size(); i++) {
-//                            Log.i("search by sql", "name: " + list.get(i).getType() + ",objId = " + list.get(i).getObjectId());
-//                            if (list.get(i)!=null)
-//                                mylist.add(list.get(i));
-//                        }
-//                    }else{
-//                        Log.i("smile", "查询成功，无数据返回");
-//                    }
-//                }else{
-//                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
-//                }
-//
-//
-//            }
-//
-//
-//        });
-        System.out.println("aaaaa");
+
+        String bql = "select * from Room";
+        BmobQuery<Room> bmobQuery = new BmobQuery<Room>();
+
+        bmobQuery.setSQL(bql);
+        List<Room> mylist = new ArrayList<>();
+        final EditText[] editText = new EditText[1];
+
+
+
+        bmobQuery.doSQLQuery(new SQLQueryListener<Room>() {
+            @Override
+            public void done(BmobQueryResult<Room> bmobQueryResult, BmobException e) {
+                if(e ==null){
+                    List<Room> list = (List<Room>) bmobQueryResult.getResults();
+                    if(list!=null && list.size()>0){
+                        for (int i = 0; i < list.size(); i++) {
+                            Log.i("search by sql", "name: " + list.get(i).getType() + ",objId = " + list.get(i).getObjectId());
+                            editText[0] = findViewById(R.id.edit_query);
+
+
+                            if (list.get(i)!=null)
+                                mylist.add(list.get(i));
+                        }
+
+                        Message message = Message.obtain(handler);
+                        message.what = 10;
+                        message.obj = mylist;
+
+//                        b.putParcelable();
+                        handler.sendMessage(message);
+
+                    }else{
+                        Log.i("smile", "查询成功，无数据返回");
+                    }
+                }else{
+                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
+                }
+
+                editText[0].setHint(mylist.get(0).getType());
+
+            }
+
+
+        });
+        if (mylist.size() > 0)
+            System.out.println(mylist.get(0).getType());
+        else
+            System.out.println("aaaaa");
     }
 }
