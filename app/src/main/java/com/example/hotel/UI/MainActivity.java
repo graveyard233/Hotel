@@ -7,8 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -24,7 +22,6 @@ import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Mine.MineFragment;
 import com.example.hotel.UI.Order.OrderFragment;
-import com.example.hotel.UI.Room.MyInterface;
 import com.example.hotel.UI.Room.RoomFragment;
 import com.example.hotel.UI.Room.RoomModel;
 import com.example.hotel.UI.Room.RoomPresenter;
@@ -37,25 +34,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobDate;
-import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FetchUserInfoListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 //import io.reactivex.rxjava3.functions.Consumer;
 
-public class MainActivity extends BaseActivity implements MyInterface,BottomNavigationView.OnNavigationItemSelectedListener  {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener  {
 
     private Fragment[] fragments;
 
@@ -75,18 +69,17 @@ public class MainActivity extends BaseActivity implements MyInterface,BottomNavi
         try {
 
 //            roomModel.testData();
-            roomModel.getandtest(this);
-            List<Room> thelist = new ArrayList<>();
-           // thelist = roomModel.getRooms();
             RoomPresenter roomPresenter = new RoomPresenter();
             roomPresenter.getRoomsPresenter(new RoomViewInterface() {
                 @Override
                 public void getRoomsSucceed(List<Room> rooms) {
                     System.out.println("room's size = " + rooms.size());
+                    EditText editText = findViewById(R.id.edit_query);
+                    editText.setHint(rooms.get(1).getType());
+
                 }
             });
 
-            System.out.println("haha");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +93,7 @@ public class MainActivity extends BaseActivity implements MyInterface,BottomNavi
 //        deleteById();
 //        searchAll();
 //        searchByCondition();
-        queryByBql();
+//        queryByBql();
 //        signUp();
 //        login();
 //        getMsg();
@@ -549,56 +542,5 @@ public class MainActivity extends BaseActivity implements MyInterface,BottomNavi
 
 
 
-    @Override
-    public void getMyR() {
 
-        String bql = "select * from Room";
-        BmobQuery<Room> bmobQuery = new BmobQuery<Room>();
-
-        bmobQuery.setSQL(bql);
-        List<Room> mylist = new ArrayList<>();
-        final EditText[] editText = new EditText[1];
-
-
-
-        bmobQuery.doSQLQuery(new SQLQueryListener<Room>() {
-            @Override
-            public void done(BmobQueryResult<Room> bmobQueryResult, BmobException e) {
-                if(e ==null){
-                    List<Room> list = (List<Room>) bmobQueryResult.getResults();
-                    if(list!=null && list.size()>0){
-                        for (int i = 0; i < list.size(); i++) {
-                            Log.i("search by sql", "name: " + list.get(i).getType() + ",objId = " + list.get(i).getObjectId());
-                            editText[0] = findViewById(R.id.edit_query);
-
-
-                            if (list.get(i)!=null)
-                                mylist.add(list.get(i));
-                        }
-
-                        Message message = Message.obtain(handler);
-                        message.what = 10;
-                        message.obj = mylist;
-
-//                        b.putParcelable();
-                        handler.sendMessage(message);
-
-                    }else{
-                        Log.i("smile", "查询成功，无数据返回");
-                    }
-                }else{
-                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
-                }
-
-                editText[0].setHint(mylist.get(0).getType());
-
-            }
-
-
-        });
-        if (mylist.size() > 0)
-            System.out.println(mylist.get(0).getType());
-        else
-            System.out.println("aaaaa");
-    }
 }

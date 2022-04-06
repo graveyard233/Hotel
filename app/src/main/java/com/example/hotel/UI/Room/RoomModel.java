@@ -101,7 +101,6 @@ public class RoomModel {
 
 
     public void getandtest(MainActivity activity){
-        activity.getMyR();
 
         new Thread(new Runnable() {
             @Override
