@@ -71,6 +71,11 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
     public void onBindViewHolder(@NonNull RoomRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.priceTextView.setText(rooms.get(position).getPrice().toString());
         holder.typeTextView.setText(rooms.get(position).getType());
+        Glide.with(context)
+                .load(rooms.get(position).getImgUrl())
+                .placeholder(R.drawable.ic_bottom_room_24)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.imageView);
     }
 
 

@@ -169,11 +169,15 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private void addRoom() {
         List<String> list = new ArrayList<>();
-        list.add("隔音好");
-        list.add("这跟双人房有什么区别");
-        list.add("就这还贵25块？");
-        Room room = new Room("401","情侣双人房",175.0,
-                "空闲",1.0,4,list);
+        list.add("适合有钱人");
+        list.add("价格有点贵");
+        list.add("服务配得上这个价位");
+//          单人房 https://s1.ax1x.com/2022/04/07/qxoSzj.jpg
+//        ["适合有钱人","价格有点贵","服务配得上这个价位"]https://s1.ax1x.com/2022/04/07/qzVSy9.jpg
+//        ["隔音好","跟双人房的区别就是床不一样","就这还贵25块？"]https://s1.ax1x.com/2022/04/07/qzEPPS.jpg
+//        ["浴室有点大!","适合两个人住.","居然是两张单人床"] https://s1.ax1x.com/2022/04/07/qxxeMT.jpg
+        Room room = new Room("400","高级套房",350.0,
+                "空闲",1.0,"https://s1.ax1x.com/2022/04/07/qzVSy9.jpg",list);
         room.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {

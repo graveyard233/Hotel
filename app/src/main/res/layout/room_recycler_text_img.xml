@@ -17,21 +17,30 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:paddingBottom="15dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         android:orientation="horizontal">
 
         <TextView
+            android:background="@drawable/item_room_border_layer"
             android:id="@+id/item_MType"
             android:layout_weight="1"
             android:textSize="@dimen/RoomRecyclerViewText"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <TextView
+            android:background="@drawable/item_room_border_layer"
             android:id="@+id/item_MPrice"
             android:layout_weight="1"
             android:textSize="@dimen/RoomRecyclerViewText"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+
+
 
 
 </LinearLayout>

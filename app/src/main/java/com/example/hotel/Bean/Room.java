@@ -10,20 +10,20 @@ public class Room extends BmobObject {
     private Double price;
     private String isBusy;//0是没人，1是有人
     private Double discount;
-    private int spanSize;
+    private String imgUrl;
     private List<String> commentList;
 
     public Room(){
 
     }
 
-    public Room(String roomId, String type, Double price, String isBusy, Double discount, int spanSize, List<String> commentList) {
+    public Room(String roomId, String type, Double price, String isBusy, Double discount, String imgUrl, List<String> commentList) {
         this.roomId = roomId;
         this.type = type;
         this.price = price;
         this.isBusy = isBusy;
         this.discount = discount;
-        this.spanSize = spanSize;
+        this.imgUrl = imgUrl;
         this.commentList = commentList;
     }
 
@@ -67,12 +67,12 @@ public class Room extends BmobObject {
         this.discount = discount;
     }
 
-    public int getSpanSize() {
-        return spanSize;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setSpanSize(int spanSize) {
-        this.spanSize = spanSize;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public List<String> getCommentList() {
@@ -91,7 +91,7 @@ public class Room extends BmobObject {
                 ", price=" + price +
                 ", isBusy='" + isBusy + '\'' +
                 ", discount=" + discount +
-                ", spanSize=" + spanSize +
+                ", imgUrl='" + imgUrl + '\'' +
                 ", commentList=" + commentList +
                 '}';
     }
