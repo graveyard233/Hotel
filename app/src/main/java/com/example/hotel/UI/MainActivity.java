@@ -57,32 +57,36 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private static Context mContext;
 
-    RoomModel roomModel = new RoomModel();
-
-    Handler handler = roomModel.mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Hotel);
         super.onCreate(savedInstanceState);
         Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
         mContext = getApplicationContext();
-        try {
-
-//            roomModel.testData();
-            RoomPresenter roomPresenter = new RoomPresenter();
-            roomPresenter.getRoomsPresenter(new RoomViewInterface() {
-                @Override
-                public void getRoomsSucceed(List<Room> rooms) {
-                    System.out.println("room's size = " + rooms.size());
-                    EditText editText = findViewById(R.id.edit_query);
-                    editText.setHint(rooms.get(1).getType());
-
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+////            roomModel.testData();
+//            RoomPresenter roomPresenter = new RoomPresenter();
+//            roomPresenter.getRoomsPresenter(new RoomViewInterface() {
+//                @Override
+//                public void getRoomsSucceed(List<Room> rooms) {
+//                    System.out.println("room's size = " + rooms.size());
+//                    EditText editText = findViewById(R.id.edit_query);
+//                    editText.setHint(rooms.get(1).getType());
+//
+//                }
+//
+//                @Override
+//                public void getRoomError() {
+//                    System.out.println("getRoomError!");
+//                }
+//
+//
+//            });
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 //        setContentView(R.layout.activity_main);
 //        link();

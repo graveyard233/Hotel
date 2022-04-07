@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_announcement_24.xml" value="0.209" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_mine_24.xml" value="0.209" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_order_24.xml" value="0.209" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_report_24.xml" value="0.209" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_room_24.xml" value="0.209" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_launcher_background.xml" value="0.209" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/bottom_nav_menu.xml" value="0.24010416666666667" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_mine.xml" value="0.203125" />

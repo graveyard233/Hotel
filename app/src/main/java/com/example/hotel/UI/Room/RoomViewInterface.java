@@ -7,4 +7,5 @@ import java.util.List;
 public interface RoomViewInterface {
 
     void getRoomsSucceed(List<Room> rooms);
+    void getRoomError();
 }

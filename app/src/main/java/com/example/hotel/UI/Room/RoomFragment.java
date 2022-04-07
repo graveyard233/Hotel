@@ -1,6 +1,6 @@
 package com.example.hotel.UI.Room;
 
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -8,7 +8,6 @@ import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseFragment;
 import com.example.hotel.UI.Room.adapter.RoomRecyclerViewAdapter;
-import com.example.hotel.UI.Room.adapter.RoomSpanSizeLookup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,9 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private RoomRecyclerViewAdapter adapter;
 
-    private RoomPresenter roomPresenter;
+    private RoomPresenter roomPresenter = new RoomPresenter();
+
+    private RoomModel roomModel = new RoomModel();
 
     @Override
     protected int getLayoutId() {
@@ -31,22 +32,46 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
 
         RecyclerView recyclerView = find(R.id.room_recyclerview);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),
-                4);
+
         List<Room> rooms = new ArrayList<>();
-        gridLayoutManager.setSpanSizeLookup(new RoomSpanSizeLookup(rooms));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
 
         adapter =
                 new RoomRecyclerViewAdapter(getActivity(),rooms);
         recyclerView.setAdapter(adapter);
 
-        roomPresenter = new RoomPresenter();
-//        roomPresenter.getRooms();
+//        roomPresenter = new RoomPresenter();
+        roomPresenter.getRoomsPresenter(new RoomViewInterface() {
+            @Override
+            public void getRoomsSucceed(List<Room> rooms) {
+                adapter.setRooms(rooms);
+
+            }
+
+            @Override
+            public void getRoomError() {
+
+            }
+        });
     }
 
 
     @Override
     public void onRefresh() {
 //        roomPresenter.getRooms();
+        roomPresenter.getRoomsPresenter(new RoomViewInterface() {
+            @Override
+            public void getRoomsSucceed(List<Room> rooms) {
+
+                adapter.setRooms(rooms);
+            }
+
+            @Override
+            public void getRoomError() {
+
+            }
+        });
     }
 }

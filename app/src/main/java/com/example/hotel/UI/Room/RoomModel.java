@@ -23,31 +23,7 @@ public class RoomModel {
 
     public List<Room> mylist = new ArrayList<>();
 
-    public Handler mHandler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(@NonNull Message message) {
-            switch (message.what){
-                case 10:{
-                    System.out.println("yesyesyes from roomModel");
-//                    EditText editText = findViewById(R.id.edit_query);
-                    List<Room> theList = (List<Room>) message.obj;
-                    for (int i = 0; i < theList.size(); i++) {
-                        System.out.println(theList.get(i).getType());
-                        mylist.add(theList.get(i));
-                    }
-                }
-            }
-            return false;
-        }
-    });
 
-    public void setmHandler(Handler mHandler) {
-        this.mHandler = mHandler;
-    }
-
-    public Handler getmHandler() {
-        return mHandler;
-    }
 //    public void dosomething(MainActivity mainActivity){
 //        mainActivity.getMyR();
 //    }
@@ -123,17 +99,7 @@ public class RoomModel {
     //从网络获取数据,在model层操作数据
 //    @Override
     public List<Room> getRooms(RoomContract roomContract) {
-        //...
-//        try {
-//            Thread.sleep(3000);
-//
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        if (mylist.size() > 0)
-//            return mylist;
-//        else
-//            return null;
+
         String bql = "select * from Room";
         BmobQuery<Room> bmobQuery = new BmobQuery<Room>();
 
@@ -159,6 +125,7 @@ public class RoomModel {
                     Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
                 }
 
+                //回调list，让上一层实现这个接口的方法达成list数据传递回去
                 if (roomContract != null){
                     roomContract.getRooms(list);
                 }
