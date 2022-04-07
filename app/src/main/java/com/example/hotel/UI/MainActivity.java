@@ -172,6 +172,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         list.add("适合有钱人");
         list.add("价格有点贵");
         list.add("服务配得上这个价位");
+//        https://hkg.agoda.cn/zh-cn/benikea-hotel-jeju/hotel/jeju-island-kr.html?finalPriceView=2&isShowMobileAppPrice=false&cid=-1&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2022-04-16&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=CNY&isFreeOccSearch=false&isCityHaveAsq=false&los=1&searchrequestid=439ce41c-6aa6-456d-aca8-ccfa2beb7288
 //          单人房 https://s1.ax1x.com/2022/04/07/qxoSzj.jpg
 //        ["适合有钱人","价格有点贵","服务配得上这个价位"]https://s1.ax1x.com/2022/04/07/qzVSy9.jpg
 //        ["隔音好","跟双人房的区别就是床不一样","就这还贵25块？"]https://s1.ax1x.com/2022/04/07/qzEPPS.jpg

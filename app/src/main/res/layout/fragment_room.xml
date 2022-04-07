@@ -8,15 +8,18 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/room_swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="250dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/room_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,10 +33,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_sort_24"/>
+                android:src="@drawable/ic_sort_24" />
 
             <EditText
-                android:padding="5dp"
                 android:id="@+id/edit_query"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -44,9 +46,9 @@
                 android:focusable="false"
                 android:hint="搜索"
                 android:minHeight="30dp"
-                android:textSize="16sp"/>
+                android:padding="5dp"
+                android:textSize="16sp" />
         </LinearLayout>
-
 
 
     </androidx.appcompat.widget.Toolbar>

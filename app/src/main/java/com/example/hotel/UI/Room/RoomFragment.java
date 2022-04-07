@@ -1,5 +1,7 @@
 package com.example.hotel.UI.Room;
 
+import android.view.View;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -19,6 +21,7 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private RoomPresenter roomPresenter = new RoomPresenter();
 
     private RoomModel roomModel = new RoomModel();
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected int getLayoutId() {
@@ -27,7 +30,7 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     protected void initViews() {
-        SwipeRefreshLayout swipeRefreshLayout = find(R.id.room_swiperefresh);
+        swipeRefreshLayout = find(R.id.room_swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(this);
 
 
@@ -61,6 +64,7 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     public void onRefresh() {
 //        roomPresenter.getRooms();
+        swipeRefreshLayout.setRefreshing(false);
         roomPresenter.getRoomsPresenter(new RoomViewInterface() {
             @Override
             public void getRoomsSucceed(List<Room> rooms) {

@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:orientation="vertical"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="5dp"
+    android:elevation="60dp"
     >
 
-    <ImageView
-        android:id="@+id/item_Mimg"
-        android:src="@drawable/ic_bottom_room_24"
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
-
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingBottom="15dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:orientation="horizontal">
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        >
 
-        <TextView
-            android:background="@drawable/item_room_border_layer"
-            android:id="@+id/item_MType"
-            android:layout_weight="1"
-            android:textSize="@dimen/RoomRecyclerViewText"
-            android:gravity="center"
+        <ImageView
+            android:id="@+id/item_Mimg"
+            android:src="@drawable/ic_bottom_room_24"
+            android:layout_weight="2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:background="@drawable/item_room_border_layer"
-            android:id="@+id/item_MPrice"
-            android:layout_weight="1"
-            android:textSize="@dimen/RoomRecyclerViewText"
-            android:gravity="center"
+            android:layout_height="0dp"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_MType"
+                android:layout_weight="1"
+                android:textSize="@dimen/RoomRecyclerViewText"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/item_MPrice"
+                android:layout_weight="1"
+                android:textSize="@dimen/RoomRecyclerViewText"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+
+
+
     </LinearLayout>
-
-
-
-
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>
