@@ -23,14 +23,23 @@ import com.youth.banner.indicator.CircleIndicator;
 
 import java.util.List;
 
-public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder> {
+public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder> implements View.OnClickListener {
 
     private final LayoutInflater layoutInflater;
 
     private final Context context;
     private final List<Room> rooms;
+    private RecyclerView recyclerView;
+    private OnItemClickListener listener;
 
     public RoomRecyclerViewAdapter(Context context, List<Room> rooms){
+        this.context = context;
+        layoutInflater = LayoutInflater.from(context);
+        this.rooms = rooms;
+    }
+
+    public RoomRecyclerViewAdapter(RecyclerView recyclerView,Context context, List<Room> rooms){
+        this.recyclerView = recyclerView;
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.rooms = rooms;
@@ -40,6 +49,14 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
         this.rooms.clear();
         this.rooms.addAll(rooms);
         notifyDataSetChanged();//更新整个view
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (listener != null){
+            int position = recyclerView.getChildAdapterPosition(view);
+            listener.OnItemClick(rooms.get(position));
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -62,7 +79,7 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
     @Override
     public RoomRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.room_recycler_text_img,parent,false);
-
+        view.setOnClickListener(this);
         RoomRecyclerViewAdapter.ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -84,7 +101,13 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
         return rooms.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 
 
+    public interface OnItemClickListener{
+        void OnItemClick(Room room);
+    }
 
 }

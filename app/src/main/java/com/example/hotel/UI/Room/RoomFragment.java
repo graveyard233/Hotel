@@ -1,5 +1,6 @@
 package com.example.hotel.UI.Room;
 
+import android.content.Intent;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,11 +11,12 @@ import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseFragment;
 import com.example.hotel.UI.Room.adapter.RoomRecyclerViewAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, RoomRecyclerViewAdapter.OnItemClickListener {
 
     private RoomRecyclerViewAdapter adapter;
 
@@ -42,7 +44,8 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
 
         adapter =
-                new RoomRecyclerViewAdapter(getActivity(),rooms);
+                new RoomRecyclerViewAdapter(recyclerView,getActivity(),rooms);
+        adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
 
 //        roomPresenter = new RoomPresenter();
@@ -77,5 +80,15 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
             }
         });
+    }
+
+    @Override
+    public void OnItemClick(Room room) {
+        System.out.println(room.toString());
+        Intent intent = new Intent(getActivity(),RoomDetailActivity.class);
+        Gson gson = new Gson();
+        String roomDetail = gson.toJson(room);
+        intent.putExtra("roomJson",roomDetail);
+        startActivity(intent);
     }
 }
