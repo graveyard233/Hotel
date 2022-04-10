@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/color_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/深竹月_浅色"
+            android:elevation="4dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="28dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/header_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            >
+
+<!--
+                android:id="@+id/room_detail_header_img"
+                android:layout_width="128dp"
+                android:layout_height="192dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_launcher_foreground"-->
+            <ImageView
+                android:id="@+id/room_detail_header_img"
+                android:layout_width="200dp"
+                android:layout_height="192dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/room_detail_header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/room_detail_header_img"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="16dp"
+                android:layout_toRightOf="@id/room_detail_header_img"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="单人房"
+                android:textColor="@color/white"
+                android:textSize="@dimen/RoomDetailHeaderTitle" />
+
+            <TextView
+                android:text="100元"
+                android:id="@+id/room_detail_header_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/room_detail_header_title"
+                android:layout_alignLeft="@id/room_detail_header_title"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="16dp"
+                android:background="?selectableItemBackground"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/RoomDetailHeaderTitle_small"/>
+
+            <TextView
+                android:id="@+id/room_detail_header_isBusy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/room_detail_header_price"
+                android:layout_alignLeft="@id/room_detail_header_title"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/is_busy_background"
+                android:ellipsize="end"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:singleLine="true"
+                android:text="空闲"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/room_detail_header_action_card"
+            app:cardBackgroundColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:cardUseCompatPadding="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="预定"
+                    android:id="@+id/room_detail_header_book"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+
+
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:minWidth="88dp"
+                    android:padding="8dp"
+                    android:textColor="@color/深竹月"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#20000000"/>
+
+                <TextView
+                    android:id="@+id/room_detail_header_discount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="目前折扣: "
+                    android:textColor="@color/discount_text"
+
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:minWidth="88dp"
+                    android:padding="8dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                    />
+
+            </LinearLayout>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</FrameLayout>

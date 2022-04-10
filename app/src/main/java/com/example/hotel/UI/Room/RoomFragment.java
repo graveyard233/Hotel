@@ -1,6 +1,7 @@
 package com.example.hotel.UI.Room;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, RoomRecyclerViewAdapter.OnItemClickListener {
 
+    private static final String TAG = "RoomFragment";
     private RoomRecyclerViewAdapter adapter;
 
     private RoomPresenter roomPresenter = new RoomPresenter();
@@ -84,7 +86,7 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void OnItemClick(Room room) {
-        System.out.println(room.toString());
+        Log.i(TAG, "OnItemClick: 房间号是 " + room.getRoomId());
         Intent intent = new Intent(getActivity(),RoomDetailActivity.class);
         Gson gson = new Gson();
         String roomDetail = gson.toJson(room);

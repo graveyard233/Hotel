@@ -3,26 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_announcement_24.xml" value="0.209" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_mine_24.xml" value="0.209" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_order_24.xml" value="0.209" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_report_24.xml" value="0.209" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_bottom_room_24.xml" value="0.209" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/ic_launcher_background.xml" value="0.209" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/item_room_border.xml" value="0.167" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/item_room_border_layer.xml" value="0.2645" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail.xml" value="0.38229166666666664" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/bottom_nav_menu.xml" value="0.24010416666666667" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_mine.xml" value="0.203125" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_order.xml" value="0.203125" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_room.xml" value="0.24114441416893734" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/room_recycler_banner.xml" value="0.2864583333333333" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/room_recycler_text_img.xml" value="0.22" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/room_recycler_text_img.xml" value="0.1393110435663627" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu" value="0.2546875" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu_manager.xml" value="0.1" />
+        <entry key="..\:/For_Android/Hotel/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/For_Android/Hotel/app/src/main/res/drawable/divider_room_detail.xml" value="0.1" />
+        <entry key="..\:/For_Android/Hotel/app/src/main/res/drawable/is_busy_background.xml" value="0.1" />
+        <entry key="..\:/For_Android/Hotel/app/src/main/res/drawable/item_room_border_layer.xml" value="0.1" />
         <entry key="..\:/For_Android/Hotel/app/src/main/res/layout/activity_main.xml" value="0.33605072463768115" />
+        <entry key="..\:/For_Android/Hotel/app/src/main/res/layout/activity_room_detail.xml" value="0.2015625" />
+        <entry key="..\:/For_Android/Hotel/app/src/main/res/layout/activity_room_detail_header.xml" value="0.27522935779816515" />
+        <entry key="..\:/For_Android/Hotel/app/src/main/res/layout/fragment_room.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="RoomRecyclerViewText">25sp</dimen>
+    <dimen name="RoomDetailHeaderTitle">20sp</dimen>
+    <dimen name="RoomDetailHeaderTitle_small">16sp</dimen>
 </resources>
