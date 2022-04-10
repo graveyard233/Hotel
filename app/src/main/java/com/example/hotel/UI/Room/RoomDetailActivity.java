@@ -50,6 +50,16 @@ public class RoomDetailActivity extends BaseActivity  {
         TextView discount = findViewById(R.id.room_detail_header_discount);
         discount.append(this_room.getDiscount().toString());
 
+
+//        摘记
+//        https://www.jianshu.com/p/252b355be7ca
+
+//        https://blog.csdn.net/Small_Lee/article/details/51114600
+//        https://blog.csdn.net/liubo253/article/details/54927574
+
+//        https://blog.csdn.net/xinluqishi123/article/details/70494854
+
+//        https://blog.csdn.net/huanghaibin_dev/article/details/79040147
 //        toolbar.setTitle(this_room.getType());
 
 //        toolbar.setTitle(roomId);

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <LinearLayout
             android:id="@+id/room_detail_below_header"
             android:layout_width="match_parent"
@@ -20,6 +21,8 @@
             android:dividerPadding="16dp"
             android:orientation="vertical"
             android:showDividers="middle">
+
+            <include layout="@layout/activity_room_detail_info"/>
 
 
         </LinearLayout>

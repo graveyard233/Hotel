@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/info"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="16dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TableRow>
+
+            <TextView
+                android:text="客房面积"
+                android:id="@+id/room_detail_area"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="true"
+                android:textColor="?android:attr/textColorPrimary"/>
+
+            <TextView
+                android:text="免费WiFi"
+                android:id="@+id/room_detail_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="?android:attr/textColorPrimary"/>
+
+            <TextView
+                android:text="停车服务"
+                android:id="@+id/room_detail_park"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:singleLine="true"
+                android:textColor="?android:attr/textColorPrimary" />
+
+        </TableRow>
+
+        <TableRow android:paddingTop="8dp">
+            <TextView
+                android:text="每日清洁与消毒"
+                android:id="@+id/room_detail_clean"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="true"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:text="早餐提供"
+                android:id="@+id/room_detail_breakfast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:singleLine="true"
+                android:textColor="?android:attr/textColorPrimary" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="床铺情况"
+        android:textColor="@color/深竹月" />
+
+
+</LinearLayout>
