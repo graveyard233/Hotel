@@ -1,25 +1,28 @@
 package com.example.hotel.UI.Room;
 
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.google.gson.Gson;
+
 //implements View.OnClickListener
 public class RoomDetailActivity extends BaseActivity  {
 
 
     private static final String TAG = "RoomDetailActivity";
 
+
     @Override
     protected void initViews() {
+
 //        Toolbar toolbar = findViewById(R.id.room_detail_toolBar);
 //        toolbar.setNavigationOnClickListener(this);
         String roomJson = getIntent().getStringExtra("roomJson");
@@ -50,7 +53,35 @@ public class RoomDetailActivity extends BaseActivity  {
         TextView discount = findViewById(R.id.room_detail_header_discount);
         discount.append(this_room.getDiscount().toString());
 
+        LinearLayout timeLinearLayout = findViewById(R.id.select_time_Linear);
+        TextView et_date = findViewById(R.id.et_date);
 
+        timeLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CalendarDialogUtil.showChooseDateDialog(RoomDetailActivity.this, "请选择日期", "确定", "取消", new CalendarDialog.ClickCallBack() {
+                    @Override
+                    public void onOk(CalendarDialog dlg) {
+                        dlg.dismissDlg();
+                    }
+                    @Override
+                    public void onCancel(CalendarDialog dlg) {
+                        dlg.dismissDlg();
+                    }
+                },et_date);
+            }
+        });
+
+
+        //初始化日历
+//        Calendar nextYear = Calendar.getInstance();
+//        nextYear.add(Calendar.YEAR,1);
+
+//        CalendarPickerView calendarPickerView = findViewById(R.id.myCalendar);
+//        Date today = new Date();
+//        calendarPickerView.init(today,nextYear.getTime())
+//                .withSelectedDate(today)
+//                .inMode(CalendarPickerView.SelectionMode.RANGE);
 //        摘记
 //        https://www.jianshu.com/p/252b355be7ca
 

@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail.xml" value="0.1824074074074074" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_calendar.xml" value="0.1824074074074074" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_info.xml" value="0.1474164133738602" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/bottom_nav_menu.xml" value="0.24010416666666667" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/dialog_choosedate_layout.xml" value="0.303125" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_mine.xml" value="0.203125" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_order.xml" value="0.203125" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_room.xml" value="0.24114441416893734" />

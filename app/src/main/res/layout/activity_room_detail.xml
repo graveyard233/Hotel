@@ -24,6 +24,9 @@
 
             <include layout="@layout/activity_room_detail_info"/>
 
+            <include layout="@layout/activity_room_detail_calendar"/>
+
+
 
         </LinearLayout>
     </FrameLayout>
