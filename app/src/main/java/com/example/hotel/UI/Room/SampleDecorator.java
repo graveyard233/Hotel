@@ -32,7 +32,7 @@ public class SampleDecorator implements CalendarCellDecorator {
         this.times = times;
     }
 
-    private SampleDecorator(){ }
+    public SampleDecorator(){ }
 
     public static SampleDecorator get(){
         if (mInstance == null) {

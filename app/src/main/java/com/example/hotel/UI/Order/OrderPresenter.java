@@ -16,10 +16,24 @@ public class OrderPresenter {
                     if (orders.size() > 0)
                         viewInterface.getAllOrdersSucceed(orders);
                     else
-                        viewInterface.getOrderError();
+                        viewInterface.getAllOrderError();
                 }
                 else {
-                    viewInterface.getOrderError();
+                    viewInterface.getAllOrderError();
+                }
+            }
+
+            @Override
+            public void getOrderByid(List<Order> orders) {
+                if (viewInterface != null){
+                    if (orders.size() > 0)
+                        viewInterface.getOrderById(orders);
+                    else
+                        viewInterface.getAllOrderError();
+
+                }
+                else {
+                    viewInterface.getAllOrderError();
                 }
             }
         });

@@ -29,7 +29,9 @@ public class RoomDetailActivity extends BaseActivity  {
 
     private OrderPresenter orderPresenter = new OrderPresenter();
 
-    private SampleDecorator decorator = SampleDecorator.get();
+//    private SampleDecorator decorator = SampleDecorator.get();
+
+    private SampleDecorator decorator;
 
     @Override
     protected void initViews() {
@@ -67,44 +69,87 @@ public class RoomDetailActivity extends BaseActivity  {
         LinearLayout timeLinearLayout = findViewById(R.id.select_time_Linear);
         TextView et_date = findViewById(R.id.et_date);
 
-
-
-        orderPresenter.getOrderModel(new OrderViewInterface() {
+        timeLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void getAllOrdersSucceed(List<Order> orders) {
-                List<Date> timeList = new ArrayList<>();
-                Log.i(TAG, "getAllOrdersSucceed: " + orders.get(0).toString());
-                System.out.println(orders.get(0).getStartTime().getDate() + "!");
-                System.out.println("date:" + BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
-                timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
-                //数据准备好了再能点击,因为要把date塞进去
-                timeLinearLayout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                orderPresenter.getOrderModel(new OrderViewInterface() {
                     @Override
-                    public void onClick(View view) {
+                    public void getAllOrdersSucceed(List<Order> orders) {
+                        List<Date> timeList = new ArrayList<>();
+                        Log.i(TAG, "getAllOrdersSucceed: " + orders.get(0).toString());
+                        System.out.println(orders.get(0).getStartTime().getDate() + "!");
+                        System.out.println("date:" + BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+                        timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+                        timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+                        decorator = new SampleDecorator();
                         decorator.setTimes(timeList);
                         CalendarDialogUtil.showChooseDateDialog(decorator,
                                 RoomDetailActivity.this,
-                                "请选择日期",
+                                "房间信息",
                                 "确定", "取消",
                                 new CalendarDialog.ClickCallBack() {
-                            @Override
-                            public void onOk(CalendarDialog dlg) {
-                                dlg.dismissDlg();
-                            }
-                            @Override
-                            public void onCancel(CalendarDialog dlg) {
-                                dlg.dismissDlg();
-                            }
-                        },et_date);
+                                    @Override
+                                    public void onOk(CalendarDialog dlg) {
+                                        dlg.dismissDlg();
+                                    }
+
+                                    @Override
+                                    public void onCancel(CalendarDialog dlg) {
+                                        dlg.dismissDlg();
+                                    }
+                                }
+                                ,et_date);
+                    }
+
+                    @Override
+                    public void getAllOrderError() {
+                        Log.i(TAG, "getOrderError: ");
+                    }
+
+                    @Override
+                    public void getOrderById(List<Order> orders) {
+
                     }
                 });
             }
-
-            @Override
-            public void getOrderError() {
-                Log.i(TAG, "getOrderError: ");
-            }
         });
+
+//        orderPresenter.getOrderModel(new OrderViewInterface() {
+//            @Override
+//            public void getAllOrdersSucceed(List<Order> orders) {
+//                List<Date> timeList = new ArrayList<>();
+//                Log.i(TAG, "getAllOrdersSucceed: " + orders.get(0).toString());
+//                System.out.println(orders.get(0).getStartTime().getDate() + "!");
+//                System.out.println("date:" + BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+//                timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+//                //数据准备好了再能点击,因为要把date塞进去
+//                timeLinearLayout.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        decorator.setTimes(timeList);
+//                        CalendarDialogUtil.showChooseDateDialog(decorator,
+//                                RoomDetailActivity.this,
+//                                "请选择日期",
+//                                "确定", "取消",
+//                                new CalendarDialog.ClickCallBack() {
+//                            @Override
+//                            public void onOk(CalendarDialog dlg) {
+//                                dlg.dismissDlg();
+//                            }
+//                            @Override
+//                            public void onCancel(CalendarDialog dlg) {
+//                                dlg.dismissDlg();
+//                            }
+//                        },et_date);
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void getOrderError() {
+//                Log.i(TAG, "getOrderError: ");
+//            }
+//        });
 
 
         //初始化日历

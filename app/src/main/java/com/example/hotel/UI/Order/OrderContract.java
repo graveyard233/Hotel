@@ -7,4 +7,6 @@ import java.util.List;
 public interface OrderContract {
 
     void getAllOrders(List<Order> orders);
+
+    void getOrderByid(List<Order> orders);
 }

@@ -7,5 +7,7 @@ import java.util.List;
 public interface OrderViewInterface {
 
     void getAllOrdersSucceed(List<Order> orders);
-    void getOrderError();
+    void getAllOrderError();
+
+    void getOrderById(List<Order> orders);
 }
