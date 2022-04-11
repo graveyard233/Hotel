@@ -102,4 +102,19 @@ public class Order extends BmobObject {
     public void setTravellerList(List<Traveller> travellerList) {
         this.travellerList = travellerList;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "user=" + user +
+                ", roomId='" + roomId + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", price=" + price +
+                ", isPay=" + isPay +
+                ", userMassage='" + userMassage + '\'' +
+                ", msgId='" + msgId + '\'' +
+                ", travellerList=" + travellerList +
+                '}';
+    }
 }

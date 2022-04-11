@@ -8,10 +8,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.hotel.Bean.Order;
 import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
+import com.example.hotel.UI.Order.BmobTimeUtil;
+import com.example.hotel.UI.Order.OrderPresenter;
+import com.example.hotel.UI.Order.OrderViewInterface;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 //implements View.OnClickListener
 public class RoomDetailActivity extends BaseActivity  {
@@ -19,6 +27,9 @@ public class RoomDetailActivity extends BaseActivity  {
 
     private static final String TAG = "RoomDetailActivity";
 
+    private OrderPresenter orderPresenter = new OrderPresenter();
+
+    private SampleDecorator decorator = SampleDecorator.get();
 
     @Override
     protected void initViews() {
@@ -56,19 +67,42 @@ public class RoomDetailActivity extends BaseActivity  {
         LinearLayout timeLinearLayout = findViewById(R.id.select_time_Linear);
         TextView et_date = findViewById(R.id.et_date);
 
-        timeLinearLayout.setOnClickListener(new View.OnClickListener() {
+
+
+        orderPresenter.getOrderModel(new OrderViewInterface() {
             @Override
-            public void onClick(View view) {
-                CalendarDialogUtil.showChooseDateDialog(RoomDetailActivity.this, "请选择日期", "确定", "取消", new CalendarDialog.ClickCallBack() {
+            public void getAllOrdersSucceed(List<Order> orders) {
+                List<Date> timeList = new ArrayList<>();
+                Log.i(TAG, "getAllOrdersSucceed: " + orders.get(0).toString());
+                System.out.println(orders.get(0).getStartTime().getDate() + "!");
+                System.out.println("date:" + BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+                timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+                //数据准备好了再能点击,因为要把date塞进去
+                timeLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onOk(CalendarDialog dlg) {
-                        dlg.dismissDlg();
+                    public void onClick(View view) {
+                        decorator.setTimes(timeList);
+                        CalendarDialogUtil.showChooseDateDialog(decorator,
+                                RoomDetailActivity.this,
+                                "请选择日期",
+                                "确定", "取消",
+                                new CalendarDialog.ClickCallBack() {
+                            @Override
+                            public void onOk(CalendarDialog dlg) {
+                                dlg.dismissDlg();
+                            }
+                            @Override
+                            public void onCancel(CalendarDialog dlg) {
+                                dlg.dismissDlg();
+                            }
+                        },et_date);
                     }
-                    @Override
-                    public void onCancel(CalendarDialog dlg) {
-                        dlg.dismissDlg();
-                    }
-                },et_date);
+                });
+            }
+
+            @Override
+            public void getOrderError() {
+                Log.i(TAG, "getOrderError: ");
             }
         });
 

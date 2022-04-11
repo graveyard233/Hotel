@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CalendarDialogUtil {
-    public static CalendarDialog showChooseDateDialog(final Activity context, final String title, final String okText, final String cancelText, final CalendarDialog.ClickCallBack clickCallBack, final TextView view) {
+    public static CalendarDialog showChooseDateDialog(SampleDecorator decorator,final Activity context, final String title, final String okText, final String cancelText, final CalendarDialog.ClickCallBack clickCallBack, final TextView view) {
         final CalendarDialog CalendarDialog = new CalendarDialog(context, R.layout.dialog_choosedate_layout);
         CalendarDialog.setOnCustomerViewCreated(new CalendarDialog.CustomerViewInterface() {
             @Override
@@ -36,14 +36,15 @@ public class CalendarDialogUtil {
 //                lastYear.add(Calendar.DAY_OF_WEEK, -1);
 //                Calendar currentYear = Calendar.getInstance();
 //                currentYear.add(Calendar.DAY_OF_WEEK, 0);
-                SampleDecorator decorator = new SampleDecorator();
+//                SampleDecorator decorator = SampleDecorator.get();
                 List<CalendarCellDecorator> d = new ArrayList<>();
                 d.add(decorator);
                 pickerView.setDecorators(d);
                 Calendar nextYear = Calendar.getInstance();
                 nextYear.add(Calendar.MONTH, 2);
                 //只能看之后两个月的日程
-                pickerView.init(new Date(),nextYear.getTime()).withSelectedDate(new Date());
+                pickerView.init(new Date(),nextYear.getTime()).withSelectedDate(new Date())
+                        .inMode(CalendarPickerView.SelectionMode.RANGE);
                 //点击范围之外时的提示
                 pickerView.setOnInvalidDateSelectedListener(new CalendarPickerView.OnInvalidDateSelectedListener() {
                     @Override
