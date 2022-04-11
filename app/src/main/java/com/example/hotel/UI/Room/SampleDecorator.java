@@ -20,6 +20,7 @@ public class SampleDecorator implements CalendarCellDecorator {
     public volatile static SampleDecorator mInstance;
 
     List<Date> times = new ArrayList<>();
+    List<String> slist = new ArrayList<>();
 
     public void setTimes(List<Date> times) {
         this.times = times;
@@ -54,13 +55,17 @@ public class SampleDecorator implements CalendarCellDecorator {
 
         String temp1 = sdf.format(date);
 
-        String temp2 = sdf.format(times.get(0));
+
+//        String temp2 = sdf.format(times.get(0));
         if (times.size() > 0){
-            if (temp1.equals(temp2)){
-                Log.i("right", "date = date");
-                cellView.setBackgroundColor(Color.BLACK);
+            for (int i = 0; i < times.size(); i++) {
+                String temp2 = sdf.format(times.get(i));
+                slist.add(temp2);
             }
-            else {
+
+            if (slist.contains(temp1)){
+                cellView.setBackgroundColor(Color.BLACK);
+            }else {
                 if (cellView.isSelectable()){
                     if (cellView.isSelected()){
                         cellView.setBackgroundColor(Color.parseColor("#2578b5"));
@@ -72,6 +77,22 @@ public class SampleDecorator implements CalendarCellDecorator {
                     cellView.setBackgroundColor(Color.parseColor("#e1dbcd"));
                 }
             }
+//            if (temp1.equals(temp2)){
+//                Log.i("right", "date = date");
+//                cellView.setBackgroundColor(Color.BLACK);
+//            }
+//            else {
+//                if (cellView.isSelectable()){
+//                    if (cellView.isSelected()){
+//                        cellView.setBackgroundColor(Color.parseColor("#2578b5"));
+//                    }
+//                    else {
+//                        cellView.setBackgroundColor(Color.parseColor("#ebe1b2"));
+//                    }
+//                } else {//如果为不可选时间则直接设置日期背景
+//                    cellView.setBackgroundColor(Color.parseColor("#e1dbcd"));
+//                }
+//            }
         }
 
 
