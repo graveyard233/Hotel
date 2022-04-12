@@ -1,8 +1,10 @@
 package com.example.hotel.UI.Room;
 
-import android.app.Activity;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class RoomDetailActivity extends BaseActivity  {
 //    private SampleDecorator decorator = SampleDecorator.get();
 
     private SampleDecorator decorator;
+
 
     @Override
     protected void initViews() {
@@ -66,21 +69,80 @@ public class RoomDetailActivity extends BaseActivity  {
         TextView discount = findViewById(R.id.room_detail_header_discount);
         discount.append(this_room.getDiscount().toString());
 
+        LinearLayout room_detail_comment = findViewById(R.id.room_detail_comments);
+        TextView t1 = findViewById(R.id.comments_text);
+        ColorStateList color = t1.getTextColors();
+        t1.setTextColor(getResources().getColor(R.color.深竹月));
+        ViewGroup.LayoutParams lp = t1.getLayoutParams();
+
+        for (int i = 0; i < this_room.getCommentList().size(); i++) {
+            if (i == 3)
+                break;//最多显示三个
+            TextView textView = new TextView(this);
+            textView.setLayoutParams(lp);
+            textView.setText(this_room.getCommentList().get(i));
+            textView.setTextColor(color);
+            room_detail_comment.addView(textView);
+        }
+
+
+
         LinearLayout timeLinearLayout = findViewById(R.id.select_time_Linear);
         TextView et_date = findViewById(R.id.et_date);
 
         timeLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                orderPresenter.setRoom(this_room);
                 orderPresenter.getOrderModel(new OrderViewInterface() {
                     @Override
                     public void getAllOrdersSucceed(List<Order> orders) {
+//                        List<Date> timeList = new ArrayList<>();
+//                        Log.i(TAG, "getAllOrdersSucceed: " + orders.get(0).toString());
+//                        System.out.println(orders.get(0).getStartTime().getDate() + "!");
+//                        System.out.println("date:" + BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+//                        timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+//                        timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+//                        decorator = new SampleDecorator();
+//                        decorator.setTimes(timeList);
+//                        CalendarDialogUtil.showChooseDateDialog(decorator,
+//                                RoomDetailActivity.this,
+//                                "房间信息",
+//                                "确定", "取消",
+//                                new CalendarDialog.ClickCallBack() {
+//                                    @Override
+//                                    public void onOk(CalendarDialog dlg) {
+//                                        dlg.dismissDlg();
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancel(CalendarDialog dlg) {
+//                                        dlg.dismissDlg();
+//                                    }
+//                                }
+//                                ,et_date);
+                    }
+
+                    @Override
+                    public void getAllOrderError() {
+                        Log.i(TAG, "getOrderError: ");
+                    }
+
+                    @Override
+                    public void getOrderById(List<Order> orders) {
                         List<Date> timeList = new ArrayList<>();
-                        Log.i(TAG, "getAllOrdersSucceed: " + orders.get(0).toString());
+                        Log.i(TAG, "getOrdersByIdSucceed: " + orders.get(0).toString());
                         System.out.println(orders.get(0).getStartTime().getDate() + "!");
                         System.out.println("date:" + BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
-                        timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
-                        timeList.add(BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
+//                        for (int i = 0; i < orders.size(); i++) {
+//                            timeList.add(BmobTimeUtil.StringToDate(orders.get(i).getStartTime().getDate()));
+//                            timeList.add(BmobTimeUtil.StringToDate(orders.get(i).getEndTime().getDate()));
+//                        }
+                        timeList = BmobTimeUtil.getDaysBetween(orders.get(0).getStartTime().getDate(),
+                                    orders.get(0).getEndTime().getDate());
+
+
+
                         decorator = new SampleDecorator();
                         decorator.setTimes(timeList);
                         CalendarDialogUtil.showChooseDateDialog(decorator,
@@ -102,13 +164,25 @@ public class RoomDetailActivity extends BaseActivity  {
                     }
 
                     @Override
-                    public void getAllOrderError() {
-                        Log.i(TAG, "getOrderError: ");
-                    }
+                    public void getOrderByIdError() {
+                        System.out.println("fuck");//这个房间之后没人预定
+                        decorator = new SampleDecorator();
+                        CalendarDialogUtil.showChooseDateDialog(decorator,
+                                RoomDetailActivity.this,
+                                "房间信息",
+                                "确定", "取消",
+                                new CalendarDialog.ClickCallBack() {
+                                    @Override
+                                    public void onOk(CalendarDialog dlg) {
+                                        dlg.dismissDlg();
+                                    }
 
-                    @Override
-                    public void getOrderById(List<Order> orders) {
-
+                                    @Override
+                                    public void onCancel(CalendarDialog dlg) {
+                                        dlg.dismissDlg();
+                                    }
+                                }
+                                ,et_date);
                     }
                 });
             }

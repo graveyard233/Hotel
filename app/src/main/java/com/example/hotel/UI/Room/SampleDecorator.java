@@ -22,6 +22,7 @@ public class SampleDecorator implements CalendarCellDecorator {
     List<Date> times = new ArrayList<>();
     List<String> slist = new ArrayList<>();
 
+
     public void setTimes(List<Date> times) {
         this.times = times;
     }
@@ -64,7 +65,7 @@ public class SampleDecorator implements CalendarCellDecorator {
             }
 
             if (slist.contains(temp1)){
-                cellView.setBackgroundColor(Color.BLACK);
+                cellView.setBackgroundColor(Color.parseColor("#a8a6b9"));
             }else {
                 if (cellView.isSelectable()){
                     if (cellView.isSelected()){
@@ -93,6 +94,18 @@ public class SampleDecorator implements CalendarCellDecorator {
 //                    cellView.setBackgroundColor(Color.parseColor("#e1dbcd"));
 //                }
 //            }
+        }
+        else {
+            if (cellView.isSelectable()){
+                    if (cellView.isSelected()){
+                        cellView.setBackgroundColor(Color.parseColor("#2578b5"));
+                    }
+                    else {
+                        cellView.setBackgroundColor(Color.parseColor("#ebe1b2"));
+                    }
+                } else {//如果为不可选时间则直接设置日期背景
+                    cellView.setBackgroundColor(Color.parseColor("#e1dbcd"));
+                }
         }
 
 

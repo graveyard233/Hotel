@@ -10,4 +10,5 @@ public interface OrderViewInterface {
     void getAllOrderError();
 
     void getOrderById(List<Order> orders);
+    void getOrderByIdError();
 }

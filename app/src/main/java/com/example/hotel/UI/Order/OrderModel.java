@@ -3,6 +3,7 @@ package com.example.hotel.UI.Order;
 import android.util.Log;
 
 import com.example.hotel.Bean.Order;
+import com.example.hotel.Bean.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,12 @@ public class OrderModel {
     public List<Order> mylist = new ArrayList<>();
 
     private volatile static OrderModel mInstance;
+
+    private Room room;
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     private OrderModel(){}
 
@@ -67,8 +74,8 @@ public class OrderModel {
         return null;
     }
 
-    public Order getOrderById(OrderContract orderContract,String roomId){
-        String bql = "select * from Order where id = " + roomId;
+    public List<Order> getOrderById(OrderContract orderContract){
+        String bql = "select * from Order where roomId = " + "'" + room.getRoomId() + "'";
         BmobQuery<Order> bmobQuery = new BmobQuery<Order>();
 
         bmobQuery.setSQL(bql);
@@ -80,7 +87,7 @@ public class OrderModel {
                     list = (List<Order>) bmobQueryResult.getResults();
                     if (list != null && list.size() > 0){
                         for (int i = 0; i < list.size(); i++) {
-                            Log.i("search order by sql", "done: " +
+                            Log.i("search order by Id and sql", "done: " +
                                     list.get(i).toString());
                         }
                     }else {
@@ -92,7 +99,7 @@ public class OrderModel {
 
                 //回调list，让上一层实现这个接口的方法达成list数据传递回去
                 if (orderContract != null){
-                    orderContract.getOrderByid(list);
+                    orderContract.getOrdersById(list);
                 }
             }
         });
