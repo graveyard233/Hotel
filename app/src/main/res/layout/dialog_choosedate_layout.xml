@@ -19,7 +19,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"
-            android:text="选择日期"
+            android:text="选择日期 注:置灰日期已被预定"
             android:textColor="#000000"
             android:textSize="18sp" />
 

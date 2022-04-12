@@ -1,5 +1,6 @@
 package com.example.hotel.UI.Room;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class RoomDetailActivity extends BaseActivity  {
 //    private SampleDecorator decorator = SampleDecorator.get();
 
     private SampleDecorator decorator;
+
+    private TextView book_text;
 
 
     @Override
@@ -185,6 +188,15 @@ public class RoomDetailActivity extends BaseActivity  {
                                 ,et_date);
                     }
                 });
+            }
+        });
+
+        book_text = findViewById(R.id.room_detail_header_book);
+        book_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Activity_book_the_room.class);
+                startActivity(intent);
             }
         });
 

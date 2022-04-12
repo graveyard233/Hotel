@@ -444,6 +444,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 new MineFragment()
         };
 
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.main_frame,fragments[0])
@@ -530,26 +531,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //            }
 //        });
     }
-
-
-//    private Handler mHandler = new Handler(new Handler.Callback() {
-//        @Override
-//        public boolean handleMessage(@NonNull Message message) {
-//            switch (message.what){
-//                case 10:{
-//                    System.out.println("yesyesyes");
-////                    EditText editText = findViewById(R.id.edit_query);
-//                    List<Room> theList = (List<Room>) message.obj;
-//                    for (int i = 0; i < theList.size(); i++) {
-//                        System.out.println(theList.get(i).getType());
-//                    }
-//                }
-//            }
-//            return false;
-//        }
-//    });
-
-
 
 
 }

@@ -6,11 +6,12 @@
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/divider_room_detail.xml" value="0.121" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/divider_room_detail_comments.xml" value="0.2055" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/item_room_border_layer.xml" value="0.1" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_book_the_room.xml" value="0.246875" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail.xml" value="0.1824074074074074" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_calendar.xml" value="0.1824074074074074" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_comment.xml" value="0.25" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_header.xml" value="0.16847826086956522" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_header.xml" value="0.25" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_info.xml" value="0.1474164133738602" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/bottom_nav_menu.xml" value="0.24010416666666667" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/dialog_choosedate_layout.xml" value="0.33" />
@@ -20,6 +21,7 @@
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/room_detail_comment.xml" value="0.23697916666666666" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/room_recycler_banner.xml" value="0.2864583333333333" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/room_recycler_text_img.xml" value="0.1393110435663627" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/traveller_and_idcard_view.xml" value="0.246875" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu" value="0.2546875" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/menu/bottom_nav_menu_manager.xml" value="0.1" />
