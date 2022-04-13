@@ -23,6 +23,12 @@ public class BmobTimeUtil {
 
     }
 
+    public static String DateToString(Date date){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH");
+        String s = format.format(date);
+        return s;
+    }
+
     public static List<Date> getDaysBetween(String startTime, String endTime){
         List<Date> days = new ArrayList<>();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

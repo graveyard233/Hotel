@@ -4,6 +4,7 @@
     <dimen name="RoomDetailHeaderTitle">20sp</dimen>
     <dimen name="RoomDetailHeaderTitle_small">16sp</dimen>
 
+    <dimen name="RoomBookText_Top">20dp</dimen>
     <dimen name="RoomBookText">30dp</dimen>
     <dimen name="traveller_and_idcard_view_all_padding">5dp</dimen>
 </resources>

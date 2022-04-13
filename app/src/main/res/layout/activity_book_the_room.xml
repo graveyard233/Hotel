@@ -10,129 +10,255 @@
     android:showDividers="middle"
     android:orientation="vertical">
 
-    <TextView
-        android:text="亲爱的用户："
-        android:textSize="@dimen/RoomBookText"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16sp"
-        >
-
-<!--        https://juejin.cn/post/6917909994985750535-->
-<!--        https://github.com/loperSeven/DateTimePicker.git-->
-        <TextView
-            android:id="@+id/bookTheRoom_choiceStart"
-            android:text="选择入住时间"
-            android:textSize="@dimen/RoomBookText"
-            android:gravity="center_horizontal"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-
-            android:layout_height="wrap_content"/>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#20000000"/>
+        android:orientation="horizontal">
 
         <TextView
-            android:text="选择退房时间"
-            android:textSize="@dimen/RoomBookText"
-            android:gravity="center_horizontal"
+            android:text="亲爱的用户:"
+            android:textSize="@dimen/RoomBookText_Top"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16sp"
-        >
-
-        <TextView
-            android:text="入住时间"
-            android:textSize="@dimen/RoomBookText"
-            android:gravity="center_horizontal"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#20000000"/>
-
-        <TextView
-            android:text="退房时间"
-            android:textSize="@dimen/RoomBookText"
-            android:gravity="center_horizontal"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <com.example.hotel.UI.Room.TravellerAndIDcardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <com.example.hotel.UI.Room.TravellerAndIDcardView
-            android:layout_width="match_parent"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            android:gravity="center"
+            android:singleLine="true"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
-            android:text="留言:"
-            android:textSize="@dimen/RoomBookText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:layout_width="match_parent"
+            android:text="入住人数"
+            android:textSize="@dimen/RoomBookText_Top"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:minLines="2"
-            android:maxLines="5"
-            android:gravity="top"
-            android:padding="5dp"
+
+
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
             />
 
+        <Spinner
+            android:id="@+id/book_the_room_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:entries="@array/spinner_people_number"/>
+
     </LinearLayout>
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingVertical="16sp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16sp"
+                >
+
+                <!--        https://juejin.cn/post/6917909994985750535-->
+                <!--        https://github.com/loperSeven/DateTimePicker.git-->
+                <TextView
+                    android:id="@+id/bookTheRoom_choiceStart"
+                    android:text="选择入住时间"
+                    android:textSize="@dimen/RoomBookText"
+                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#20000000"/>
+
+                <TextView
+                    android:id="@+id/bookTheRoom_choiceEnd"
+                    android:text="选择退房时间"
+                    android:textSize="@dimen/RoomBookText"
+                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16sp"
+                >
+
+                <TextView
+                    android:id="@+id/book_the_room_start_time"
+                    android:text="入住时间"
+                    android:textSize="@dimen/RoomBookText"
+                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#20000000"/>
+
+                <TextView
+                    android:id="@+id/book_the_room_end_time"
+                    android:text="退房时间"
+                    android:textSize="@dimen/RoomBookText"
+                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/traveller_info_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/traveller_info_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    />
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/traveller_info_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    />
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/traveller_info_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    />
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/traveller_info_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+
+                    android:padding="5dp"
+                    android:hint="留言"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/book_the_room_username"
+                        android:gravity="top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="textMultiLine"
+                        android:minLines="2"
+                        android:maxLines="3"
+
+                        tools:ignore="HardcodedText" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        style="?attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="4dp"
+        android:clipToPadding="false">
+
+        <Button
+            android:id="@+id/book_cancel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:text="@android:string/cancel" />
+
+        <Button
+            android:id="@+id/book_ok"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+
+            android:text="@android:string/ok" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

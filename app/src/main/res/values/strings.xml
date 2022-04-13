@@ -13,4 +13,14 @@
 
     <string name="book_who_live_in">入住人</string>
     <string name="idcard">身份证</string>
+
+    <string-array name="spinner_people_number">
+
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+
+    </string-array>
 </resources>
