@@ -46,7 +46,7 @@ public class VedioPlayingIcon extends View {
     private Thread myThread;
 
     //跳动速度
-    private int pointerSpeed = 50;
+    private int pointerSpeed = 35;
 
     public VedioPlayingIcon(Context context) {
         super(context);
@@ -72,7 +72,12 @@ public class VedioPlayingIcon extends View {
         //抗锯齿
         paint.setAntiAlias(true);
         paint.setColor(pointerColor);
+        //半透明画笔
         paint.setAlpha(123);
+
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(pointerWidth);
+
         pointers = new ArrayList<>();
     }
 
@@ -106,10 +111,15 @@ public class VedioPlayingIcon extends View {
         super.onDraw(canvas);
         basePointX = 0f + getPaddingLeft();
         for (int i = 0; i < pointers.size(); i++) {
-            canvas.drawRect(basePointX,
-                    basePointY - pointers.get(i).getHeight(),
-                    basePointX + pointerWidth,
+//            canvas.drawRect(basePointX,
+//                    basePointY - pointers.get(i).getHeight(),
+//                    basePointX + pointerWidth,
+//                    basePointY,
+//                    paint);
+            canvas.drawLine(basePointX,
                     basePointY,
+                    basePointX,
+                    basePointY - pointers.get(i).getHeight(),
                     paint);
             //加上padding 往右移动
             basePointX += (pointerPadding + pointerWidth);
@@ -150,12 +160,13 @@ public class VedioPlayingIcon extends View {
                     for (int j = 0; j < pointers.size(); j++) {
                         //改变指针高度
                         //利用正弦规律获取0到1
-                        float rate = (float) Math.abs(Math.sin(i + j));
+                        float rate = (float) Math.abs(Math.cos(i + j));
                         //有规律的改变高度
                         pointers.get(j).setHeight((basePointY - getPaddingTop()) * rate);
                     }
                     Thread.sleep(pointerSpeed);
                     if (isPlaying){
+                        //更新布局
                         handler.sendEmptyMessage(0);
                         i+=0.1;
                     }
