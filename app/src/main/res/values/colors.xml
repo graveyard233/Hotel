@@ -9,12 +9,14 @@
     <color name="white">#FFFFFFFF</color>
 
 
+    <color name="time_show">#303030</color>
     <color name="深竹月">#2578b5</color>
     <color name="深竹月_浅色">#579DD1</color>
     <color name="水貂灰">#949c97</color>
     <color name="分割线">#20000000</color>
     <color name="discount_text">#ed5c59</color>
     <color name="月色白">#D1E2DE</color>
+
 
 
 </resources>

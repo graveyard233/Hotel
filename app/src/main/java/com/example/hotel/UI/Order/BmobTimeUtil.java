@@ -10,6 +10,13 @@ import java.util.List;
 import java.util.Locale;
 
 public class BmobTimeUtil {
+    public static Date getDateAfterMonth(int how_many){
+        Calendar next = Calendar.getInstance();
+        next.add(Calendar.MONTH,how_many);
+
+        return  next.getTime();
+    }
+
     public static Date StringToDate(String time){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat
                 ("yyyy-MM-dd hh:mm:ss");

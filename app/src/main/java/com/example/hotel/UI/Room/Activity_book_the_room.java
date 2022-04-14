@@ -2,6 +2,7 @@ package com.example.hotel.UI.Room;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +13,10 @@ import android.widget.AdapterView;
 
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.hotel.Bean.Order;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Order.BmobTimeUtil;
@@ -24,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.bmob.v3.datatype.BmobDate;
+
 public class Activity_book_the_room extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "Activity_book_the_room";
@@ -33,6 +38,9 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     private TextView starTime_text;
     private TextView endTime_text;
 
+    private Date startTime;
+    private Date endTime;
+
     private TravellerAndIDcardView tv_1;
     private TravellerAndIDcardView tv_2;
     private TravellerAndIDcardView tv_3;
@@ -41,6 +49,8 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
 
     private Spinner spinner;
+
+    Order order = new Order();
 
     @Override
     protected void initViews() {
@@ -60,6 +70,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
         return R.layout.activity_book_the_room;
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -73,13 +84,33 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
                 new CardDatePickerDialog.Builder(this)
                         .setTitle("title")
+                        .setMinTime(new Date().getTime())
+                        .setMaxTime(BmobTimeUtil.getDateAfterMonth(2).getTime())
                         .setThemeColor(getResources().getColor(R.color.深竹月_浅色))
                         .setDisplayType(displayList)
+                        .setWrapSelectorWheel(false)
                         .setOnChoose("确定",aLong -> {
-                            Date startTime = new Date(aLong);
+                            startTime = new Date(aLong);
                             Log.i(TAG, "onClick: start_time:" + startTime);
-                            starTime_text.setText(BmobTimeUtil.DateToString(startTime) + "时");
+                            if (order.getEndTime() == null){//还没选退房时间
+                                starTime_text.setTextColor(getResources().getColor(R.color.time_show));
+                                starTime_text.setText(BmobTimeUtil.DateToString(startTime));
+                                order.setStartTime(new BmobDate(startTime));
+                                return null;
+                            } else {
+                                //已经选择了退房时间
+                                if (startTime.getTime() < endTime.getTime()){//小于退房时间
+                                    starTime_text.setTextColor(getResources().getColor(R.color.time_show));
+                                    starTime_text.setText(BmobTimeUtil.DateToString(startTime));
+                                    order.setStartTime(new BmobDate(startTime));
+                                }
+                                else {//大于退房时间
+                                    Toast.makeText(this,"入住时间大于退房时间",Toast.LENGTH_SHORT).show();
+                                    return null;
+                                }
+                            }
                             return null;
+
                         }).build().show();
                 break;
             }
@@ -94,12 +125,31 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
                 new CardDatePickerDialog.Builder(this)
                         .setTitle("title")
+                        .setMinTime(new Date().getTime())
+                        .setMaxTime(BmobTimeUtil.getDateAfterMonth(2).getTime())
                         .setThemeColor(getResources().getColor(R.color.深竹月_浅色))
                         .setDisplayType(displayList)
+                        .setWrapSelectorWheel(false)
                         .setOnChoose("确定",aLong -> {
-                            Date endTime = new Date(aLong);
+                            endTime = new Date(aLong);
                             Log.i(TAG, "onClick: end_time:" + endTime );
-                            endTime_text.setText(BmobTimeUtil.DateToString(endTime) + "时");
+                            if (order.getStartTime() == null){//还没选入住时间
+                                endTime_text.setTextColor(getResources().getColor(R.color.time_show));
+                                endTime_text.setText(BmobTimeUtil.DateToString(startTime));
+                                order.setEndTime(new BmobDate(endTime));
+                                return null;
+                            } else {
+                                //已经选择了退房时间
+                                if (startTime.getTime() < endTime.getTime()){//大于入住时间
+                                    endTime_text.setTextColor(getResources().getColor(R.color.time_show));
+                                    endTime_text.setText(BmobTimeUtil.DateToString(startTime));
+                                    order.setEndTime(new BmobDate(endTime));
+                                }
+                                else {//小于入住时间
+                                    Toast.makeText(this,"退房时间小于入住时间",Toast.LENGTH_SHORT).show();
+                                    return null;
+                                }
+                            }
                             return null;
                         }).build().show();
                 break;
@@ -110,6 +160,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     }
 
 
+    //显示输入多少人的信息
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         tv_1 = findViewById(R.id.traveller_info_1);

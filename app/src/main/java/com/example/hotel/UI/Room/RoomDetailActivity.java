@@ -38,6 +38,8 @@ public class RoomDetailActivity extends BaseActivity  {
 
     private TextView book_text;
 
+    List<Date> timeList = new ArrayList<>();
+
 
     @Override
     protected void initViews() {
@@ -133,7 +135,7 @@ public class RoomDetailActivity extends BaseActivity  {
 
                     @Override
                     public void getOrderById(List<Order> orders) {
-                        List<Date> timeList = new ArrayList<>();
+
                         Log.i(TAG, "getOrdersByIdSucceed: " + orders.get(0).toString());
                         System.out.println(orders.get(0).getStartTime().getDate() + "!");
                         System.out.println("date:" + BmobTimeUtil.StringToDate(orders.get(0).getStartTime().getDate()));
