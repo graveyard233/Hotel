@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
 import com.example.hotel.Bean.Order;
 import com.example.hotel.Bean.Room;
@@ -39,6 +41,8 @@ public class RoomDetailActivity extends BaseActivity  {
     private TextView book_text;
 
     List<Date> timeList = new ArrayList<>();
+
+    Gson gson = new Gson();
 
 
     @Override
@@ -198,7 +202,12 @@ public class RoomDetailActivity extends BaseActivity  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),Activity_book_the_room.class);
-                startActivity(intent);
+//                if (timeList.size() > 0){
+//                    String s_time_list = gson.toJson(timeList);
+//                    intent.putExtra("timeList",s_time_list);
+//                }
+                startActivityForResult(intent,1);
+
             }
         });
 
@@ -264,9 +273,29 @@ public class RoomDetailActivity extends BaseActivity  {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                    String returnData = data.getStringExtra("data_return");
+                    System.out.println(returnData);
+                }
+                if (resultCode == RESULT_CANCELED){
+//                    String returnData = data.getStringExtra("data_return");
+//                    System.out.println(returnData);
+                }
+                break;
+            default:break;
+        }
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_room_detail;
     }
+
+
 
 //    @Override
 //    public void onClick(View view) {

@@ -3,12 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/深竹月_浅色">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:text="订单页面"
-        android:textSize="25sp"
-        android:gravity="center" />
+        android:textSize="25sp" />
+
+    <com.example.hotel.VedioPlayingIcon
+        android:id="@+id/my_icon"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
+
+
+        android:padding="5dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

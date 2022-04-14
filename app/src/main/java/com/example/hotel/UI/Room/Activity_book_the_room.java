@@ -3,6 +3,7 @@ package com.example.hotel.UI.Room;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,9 @@ import com.example.hotel.Bean.Order;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Order.BmobTimeUtil;
+import com.example.hotel.UI.Order.OrderPresenter;
+import com.example.hotel.UI.Order.OrderViewInterface;
+import com.google.gson.Gson;
 import com.loper7.date_time_picker.DateTimeConfig;
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog;
 
@@ -40,6 +45,8 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
     private Date startTime;
     private Date endTime;
+    private List<Date> timeList;
+    private OrderPresenter orderPresenter;
 
     private TravellerAndIDcardView tv_1;
     private TravellerAndIDcardView tv_2;
@@ -47,9 +54,12 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     private TravellerAndIDcardView tv_4;
     private TravellerAndIDcardView tv_5;
 
-
     private Spinner spinner;
 
+    private Button button_ok;
+    private Button button_cancel;
+
+    Gson gson = new Gson();
     Order order = new Order();
 
     @Override
@@ -59,10 +69,22 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
         spinner = findViewById(R.id.book_the_room_spinner);
         starTime_text = findViewById(R.id.book_the_room_start_time);
         endTime_text = findViewById(R.id.book_the_room_end_time);
+        button_ok = findViewById(R.id.book_ok);
+        button_cancel = findViewById(R.id.book_cancel);
 
         choiceStartTime.setOnClickListener(this);
         choiceEndTime.setOnClickListener(this);
         spinner.setOnItemSelectedListener(this);
+        button_ok.setOnClickListener(this);
+        button_cancel.setOnClickListener(this);
+
+//        String timeListJson = getIntent().getStringExtra("timeList");
+//        if (timeListJson != null){
+//            List<Date> timeList = gson.fromJson(timeListJson,ArrayList.class);
+//            Log.i(TAG, "initViews: " + timeList.size());
+//        }
+
+
     }
 
     @Override
@@ -70,7 +92,6 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
         return R.layout.activity_book_the_room;
     }
 
-    @SuppressLint("ResourceType")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -81,6 +102,33 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 displayList.add(DateTimeConfig.MONTH);
                 displayList.add(DateTimeConfig.DAY);
                 displayList.add(DateTimeConfig.HOUR);
+                //访问数据库获取可选时间
+                orderPresenter.getOrderModel(new OrderViewInterface() {
+                    @Override
+                    public void getAllOrdersSucceed(List<Order> orders) {
+                    }
+
+                    @Override
+                    public void getAllOrderError() {
+                    }
+
+                    @Override
+                    public void getOrderById(List<Order> orders) {
+                        //拿到已被预定的时间列表
+                        timeList = BmobTimeUtil.getDaysBetween(orders.get(0).getStartTime().getDate(),
+                                orders.get(0).getEndTime().getDate());
+
+                    }
+
+                    @Override
+                    public void getOrderByIdError() {
+
+                    }
+                });
+
+
+
+
 
                 new CardDatePickerDialog.Builder(this)
                         .setTitle("title")
@@ -152,6 +200,23 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                             }
                             return null;
                         }).build().show();
+                break;
+            }
+
+            case R.id.book_ok:{
+                Intent intent = new Intent();
+                intent.putExtra("data_return","book_ok!");
+                setResult(RESULT_OK,intent);
+
+                finish();
+                break;
+            }
+            case R.id.book_cancel:{
+                Intent intent = new Intent();
+                intent.putExtra("data_return","book_cancel!");
+                setResult(RESULT_CANCELED,intent);
+
+                finish();
                 break;
             }
 
