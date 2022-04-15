@@ -45,7 +45,7 @@ public class VedioPlayingIcon extends View {
 
 
     //开始 停止
-    private boolean isPlaying;
+    private boolean isPlaying = true;
 
     private Thread myThread;
 
@@ -54,6 +54,7 @@ public class VedioPlayingIcon extends View {
 
     //指针同步率
     private float sync = 0.575f;
+
 
     public VedioPlayingIcon(Context context) {
         super(context);
@@ -65,12 +66,19 @@ public class VedioPlayingIcon extends View {
 
     public VedioPlayingIcon(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
 //        pointerWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,getWidth(),
 //                context.getResources().getDisplayMetrics());
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.VedioPlayingIcon);
         pointerWidth = array.getLayoutDimension(
                 R.styleable.VedioPlayingIcon_android_layout_width, 28 * 5) / 5;
         array.recycle();
+        if (myThread == null){
+            myThread = new Thread(new MyRunnable());
+            myThread.start();
+            System.out.println("start");
+        }
+        System.out.println("start init");
         init();
 
     }
@@ -183,11 +191,11 @@ public class VedioPlayingIcon extends View {
                         pointers.get(j).setHeight((basePointY - getPaddingTop()) * rate * 0.8f);
                     }
                     Thread.sleep(pointerSpeed);
-                    if (isPlaying){
+
                         //更新布局
                         handler.sendEmptyMessage(0);
                         i+=0.1;
-                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -213,9 +221,7 @@ public class VedioPlayingIcon extends View {
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        return true;
+    public boolean onTouchEvent(MotionEvent event) {
+        return false;
     }
-
-
 }
