@@ -9,4 +9,6 @@ public interface OrderContract {//回调数据
     void getAllOrders(List<Order> orders);
 
     void getOrdersById(List<Order> orders);
+
+    void getOrdersById(List<Order> orders,int i);
 }

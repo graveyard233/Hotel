@@ -19,7 +19,7 @@ public class OrderPresenter {
         orderModel.setRoom(room);
         orderModel.getAllOrderList(new OrderContract() {
             @Override
-            public void getAllOrders(List<Order> orders) {
+            public void getAllOrders(List<Order> orders, int i) {
                 if (viewInterface != null){
                     if (orders.size() > 0)
                         viewInterface.getAllOrdersSucceed(orders);
@@ -36,12 +36,17 @@ public class OrderPresenter {
 
             }
 
+            @Override
+            public void getOrdersById(List<Order> orders, int i) {
+
+            }
+
 
         });
 
         orderModel.getOrderById(new OrderContract() {
             @Override
-            public void getAllOrders(List<Order> orders) {
+            public void getAllOrders(List<Order> orders, int i) {
 
             }
 
@@ -57,6 +62,68 @@ public class OrderPresenter {
                 else {
                     viewInterface.getOrderByIdError();
                 }
+            }
+
+            @Override
+            public void getOrdersById(List<Order> orders, int i) {
+
+            }
+        });
+    }
+
+    public void getOrderModel(int i,OrderViewInterface viewInterface) {
+        orderModel = OrderModel.get();
+        orderModel.setRoom(room);
+        orderModel.getAllOrderList(i,new OrderContract() {
+            @Override
+            public void getAllOrders(List<Order> orders, int i) {
+                if (viewInterface != null){
+                    if (orders.size() > 0)
+                        viewInterface.getAllOrdersSucceed(orders);
+                    else
+                        viewInterface.getAllOrderError();
+                }
+                else {
+                    viewInterface.getAllOrderError();
+                }
+            }
+
+            @Override
+            public void getOrdersById(List<Order> orders) {
+
+            }
+
+            @Override
+            public void getOrdersById(List<Order> orders, int i) {
+
+            }
+
+
+        });
+
+        orderModel.getOrderById(new OrderContract() {
+            @Override
+            public void getAllOrders(List<Order> orders, int i) {
+
+            }
+
+            @Override
+            public void getOrdersById(List<Order> orders) {
+                if (viewInterface != null){
+                    if (orders.size() > 0)
+                        viewInterface.getOrderById(orders);
+                    else
+                        viewInterface.getOrderByIdError();
+
+                }
+                else {
+                    viewInterface.getOrderByIdError();
+                }
+            }
+
+            @Override
+            public void getOrdersById(List<Order> orders, int i) {
+                viewInterface.getOrderById(orders,i);
             }
         });
     }

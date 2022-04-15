@@ -59,6 +59,8 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     private Button button_ok;
     private Button button_cancel;
 
+    private TextView textView;
+
     Gson gson = new Gson();
     Order order = new Order();
 
@@ -71,6 +73,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
         endTime_text = findViewById(R.id.book_the_room_end_time);
         button_ok = findViewById(R.id.book_ok);
         button_cancel = findViewById(R.id.book_cancel);
+        textView = findViewById(R.id.user);
 
         choiceStartTime.setOnClickListener(this);
         choiceEndTime.setOnClickListener(this);
@@ -122,6 +125,11 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
                     @Override
                     public void getOrderByIdError() {
+
+                    }
+
+                    @Override
+                    public void getOrderById(List<Order> orders, int i) {
 
                     }
                 });
@@ -220,6 +228,34 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 break;
             }
 
+            case R.id.user:{
+                orderPresenter.getOrderModel(0,new OrderViewInterface() {
+                    @Override
+                    public void getAllOrdersSucceed(List<Order> orders) {
+
+                    }
+
+                    @Override
+                    public void getAllOrderError() {
+
+                    }
+
+                    @Override
+                    public void getOrderById(List<Order> orders) {
+
+                    }
+
+                    @Override
+                    public void getOrderByIdError() {
+
+                    }
+
+                    @Override
+                    public void getOrderById(List<Order> orders, int i) {
+
+                    }
+                });
+            }
             default:break;
         }
     }

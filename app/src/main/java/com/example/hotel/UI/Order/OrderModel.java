@@ -106,4 +106,36 @@ public class OrderModel {
         return null;
     }
 
+    public List<Order> getAllOrderList(int i,OrderContract orderContract) {
+        String bql = "select * from Order";
+        BmobQuery<Order> bmobQuery = new BmobQuery<Order>();
+
+        bmobQuery.setSQL(bql);
+        bmobQuery.doSQLQuery(new SQLQueryListener<Order>() {
+            @Override
+            public void done(BmobQueryResult<Order> bmobQueryResult, BmobException e) {
+                List<Order> list = null;
+                if (e == null){
+                    list = (List<Order>) bmobQueryResult.getResults();
+                    if (list != null && list.size() > 0){
+                        for (int i = 0; i < list.size(); i++) {
+                            Log.i("search order by sql", "done: " +
+                                    list.get(i).toString());
+                        }
+                    }else {
+                        Log.i("smile", "查询成功，无数据返回");
+                    }
+                }else {
+                    Log.i("smile", "错误码："+e.getErrorCode()+"，错误描述："+e.getMessage());
+                }
+
+                //回调list，让上一层实现这个接口的方法达成list数据传递回去
+                if (orderContract != null){
+                    orderContract.getOrdersById(list,2);
+                }
+            }
+        });
+        return null;
+    }
+
 }

@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -40,7 +41,7 @@ public class VedioPlayingIcon extends View {
     //指针宽度
     private float pointerWidth;
 
-    //指针颜色
+    //指针颜色 +
     private int pointerColor = Color.WHITE;
 
 
@@ -49,47 +50,50 @@ public class VedioPlayingIcon extends View {
 
     private Thread myThread;
 
-    //跳动速度
-    private int pointerSpeed = 30;
+    //跳动速度 + ms
+    private int pointerSpeed = 35;
 
-    //指针同步率
+    //指针同步率 0.575f
     private float sync = 0.575f;
 
+    private static final int MESSAGE_TYPE_EXECUTE = 1;
+
+    private float add = 0;
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Log.i("TAG", "onSizeChanged: w=" + w + ",h=" + h);
+        pointerWidth = w / 5;
+        paint.setStrokeWidth(pointerWidth);
+    }
 
     public VedioPlayingIcon(Context context) {
         super(context);
-
-        init();
     }
 
 
 
     public VedioPlayingIcon(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-//        pointerWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,getWidth(),
-//                context.getResources().getDisplayMetrics());
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.VedioPlayingIcon);
-        pointerWidth = array.getLayoutDimension(
-                R.styleable.VedioPlayingIcon_android_layout_width, 28 * 5) / 5;
-        array.recycle();
-        if (myThread == null){
-            myThread = new Thread(new MyRunnable());
-            myThread.start();
-            System.out.println("start");
-        }
-        System.out.println("start init");
         init();
+        Log.i("TAG", "VedioPlayingIcon: ");
+        handler.sendMessageDelayed(handler.obtainMessage(MESSAGE_TYPE_EXECUTE),pointerSpeed);
+//        if (myThread == null){
+//            myThread = new Thread(new MyRunnable());
+//            myThread.start();
+//            System.out.println("start");
+//        }
+
 
     }
 
     public VedioPlayingIcon(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
     }
 
     //初始化指针与画笔
     private void init() {
+        Log.i("TAG", "init: paint");
         paint = new Paint();
 
         //抗锯齿
@@ -99,7 +103,7 @@ public class VedioPlayingIcon extends View {
         paint.setAlpha(123);
 
         paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(pointerWidth);
+
 
         pointers = new ArrayList<>();
     }
@@ -107,6 +111,7 @@ public class VedioPlayingIcon extends View {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        Log.i("TAG", "onLayout: " + getWidth());
         //获取逻辑原点，画布的左下角,要减去padding bottom的距离
         basePointY = getHeight() - pointerWidth / 2 ;
         Random random = new Random();
@@ -129,11 +134,13 @@ public class VedioPlayingIcon extends View {
 //                        / (pointerNum - 1));
         //间隔为柱子宽度的一半
         pointerPadding = pointerWidth / 2;
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Log.i("TAG", "onDraw: ");
 //        basePointX = (float) (0f + getPaddingLeft() * 7);
         basePointX = (float) (0f + pointerPadding * 2);
         for (int i = 0; i < pointers.size(); i++) {
@@ -152,28 +159,43 @@ public class VedioPlayingIcon extends View {
         }
     }
 
-    public void start(){
-        if (!isPlaying){
-            if (myThread == null){
-                myThread = new Thread(new MyRunnable());
-                myThread.start();
-            }
-            isPlaying = true;
+    @Override
+    protected void onDetachedFromWindow() {
+        if (handler != null){
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
         }
-    }
+        super.onDetachedFromWindow();
 
-    public void stop(){
-        isPlaying = false;
-        //刷新view
-        invalidate();
     }
 
     //处理子线程发出来的指令 然后刷新view
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            invalidate();
+            if (msg.what == MESSAGE_TYPE_EXECUTE){
+                Log.i("TAG", "handleMessage: ");
+                try {
+                    for (int j = 0; j < pointers.size(); j++) {
+                        //改变指针高度
+                        //利用正弦规律获取0到1
+                        float rate = (float) Math.abs(Math.sin(add + j * sync));
+                        //有规律的改变高度
+                        pointers.get(j).setHeight((basePointY - getPaddingTop()) * rate * 0.8f);
+                    }
+
+                    //更新布局
+                    add+=0.1;
+//                        handler.sendEmptyMessage(0);
+                    invalidate();
+                    handler.sendMessageDelayed(handler.obtainMessage(MESSAGE_TYPE_EXECUTE),pointerSpeed);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
         }
     };
 
@@ -194,6 +216,7 @@ public class VedioPlayingIcon extends View {
 
                         //更新布局
                         handler.sendEmptyMessage(0);
+
                         i+=0.1;
 
                 } catch (Exception e) {
