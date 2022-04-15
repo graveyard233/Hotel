@@ -19,7 +19,7 @@ public class OrderPresenter {
         orderModel.setRoom(room);
         orderModel.getAllOrderList(new OrderContract() {
             @Override
-            public void getAllOrders(List<Order> orders, int i) {
+            public void getAllOrders(List<Order> orders) {
                 if (viewInterface != null){
                     if (orders.size() > 0)
                         viewInterface.getAllOrdersSucceed(orders);
@@ -46,7 +46,7 @@ public class OrderPresenter {
 
         orderModel.getOrderById(new OrderContract() {
             @Override
-            public void getAllOrders(List<Order> orders, int i) {
+            public void getAllOrders(List<Order> orders) {
 
             }
 
@@ -76,7 +76,7 @@ public class OrderPresenter {
         orderModel.setRoom(room);
         orderModel.getAllOrderList(i,new OrderContract() {
             @Override
-            public void getAllOrders(List<Order> orders, int i) {
+            public void getAllOrders(List<Order> orders) {
                 if (viewInterface != null){
                     if (orders.size() > 0)
                         viewInterface.getAllOrdersSucceed(orders);
@@ -103,7 +103,7 @@ public class OrderPresenter {
 
         orderModel.getOrderById(new OrderContract() {
             @Override
-            public void getAllOrders(List<Order> orders, int i) {
+            public void getAllOrders(List<Order> orders) {
 
             }
 

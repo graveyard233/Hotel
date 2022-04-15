@@ -193,6 +193,11 @@ public class RoomDetailActivity extends BaseActivity  {
                                 }
                                 ,et_date);
                     }
+
+                    @Override
+                    public void getOrderById(List<Order> orders, int i) {
+
+                    }
                 });
             }
         });
