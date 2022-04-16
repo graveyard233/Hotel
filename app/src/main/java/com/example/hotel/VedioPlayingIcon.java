@@ -24,6 +24,10 @@ import java.util.Random;
 
 public class VedioPlayingIcon extends View {
 
+    private static final int MESSAGE_TYPE_EXECUTE = 1;
+
+    private static final String TAG = "VedioPlayingIcon";
+
     private Paint paint;
 
     //跳动指针集合
@@ -35,34 +39,46 @@ public class VedioPlayingIcon extends View {
     private float basePointX;
     private float basePointY;
 
-    //指针间隙
+    //指针间隙 为指针宽度的一半
     private float pointerPadding;
 
-    //指针宽度
+    //指针宽度 基于此控件的宽度
     private float pointerWidth;
 
-    //指针颜色 +
+    //指针颜色
     private int pointerColor = Color.WHITE;
 
-
-    //开始 停止
-    private boolean isPlaying = true;
-
-    private Thread myThread;
-
-    //跳动速度 + ms
+    //跳动速度  ms
     private int pointerSpeed = 35;
 
-    //指针同步率 0.575f
+    /**
+     * 指针同步率
+     *
+     * 合适的范围:0.5~0.65
+     */
     private float sync = 0.575f;
 
-    private static final int MESSAGE_TYPE_EXECUTE = 1;
-
+    //循环计数器，用于变化sin值
     private float add = 0;
+
+    public void setPointerColor(int pointerColor) {
+        paint.setColor(pointerColor);
+        paint.setAlpha(123);
+    }
+
+    /**
+     * 设置指针速度
+     * @param ms 速度
+     * 注: 单位 毫秒，数值越大，指针跳动越慢
+     */
+    public void setPointerSpeed(int ms) {
+        this.pointerSpeed = ms;
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.i("TAG", "onSizeChanged: w=" + w + ",h=" + h);
+        //一共三个指针，将宽度分成十份，一个指针占两份，指针间隔占一份
         pointerWidth = w / 5;
         paint.setStrokeWidth(pointerWidth);
     }
@@ -71,20 +87,10 @@ public class VedioPlayingIcon extends View {
         super(context);
     }
 
-
-
     public VedioPlayingIcon(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
-        Log.i("TAG", "VedioPlayingIcon: ");
         handler.sendMessageDelayed(handler.obtainMessage(MESSAGE_TYPE_EXECUTE),pointerSpeed);
-//        if (myThread == null){
-//            myThread = new Thread(new MyRunnable());
-//            myThread.start();
-//            System.out.println("start");
-//        }
-
-
     }
 
     public VedioPlayingIcon(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -93,18 +99,15 @@ public class VedioPlayingIcon extends View {
 
     //初始化指针与画笔
     private void init() {
-        Log.i("TAG", "init: paint");
         paint = new Paint();
-
         //抗锯齿
         paint.setAntiAlias(true);
-        paint.setColor(pointerColor);
+        //假如没有赋予颜色，则默认白色
+        if (pointerColor == -1)
+            paint.setColor(pointerColor);
         //半透明画笔
         paint.setAlpha(123);
-
         paint.setStrokeCap(Paint.Cap.ROUND);
-
-
         pointers = new ArrayList<>();
     }
 
@@ -112,15 +115,15 @@ public class VedioPlayingIcon extends View {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         Log.i("TAG", "onLayout: " + getWidth());
-        //获取逻辑原点，画布的左下角,要减去padding bottom的距离
+        //获取逻辑原点，画布的左下角,要减去pointerWidth一半的距离
         basePointY = getHeight() - pointerWidth / 2 ;
         Random random = new Random();
         if (pointers != null){
             pointers.clear();
         }
         float j = 0.2f;
+        //初始化指针高度
         for (int i = 0; i < pointerNum; i++) {
-
             Pointer pointer = new Pointer(
                     (float) ( j * (getHeight() - getPaddingBottom() - getPaddingTop())
                     )
@@ -128,27 +131,15 @@ public class VedioPlayingIcon extends View {
             pointers.add(pointer);
             j += 0.3f;
         }
-
-        //指针之间的间隔
-//        pointerPadding = (float) ((getWidth() - getPaddingLeft() - getPaddingRight() - pointerWidth * pointerNum)
-//                        / (pointerNum - 1));
         //间隔为柱子宽度的一半
         pointerPadding = pointerWidth / 2;
-
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.i("TAG", "onDraw: ");
-//        basePointX = (float) (0f + getPaddingLeft() * 7);
         basePointX = (float) (0f + pointerPadding * 2);
         for (int i = 0; i < pointers.size(); i++) {
-//            canvas.drawRect(basePointX,
-//                    basePointY - pointers.get(i).getHeight(),
-//                    basePointX + pointerWidth,
-//                    basePointY,
-//                    paint);
             canvas.drawLine(basePointX,
                     basePointY,
                     basePointX,
@@ -166,66 +157,32 @@ public class VedioPlayingIcon extends View {
             handler = null;
         }
         super.onDetachedFromWindow();
-
     }
 
-    //处理子线程发出来的指令 然后刷新view
+    //处理handler发出来的指令 然后刷新view
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.what == MESSAGE_TYPE_EXECUTE){
-                Log.i("TAG", "handleMessage: ");
                 try {
                     for (int j = 0; j < pointers.size(); j++) {
                         //改变指针高度
-                        //利用正弦规律获取0到1
+                        //利用正弦规律获取0到1，j需要乘同步率，尽量使指针在同一振幅中
                         float rate = (float) Math.abs(Math.sin(add + j * sync));
                         //有规律的改变高度
                         pointers.get(j).setHeight((basePointY - getPaddingTop()) * rate * 0.8f);
                     }
-
                     //更新布局
                     add+=0.1;
-//                        handler.sendEmptyMessage(0);
                     invalidate();
                     handler.sendMessageDelayed(handler.obtainMessage(MESSAGE_TYPE_EXECUTE),pointerSpeed);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-
-
         }
     };
-
-    public class MyRunnable implements Runnable{
-
-        @Override
-        public void run() {
-            for (float i = 0; i < Integer.MAX_VALUE; ) {
-                try {
-                    for (int j = 0; j < pointers.size(); j++) {
-                        //改变指针高度
-                        //利用正弦规律获取0到1
-                        float rate = (float) Math.abs(Math.sin(i + j * sync));
-                        //有规律的改变高度
-                        pointers.get(j).setHeight((basePointY - getPaddingTop()) * rate * 0.8f);
-                    }
-                    Thread.sleep(pointerSpeed);
-
-                        //更新布局
-                        handler.sendEmptyMessage(0);
-
-                        i+=0.1;
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
 
     public class Pointer {
         private float height;
@@ -243,8 +200,5 @@ public class VedioPlayingIcon extends View {
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return false;
-    }
+
 }

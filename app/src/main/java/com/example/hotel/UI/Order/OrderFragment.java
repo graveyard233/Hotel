@@ -1,5 +1,6 @@
 package com.example.hotel.UI.Order;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,16 +15,17 @@ import com.example.hotel.VedioPlayingIcon;
 
 public class OrderFragment extends BaseFragment {
 
-
+    VedioPlayingIcon icon;
 
     private TextView textView;
     private LinearLayout view;
     private ConstraintLayout layout;
     @Override
     protected void initViews() {
-//        icon = find(R.id.my_icon);
+        icon = find(R.id.my_icon);
 //        icon2 = find(R.id.my_icon2);
-
+        icon.setPointerSpeed(40);
+        icon.setPointerColor(Color.RED);
         view = find(R.id.mytest);
 //        view.setOnClickListener(new View.OnClickListener() {
 //            @Override
