@@ -27,4 +27,6 @@
     <string name="book_time">入住时段</string>
     <string name="book_people">入住人信息</string>
     <string name="book_other">其他</string>
+
+    <string name="order_id">订单编号:</string>
 </resources>
