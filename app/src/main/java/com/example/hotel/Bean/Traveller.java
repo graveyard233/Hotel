@@ -26,4 +26,12 @@ public class Traveller extends BmobObject {
     public void setIDcard(String IDcard) {
         this.IDcard = IDcard;
     }
+
+    @Override
+    public String toString() {
+        return "Traveller{" +
+                "travellerName='" + travellerName + '\'' +
+                ", IDcard='" + IDcard + '\'' +
+                '}';
+    }
 }

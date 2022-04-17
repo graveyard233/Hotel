@@ -12,5 +12,5 @@ public interface OrderViewInterface {
     void getOrderById(List<Order> orders);
     void getOrderByIdError();
 
-    void getOrderById(List<Order> orders,int i);
+    void addOrder(String objId,int i);
 }

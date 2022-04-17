@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -44,15 +45,18 @@ public class RoomDetailActivity extends BaseActivity  {
 
     Gson gson = new Gson();
 
+    private Room this_room;
+    private String roomJson;
+
 
     @Override
     protected void initViews() {
 
 //        Toolbar toolbar = findViewById(R.id.room_detail_toolBar);
 //        toolbar.setNavigationOnClickListener(this);
-        String roomJson = getIntent().getStringExtra("roomJson");
+        roomJson = getIntent().getStringExtra("roomJson");
         Gson gson= new Gson();
-        Room this_room = gson.fromJson(roomJson,Room.class);
+        this_room = gson.fromJson(roomJson,Room.class);
         Log.i(TAG, "initViews: " + this_room.toString());
 
         ImageView img = findViewById(R.id.room_detail_header_img);
@@ -195,7 +199,7 @@ public class RoomDetailActivity extends BaseActivity  {
                     }
 
                     @Override
-                    public void getOrderById(List<Order> orders, int i) {
+                    public void addOrder(String objId, int i) {
 
                     }
                 });
@@ -207,6 +211,7 @@ public class RoomDetailActivity extends BaseActivity  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),Activity_book_the_room.class);
+                intent.putExtra("ROOM",roomJson);
 //                if (timeList.size() > 0){
 //                    String s_time_list = gson.toJson(timeList);
 //                    intent.putExtra("timeList",s_time_list);
@@ -285,6 +290,8 @@ public class RoomDetailActivity extends BaseActivity  {
                 if (resultCode == RESULT_OK){
                     String returnData = data.getStringExtra("data_return");
                     System.out.println(returnData);
+                    Toast.makeText(this,"下单成功",Toast.LENGTH_LONG).show();
+                    finish();
                 }
                 if (resultCode == RESULT_CANCELED){
 //                    String returnData = data.getStringExtra("data_return");

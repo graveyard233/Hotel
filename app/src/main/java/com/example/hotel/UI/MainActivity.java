@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         super.onCreate(savedInstanceState);
         Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
         mContext = getApplicationContext();
+        login();
 //        try {
 //
 ////            roomModel.testData();

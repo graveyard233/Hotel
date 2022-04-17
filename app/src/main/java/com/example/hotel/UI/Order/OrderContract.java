@@ -10,5 +10,5 @@ public interface OrderContract {//回调数据
 
     void getOrdersById(List<Order> orders);
 
-    void getOrdersById(List<Order> orders,int i);
+    void addOrder(String objId,int i);
 }

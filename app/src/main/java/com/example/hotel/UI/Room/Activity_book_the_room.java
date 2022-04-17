@@ -3,6 +3,7 @@ package com.example.hotel.UI.Room;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +20,9 @@ import android.widget.Toast;
 
 
 import com.example.hotel.Bean.Order;
+import com.example.hotel.Bean.Room;
+import com.example.hotel.Bean.Traveller;
+import com.example.hotel.Bean.User;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Order.BmobTimeUtil;
@@ -32,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobDate;
 
 public class Activity_book_the_room extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -46,7 +51,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     private Date startTime;
     private Date endTime;
     private List<Date> timeList;
-    private OrderPresenter orderPresenter;
+    private OrderPresenter orderPresenter = new OrderPresenter();
 
     private TravellerAndIDcardView tv_1;
     private TravellerAndIDcardView tv_2;
@@ -55,6 +60,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     private TravellerAndIDcardView tv_5;
 
     private Spinner spinner;
+    private int people_number = 1;
 
     private Button button_ok;
     private Button button_cancel;
@@ -62,10 +68,26 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     private TextView textView;
 
     Gson gson = new Gson();
+    String roomJson;
+    Room thisRoom;
+
     Order order = new Order();
+
+    User user;
+
+    private Context mContext;
+
+
+
 
     @Override
     protected void initViews() {
+        roomJson = getIntent().getStringExtra("ROOM");
+        thisRoom = gson.fromJson(roomJson,Room.class);
+        System.out.println(thisRoom.toString());
+        orderPresenter.setRoom(thisRoom);
+
+
         choiceStartTime = findViewById(R.id.bookTheRoom_choiceStart);
         choiceEndTime = findViewById(R.id.bookTheRoom_choiceEnd);
         spinner = findViewById(R.id.book_the_room_spinner);
@@ -80,6 +102,10 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
         spinner.setOnItemSelectedListener(this);
         button_ok.setOnClickListener(this);
         button_cancel.setOnClickListener(this);
+        textView.setOnClickListener(this);
+
+        mContext = this;
+        user = BmobUser.getCurrentUser(User.class);
 
 //        String timeListJson = getIntent().getStringExtra("timeList");
 //        if (timeListJson != null){
@@ -120,6 +146,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                         //拿到已被预定的时间列表
                         timeList = BmobTimeUtil.getDaysBetween(orders.get(0).getStartTime().getDate(),
                                 orders.get(0).getEndTime().getDate());
+                        System.out.println(timeList);
 
                     }
 
@@ -129,7 +156,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                     }
 
                     @Override
-                    public void getOrderById(List<Order> orders, int i) {
+                    public void addOrder(String objId, int i) {
 
                     }
                 });
@@ -212,11 +239,94 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
             }
 
             case R.id.book_ok:{
-                Intent intent = new Intent();
-                intent.putExtra("data_return","book_ok!");
-                setResult(RESULT_OK,intent);
 
-                finish();
+
+                boolean order_is_empty = false;
+                List<Traveller> list_Traveller = new ArrayList<>();
+                List<Integer> list_id = new ArrayList<>();
+                list_id.add(R.id.traveller_info_1);
+                list_id.add(R.id.traveller_info_2);
+                list_id.add(R.id.traveller_info_3);
+                list_id.add(R.id.traveller_info_4);
+                list_id.add(R.id.traveller_info_5);
+                for (int a = 0; a < people_number; a++) {
+                    TravellerAndIDcardView t = findViewById(list_id.get(a));
+                    list_Traveller.add(new Traveller(t.getTravellerName(),t.getIDcard()));
+                    if (t.isHasEmpty()){
+                        order_is_empty = true;
+                        break;
+                    }
+                    else {
+                        order_is_empty = false;
+                    }
+                }
+//                        for (int a = 0; a < people_number; a++) {
+//                            Log.e(TAG, "onClick: " +list_Traveller.get(a).toString());
+//                        }
+
+                order.setUser(user);
+                order.setRoomId(thisRoom.getRoomId());
+
+                order.setPrice(thisRoom.getPrice() * thisRoom.getDiscount());
+
+                order.setIsPay(0);
+
+                order.setMsgId(user.getObjectId());
+                order.setUserMassage("此用户没有要求");
+
+                order.setTravellerList(list_Traveller);
+
+                Log.e(TAG, "onClick: " + order.toString());
+
+                if (order.getStartTime() == null || order.getEndTime() == null)
+                {
+                    order_is_empty = true;
+                }
+
+                if (order_is_empty){//表单没填写完
+                    Toast.makeText(mContext,"表单没填写完",Toast.LENGTH_SHORT).show();
+                    break;
+
+                } else {
+                    // TODO: 2022/4/17
+                    orderPresenter.addOrder(order,new OrderViewInterface() {
+
+
+                        @Override
+                        public void getAllOrdersSucceed(List<Order> orders) {
+
+                        }
+
+                        @Override
+                        public void getAllOrderError() {
+
+                        }
+
+                        @Override
+                        public void getOrderById(List<Order> orders) {
+
+                        }
+
+                        @Override
+                        public void getOrderByIdError() {
+
+                        }
+
+                        @Override
+                        public void addOrder(String objId, int i) {
+                            System.out.println(i + " " + objId);
+                            Intent intent = new Intent();
+                            intent.putExtra("data_return","book_ok!");
+                            setResult(RESULT_OK,intent);
+
+                            finish();
+                            System.out.println("ffff");
+                        }
+
+                    });
+
+
+                }
                 break;
             }
             case R.id.book_cancel:{
@@ -229,32 +339,11 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
             }
 
             case R.id.user:{
-                orderPresenter.getOrderModel(0,new OrderViewInterface() {
-                    @Override
-                    public void getAllOrdersSucceed(List<Order> orders) {
-
-                    }
-
-                    @Override
-                    public void getAllOrderError() {
-
-                    }
-
-                    @Override
-                    public void getOrderById(List<Order> orders) {
-
-                    }
-
-                    @Override
-                    public void getOrderByIdError() {
-
-                    }
-
-                    @Override
-                    public void getOrderById(List<Order> orders, int i) {
-
-                    }
-                });
+                TravellerAndIDcardView travellerAndIDcardView1 = findViewById(R.id.traveller_info_1);
+                if (travellerAndIDcardView1.isHasEmpty())
+                    System.out.println("fuck");
+                else System.out.println("yes");
+                System.out.println(travellerAndIDcardView1.getTravellerName());
             }
             default:break;
         }
@@ -276,6 +365,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 tv_3.setVisibility(View.GONE);
                 tv_4.setVisibility(View.GONE);
                 tv_5.setVisibility(View.GONE);
+                people_number = 1;
                 break;
             }
             case 1:{
@@ -284,6 +374,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 tv_3.setVisibility(View.GONE);
                 tv_4.setVisibility(View.GONE);
                 tv_5.setVisibility(View.GONE);
+                people_number = 2;
                 break;
             }
             case 2:{
@@ -292,6 +383,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 tv_3.setVisibility(View.VISIBLE);
                 tv_4.setVisibility(View.GONE);
                 tv_5.setVisibility(View.GONE);
+                people_number = 3;
                 break;
             }
             case 3:{
@@ -300,6 +392,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 tv_3.setVisibility(View.VISIBLE);
                 tv_4.setVisibility(View.VISIBLE);
                 tv_5.setVisibility(View.GONE);
+                people_number = 4;
                 break;
             }
             case 4:{
@@ -308,6 +401,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 tv_3.setVisibility(View.VISIBLE);
                 tv_4.setVisibility(View.VISIBLE);
                 tv_5.setVisibility(View.VISIBLE);
+                people_number = 5;
                 break;
             }
             default:break;
