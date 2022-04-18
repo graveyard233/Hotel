@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/maxlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout_order"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        android:translationZ="20dp">
 
         <com.scwang.smart.refresh.header.ClassicsHeader
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <com.scwang.smart.refresh.footer.ClassicsFooter
+            android:id="@+id/refresh_order_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/order_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 
-</LinearLayout>
+
+</FrameLayout>

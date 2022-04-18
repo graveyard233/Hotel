@@ -28,6 +28,7 @@ import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Order.BmobTimeUtil;
 import com.example.hotel.UI.Order.OrderPresenter;
 import com.example.hotel.UI.Order.OrderViewInterface;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.loper7.date_time_picker.DateTimeConfig;
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog;
@@ -58,6 +59,8 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
     private TravellerAndIDcardView tv_3;
     private TravellerAndIDcardView tv_4;
     private TravellerAndIDcardView tv_5;
+
+    private TextInputLayout message;
 
     private Spinner spinner;
     private int people_number = 1;
@@ -96,6 +99,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
         button_ok = findViewById(R.id.book_ok);
         button_cancel = findViewById(R.id.book_cancel);
         textView = findViewById(R.id.user);
+        message = findViewById(R.id.book_the_room_message);
 
         choiceStartTime.setOnClickListener(this);
         choiceEndTime.setOnClickListener(this);
@@ -272,7 +276,12 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 order.setIsPay(0);
 
                 order.setMsgId(user.getObjectId());
-                order.setUserMassage("此用户没有要求");
+                if (message.getEditText().getText().toString().equals("")){
+                    order.setUserMassage("此用户没有要求");
+                } else {
+                    order.setUserMassage(message.getEditText().toString());
+                }
+
 
                 order.setTravellerList(list_Traveller);
 
@@ -339,11 +348,17 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
             }
 
             case R.id.user:{
-                TravellerAndIDcardView travellerAndIDcardView1 = findViewById(R.id.traveller_info_1);
-                if (travellerAndIDcardView1.isHasEmpty())
-                    System.out.println("fuck");
-                else System.out.println("yes");
-                System.out.println(travellerAndIDcardView1.getTravellerName());
+//                TravellerAndIDcardView travellerAndIDcardView1 = findViewById(R.id.traveller_info_1);
+//                if (travellerAndIDcardView1.isHasEmpty())
+//                    System.out.println("fuck");
+//                else System.out.println("yes");
+//                System.out.println(travellerAndIDcardView1.getTravellerName());
+                if (message.getEditText().getText().toString().equals("")){
+                    System.out.println("???");
+
+                } else {
+                    System.out.println(message.getEditText().toString());
+                }
             }
             default:break;
         }

@@ -243,6 +243,7 @@
                     android:layout_margin="5dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/book_the_room_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -254,14 +255,11 @@
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/book_the_room_username"
                         android:gravity="top"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionDone"
-                        android:inputType="textMultiLine"
-                        android:minLines="2"
-                        android:maxLines="3"
+
 
                         tools:ignore="HardcodedText" />
 

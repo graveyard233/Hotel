@@ -8,4 +8,7 @@
     <dimen name="RoomBookText">25dp</dimen>
     <dimen name="traveller_and_idcard_view_all_padding">5dp</dimen>
     <dimen name="RoomBookTitle">30dp</dimen>
+
+    <dimen name="mine_total_text_size">25dp</dimen>
+    <dimen name="mine_table_TableRow_BottomPadding">10dp</dimen>
 </resources>

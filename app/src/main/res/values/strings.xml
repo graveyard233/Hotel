@@ -29,4 +29,10 @@
     <string name="book_other">其他</string>
 
     <string name="order_id">订单编号:</string>
+    <string name="order_book_time">下单时间</string>
+    <string name="live_in_time_start">入住时间</string>
+    <string name="live_in_time_end">退房时间</string>
+    <string name="room_id">房间号</string>
+    <string name="total_pay">实付款</string>
+
 </resources>
