@@ -16,6 +16,7 @@ import com.example.hotel.Bean.User;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseFragment;
 import com.example.hotel.UI.MainActivity;
+import com.example.hotel.UI.ManageActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -41,14 +42,21 @@ public class LoginFragment extends BaseFragment {
 //        BmobUser.logOut();
         username_input = find(R.id.login_username_layout);
         password_input = find(R.id.login_password_layout);
-        username_input.getEditText().setText("刘粤鼎");
-        password_input.getEditText().setText("123");
+        username_input.getEditText().setText("admin");
+        password_input.getEditText().setText("admin");
         btn_login = find(R.id.login_btn_login);
         if (BmobUser.isLogin()){
             User user = BmobUser.getCurrentUser(User.class);
             Snackbar.make(find(R.id.login_coord),  user.getUsername() + "已经登录" , Snackbar.LENGTH_LONG).show();
-            Intent intent = new Intent(getActivity(), MainActivity.class);//去用户界面
-            startActivity(intent);
+            if (user.getUsername().equals("admin")){//是管理员
+                Intent to_Manage = new Intent(getActivity(), ManageActivity.class);
+//                                    to_Manage.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(to_Manage);
+            } else {
+                Intent intent = new Intent(getActivity(), MainActivity.class);//去用户界面
+                startActivity(intent);
+            }
+
         }
         else {
             Snackbar.make(find(R.id.login_coord), "尚未登录" , Snackbar.LENGTH_LONG).show();
@@ -71,9 +79,16 @@ public class LoginFragment extends BaseFragment {
                             if (e == null){
                                 Log.i("TAG", "登录成功:" + user.getIDcard());
                                 Snackbar.make(find(R.id.login_coord), "登录成功：" + user.getUsername(), Snackbar.LENGTH_LONG).show();
-                                Intent to_user = new Intent(getActivity(),MainActivity.class);
-                                to_user.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(to_user);
+                                if (user.getUsername().equals("admin")){//是管理员
+                                    Intent to_Manage = new Intent(getActivity(), ManageActivity.class);
+//                                    to_Manage.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(to_Manage);
+                                } else {//为普通用户
+                                    Intent to_user = new Intent(getActivity(),MainActivity.class);
+                                    to_user.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(to_user);
+                                }
+
                             }else {
                                 Snackbar.make(find(R.id.login_coord), "登录失败：" + e.getMessage(), Snackbar.LENGTH_LONG).show();
                             }

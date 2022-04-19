@@ -1,12 +1,21 @@
 package com.example.hotel.UI;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -48,8 +57,10 @@ public class LoginActivity extends BaseActivity {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tabLayout.performClick();
+
                 Log.i("TAG", "onClick: ");
+                handler.sendEmptyMessage(1);
+
             }
         });
     }
@@ -58,4 +69,30 @@ public class LoginActivity extends BaseActivity {
     protected int getLayoutId() {
         return R.layout.activity_login;
     }
+
+    private Handler handler = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 1){
+                MotionEvent down = MotionEvent.obtain(SystemClock.uptimeMillis(),SystemClock.currentThreadTimeMillis(),
+                        MotionEvent.ACTION_DOWN,0,1000,0);
+                dispatchTouchEvent(down);
+                handler.sendMessageDelayed(handler.obtainMessage(2),75);
+            }
+
+            if (msg.what == 2){
+                MotionEvent move = MotionEvent.obtain(SystemClock.uptimeMillis(),SystemClock.currentThreadTimeMillis(),
+                        MotionEvent.ACTION_MOVE,1000,1000,0);
+                dispatchTouchEvent(move);
+                handler.sendMessageDelayed(handler.obtainMessage(3),75);
+            }
+
+            if (msg.what == 3){
+                MotionEvent up = MotionEvent.obtain(SystemClock.uptimeMillis(),SystemClock.currentThreadTimeMillis(),
+                        MotionEvent.ACTION_UP,50,220,0);
+                dispatchTouchEvent(up);
+            }
+        }
+    };
 }
