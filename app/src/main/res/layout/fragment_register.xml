@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reg_coord"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context=".UI.Start.RegisterFragment">
 
     <ScrollView
@@ -13,7 +13,7 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -49,6 +49,50 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="59dp"
+                android:layout_marginRight="60dp"
+                android:paddingLeft="15dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="性别"
+                    android:textSize="17dp"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+
+                <RadioGroup
+                    android:id="@+id/reg_radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/reg_radioButton1"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+
+                        android:text="男" />
+
+                    <RadioButton
+                        android:id="@+id/reg_radioButton2"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="女" />
+                </RadioGroup>
+            </LinearLayout>
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_age_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -69,6 +113,8 @@
                     android:autofillHints="age" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <TextView
                 android:layout_marginLeft="59dp"
@@ -151,7 +197,6 @@
                 android:layout_weight="1" />
 
             <LinearLayout
-                android:id="@+id/buttonPanel"
                 style="?attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,7 +210,7 @@
 
 
                 <Button
-                    android:id="@+id/register"
+                    android:id="@+id/login_btn_register"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -182,4 +227,4 @@
 
     </ScrollView>
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

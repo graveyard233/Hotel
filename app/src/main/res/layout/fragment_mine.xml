@@ -209,10 +209,25 @@
 
     </TableLayout>
 
-    <TextView
+    <LinearLayout
+        style="?attr/buttonBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="我的信息"
-        android:textSize="25sp"
-        android:gravity="center" />
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="4dp"
+        android:clipToPadding="false">
+
+
+        <Button
+            android:id="@+id/mine_logout"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/logout" />
+    </LinearLayout>
 </LinearLayout>

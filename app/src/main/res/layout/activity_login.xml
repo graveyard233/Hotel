@@ -13,6 +13,7 @@
         android:background="@color/月色白">
 
         <ImageView
+            android:id="@+id/login_img"
             android:layout_width="108dp"
             android:layout_height="108dp"
             android:src="@drawable/ic_launcher_foreground"

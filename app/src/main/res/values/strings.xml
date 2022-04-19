@@ -35,6 +35,8 @@
     <string name="room_id">房间号</string>
     <string name="total_pay">实付款</string>
 
+    <string name="logout">登出</string>
+
 
     <string name="username">用户名</string>
     <string name="password">密码</string>
