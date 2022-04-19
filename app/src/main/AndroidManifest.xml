@@ -18,12 +18,21 @@
         android:theme="@style/Theme.Hotel"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UI.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".UI.Room.Activity_book_the_room"
             android:exported="false" />
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.example.hotel.BmobContentProvider"></provider>
+            android:authorities="com.example.hotel.BmobContentProvider" />
 
         <activity
             android:name=".UI.MainActivity"

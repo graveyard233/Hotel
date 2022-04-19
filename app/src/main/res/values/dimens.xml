@@ -11,4 +11,6 @@
 
     <dimen name="mine_total_text_size">25dp</dimen>
     <dimen name="mine_table_TableRow_BottomPadding">10dp</dimen>
+
+    <dimen name="login_input_text_width">260dp</dimen>
 </resources>
