@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/userManageFragment"
+        android:title="@string/user_manage_fragment_title" />
+    <item
+        android:id="@+id/roomManageFragment"
+        android:title="@string/Room_manage_fragment_title" />
+    <item
+        android:id="@+id/orderManageFragment"
+        android:title="@string/order_manage_fragment_title" />
+</menu>

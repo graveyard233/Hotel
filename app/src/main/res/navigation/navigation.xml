@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/orderManageFragment">
+
+    <fragment
+        android:id="@+id/orderManageFragment"
+        android:name="com.example.hotel.UI.Manage.OrderManageFragment"
+        android:label="@string/order_manage_fragment_title"
+        tools:layout="@layout/fragment_order_manage" />
+    <fragment
+        android:id="@+id/userManageFragment"
+        android:name="com.example.hotel.UI.Manage.UserManageFragment"
+        android:label="@string/user_manage_fragment_title"
+        tools:layout="@layout/fragment_user_manage" />
+    <fragment
+        android:id="@+id/roomManageFragment"
+        android:name="com.example.hotel.UI.Manage.RoomManageFragment"
+        android:label="@string/Room_manage_fragment_title"
+        tools:layout="@layout/fragment_room_manage" />
+</navigation>
