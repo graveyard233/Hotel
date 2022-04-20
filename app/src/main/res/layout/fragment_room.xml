@@ -19,7 +19,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/manage_toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:layout_constraintTop_toTopOf="parent">

@@ -3,11 +3,22 @@
 
     <item
         android:id="@+id/userManageFragment"
+        android:icon="@drawable/ic_user_manage_24"
         android:title="@string/user_manage_fragment_title" />
     <item
         android:id="@+id/roomManageFragment"
-        android:title="@string/Room_manage_fragment_title" />
+        android:icon="@drawable/ic_room_manage_24"
+        android:title="@string/room_manage_fragment_title" />
     <item
         android:id="@+id/orderManageFragment"
+        android:icon="@drawable/ic_list_manage_24"
         android:title="@string/order_manage_fragment_title" />
+    <item
+        android:id="@+id/commentManageFragment"
+        android:icon="@drawable/ic_comment_manage_24"
+        android:title="@string/comment_manage_fragment_title" />
+    <item
+        android:id="@+id/reportFragment"
+        android:icon="@drawable/ic_report_24"
+        android:title="@string/report_fragment_title" />
 </menu>

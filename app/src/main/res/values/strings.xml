@@ -45,10 +45,12 @@
     <string name="register">注册</string>
     <string name="age">年龄</string>
     <string name="phone">电话号码</string>
-    
-    
+
+
     <string name="order_manage_fragment_title">OrderManage</string>
     <string name="user_manage_fragment_title">UserManage</string>
-    <string name="Room_manage_fragment_title">RoomManage</string>
+    <string name="room_manage_fragment_title">RoomManage</string>
+    <string name="comment_manage_fragment_title">CommentManage</string>
+    <string name="report_fragment_title">Report</string>
 
 </resources>
