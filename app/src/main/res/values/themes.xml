@@ -23,6 +23,13 @@
     </style>
 
 
+    <style name="BlueEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/月色白</item>
+        <item name="colorControlActivated">@color/深竹月</item>
+
+    </style>
+
+
 
 
 

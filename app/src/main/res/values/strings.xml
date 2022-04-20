@@ -58,4 +58,6 @@
     <string name="createAt">创建时间</string>
     <string name="updateTime">更新时间</string>
 
+    <string name="change">修改</string>
+
 </resources>

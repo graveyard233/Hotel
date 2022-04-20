@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="旧:"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/dialog_old"
+            android:text="111"
+            android:textSize="25dp"
+            android:gravity="left|center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/分割线"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="新:"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <EditText
+            android:id="@+id/dialog_new_input"
+            android:hint="输入"
+            android:textSize="25dp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:imeOptions="actionDone"
+            style="@style/BlueEditText"/>
+<!--        <TextView-->
+<!--            android:text="111"-->
+<!--            android:textSize="45dp"-->
+<!--            android:gravity="left"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="3"-->
+<!--            android:layout_height="match_parent"/>-->
+
+    </LinearLayout>
+
+</LinearLayout>

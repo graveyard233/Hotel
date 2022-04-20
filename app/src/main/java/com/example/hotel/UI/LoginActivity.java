@@ -21,6 +21,7 @@ import android.widget.ImageView;
 
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
+import com.example.hotel.UI.Manage.ChangeDialog;
 import com.example.hotel.UI.Start.LoginFragment;
 import com.example.hotel.UI.Start.RegisterFragment;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -54,13 +55,14 @@ public class LoginActivity extends BaseActivity {
 
         Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
 
+        ChangeDialog changeDialog = new ChangeDialog(this);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Log.i("TAG", "onClick: ");
-                handler.sendEmptyMessage(1);
-
+//                handler.sendEmptyMessage(1);
+                changeDialog.EditDialog("haha");
             }
         });
     }
