@@ -5,7 +5,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.ManageActivity">
+    tools:context=".UI.ManageActivity"
+    tools:openDrawer="start">
 
     <include layout="@layout/manage_content_layout" />
 
@@ -16,5 +17,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_view_header"
         app:itemIconTint="@color/selector_book_checkbox"
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Large"
         app:menu="@menu/draw_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

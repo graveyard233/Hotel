@@ -1,4 +1,4 @@
-package com.example.hotel.UI.Manage;
+package com.example.hotel.UI.Manage.OrderManage;
 
 import android.os.Bundle;
 
@@ -14,18 +14,19 @@ import com.example.hotel.UI.Base.BaseFragment;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 
-public class RoomManageFragment extends BaseFragment {
+public class OrderManageFragment extends BaseFragment {
+
 
     @Override
     protected void initViews() {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.collapsingToolBarLayout))
-                .setTitle(getString(R.string.room_manage_fragment_title));
+                .setTitle(getString(R.string.order_manage_fragment_title));
         ((ImageView) requireActivity().findViewById(R.id.toolbarIconImg))
-                .setImageResource(R.drawable.ic_room_manage_24);
+                .setImageResource(R.drawable.ic_list_manage_24);
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_room_manage;
+        return R.layout.fragment_order_manage;
     }
 }

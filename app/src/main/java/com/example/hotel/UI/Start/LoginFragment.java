@@ -51,10 +51,10 @@ public class LoginFragment extends BaseFragment {
             if (user.getUsername().equals("admin")){//是管理员
                 Intent to_Manage = new Intent(getActivity(), ManageActivity.class);
 //                                    to_Manage.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(to_Manage);
+//                startActivity(to_Manage);
             } else {
                 Intent intent = new Intent(getActivity(), MainActivity.class);//去用户界面
-                startActivity(intent);
+//                startActivity(intent);
             }
 
         }

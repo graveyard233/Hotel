@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/orderManageFragment"
-        android:name="com.example.hotel.UI.Manage.OrderManageFragment"
+        android:name="com.example.hotel.UI.Manage.OrderManage.OrderManageFragment"
         android:label="@string/order_manage_fragment_title"
         tools:layout="@layout/fragment_order_manage" />
     <fragment
         android:id="@+id/userManageFragment"
-        android:name="com.example.hotel.UI.Manage.UserManageFragment"
+        android:name="com.example.hotel.UI.Manage.UserManage.UserManageFragment"
         android:label="@string/user_manage_fragment_title"
         tools:layout="@layout/fragment_user_manage" />
     <fragment
         android:id="@+id/roomManageFragment"
-        android:name="com.example.hotel.UI.Manage.RoomManageFragment"
+        android:name="com.example.hotel.UI.Manage.RoomManage.RoomManageFragment"
         android:label="@string/room_manage_fragment_title"
         tools:layout="@layout/fragment_room_manage" />
     <fragment

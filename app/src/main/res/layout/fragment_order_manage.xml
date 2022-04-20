@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Manage.OrderManageFragment">
+    tools:context=".UI.Manage.OrderManage.OrderManageFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

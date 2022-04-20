@@ -53,4 +53,9 @@
     <string name="comment_manage_fragment_title">CommentManage</string>
     <string name="report_fragment_title">Report</string>
 
+    <string name="user_objID">用户编号</string>
+    <string name="gender">性别</string>
+    <string name="createAt">创建时间</string>
+    <string name="updateTime">更新时间</string>
+
 </resources>
