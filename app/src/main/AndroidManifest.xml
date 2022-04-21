@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Hotel"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UI.Manage.RoomManage.ManageRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.Manage.RoomManage.FloorActivity"
             android:exported="false" />
         <activity
@@ -45,7 +48,7 @@
             android:authorities="com.example.hotel.BmobContentProvider" /> <!-- android:theme="@style/Theme.Start" -->
         <activity
             android:name=".UI.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity android:name=".UI.Room.RoomDetailActivity" />
     </application>
 
