@@ -60,4 +60,9 @@
 
     <string name="change">修改</string>
 
+    <string name="room_number">房间号</string>
+    <string name="price">价格</string>
+    <string name="room_type">房间类型</string>
+
+
 </resources>
