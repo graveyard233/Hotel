@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,7 +33,7 @@ import java.util.List;
 
 import cn.bmob.v3.Bmob;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemClickListener{
 
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private final String[] titles = {
@@ -41,6 +43,8 @@ public class LoginActivity extends BaseActivity {
     private SlidingTabLayout tabLayout;
 
     private ImageView img;
+
+    private ChangeDialog changeDialog;
 
     @Override
     protected void initViews() {
@@ -55,14 +59,17 @@ public class LoginActivity extends BaseActivity {
 
         Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
 
-        ChangeDialog changeDialog = new ChangeDialog(this);
+        changeDialog = new ChangeDialog(this);
+        changeDialog.setOnItemClickListener((ChangeDialog.OnItemClickListener) this);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Log.i("TAG", "onClick: ");
 //                handler.sendEmptyMessage(1);
-                changeDialog.EditDialog("haha");
+                changeDialog.setOldText("3333");
+                changeDialog.show();
+
             }
         });
     }
@@ -97,4 +104,15 @@ public class LoginActivity extends BaseActivity {
             }
         }
     };
+
+
+    @Override
+    public void OnItemClick(ChangeDialog dialog, View view) {
+        switch (view.getId()){
+            case R.id.change_dialog_ok:
+                System.out.println("ok");
+                System.out.println(changeDialog.getInputText());
+                break;
+        }
+    }
 }
