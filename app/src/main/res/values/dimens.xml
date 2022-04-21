@@ -13,4 +13,8 @@
     <dimen name="mine_table_TableRow_BottomPadding">10dp</dimen>
 
     <dimen name="login_input_text_width">260dp</dimen>
+    <dimen name="floor_btn_width">130dp</dimen>
+    <dimen name="floor_btn_height">90dp</dimen>
+    <dimen name="floor_btn_textsize">30dp</dimen>
+    <dimen name="floor_recycle_item_textsize">30dp</dimen>
 </resources>
