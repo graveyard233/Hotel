@@ -42,10 +42,8 @@
             android:authorities="com.example.hotel.BmobContentProvider" /> <!-- android:theme="@style/Theme.Start" -->
         <activity
             android:name=".UI.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
+            android:exported="false">
+
         </activity>
         <activity android:name=".UI.Room.RoomDetailActivity" />
     </application>

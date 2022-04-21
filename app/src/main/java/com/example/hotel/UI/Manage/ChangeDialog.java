@@ -86,7 +86,6 @@ public class ChangeDialog extends AlertDialog implements View.OnClickListener {
     }
     @Override
     public void onClick(View view) {
-        dismiss();
         listener.OnItemClick(this,view);
     }
 }

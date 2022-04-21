@@ -9,7 +9,6 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
-
         android:layout_height="250dp"
         android:layout_width="match_parent">
 
@@ -22,50 +21,58 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/月色白">
+                android:background="@color/月色白"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:text="@string/username"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="@string/username" />
+
                     <TextView
                         android:id="@+id/single_user_info_username"
-                        android:text="111"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_height="match_parent"/>
+                        android:background="?selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="111" />
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
-                        android:background="@color/分割线"/>
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/分割线" />
+
                     <TextView
-                        android:text="@string/user_objID"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="@string/user_objID" />
+
                     <TextView
                         android:id="@+id/single_user_info_objID"
-                        android:text="111"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="111" />
 
                 </LinearLayout>
 
@@ -73,40 +80,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:text="@string/gender"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="@string/gender" />
+
                     <TextView
                         android:id="@+id/single_user_info_gender"
-                        android:text="111"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="111" />
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
-                        android:background="@color/分割线"/>
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/分割线" />
+
                     <TextView
-                        android:text="@string/idcard"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="@string/idcard" />
+
                     <TextView
                         android:id="@+id/single_user_info_IDcard"
-                        android:text="111"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="111" />
 
                 </LinearLayout>
 
@@ -114,19 +126,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:text="@string/phone"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="@string/phone" />
+
                     <TextView
                         android:id="@+id/single_user_info_phone"
-                        android:text="111"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="111" />
 
                 </LinearLayout>
 
@@ -134,44 +148,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:text="@string/createAt"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="@string/createAt" />
+
                     <TextView
                         android:id="@+id/single_user_info_createAt"
-                        android:text="111"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="111" />
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
-                        android:background="@color/分割线"/>
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/分割线" />
+
                     <TextView
-                        android:text="@string/updateTime"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="@string/updateTime" />
+
                     <TextView
                         android:id="@+id/single_user_info_updateTime"
-                        android:text="111"
-                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:text="111" />
 
                 </LinearLayout>
             </LinearLayout>
-
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -187,10 +205,54 @@
 
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/single_user_info_recycleView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="400dp">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/single_user_info_recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="50dp" />
+
+            <TextView
+                android:id="@+id/single_user_info_change_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.46"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/single_user_info_change_img"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toEndOf="@+id/single_user_info_change_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_to_25" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 

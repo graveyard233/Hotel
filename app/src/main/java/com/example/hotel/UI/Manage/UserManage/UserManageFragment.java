@@ -27,6 +27,7 @@ import com.example.hotel.UI.Manage.UserManage.adapter.UserManageSimpleRecyclerVi
 import com.example.hotel.UI.Mine.MinePresenter;
 import com.example.hotel.UI.Mine.MineViewInterface;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,9 @@ public class UserManageFragment extends BaseFragment {
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         Log.i("TAG", "onItemClick: " + position);
                         Intent to_single_user = new Intent(getActivity(),SingleUserInfoActivity.class);
+                        Gson gson = new Gson();
+                        String userJson = gson.toJson(adapter.getItem(position));
+                        to_single_user.putExtra("userJson",userJson);
                         startActivity(to_single_user);
                     }
                 });

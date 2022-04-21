@@ -112,6 +112,7 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
             case R.id.change_dialog_ok:
                 System.out.println("ok");
                 System.out.println(changeDialog.getInputText());
+                changeDialog.dismiss();
                 break;
         }
     }
