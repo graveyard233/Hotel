@@ -222,14 +222,14 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                             Log.i(TAG, "onClick: end_time:" + endTime );
                             if (order.getStartTime() == null){//还没选入住时间
                                 endTime_text.setTextColor(getResources().getColor(R.color.time_show));
-                                endTime_text.setText(BmobTimeUtil.DateToString(startTime));
+                                endTime_text.setText(BmobTimeUtil.DateToString(endTime));
                                 order.setEndTime(new BmobDate(endTime));
                                 return null;
                             } else {
                                 //已经选择了退房时间
                                 if (startTime.getTime() < endTime.getTime()){//大于入住时间
                                     endTime_text.setTextColor(getResources().getColor(R.color.time_show));
-                                    endTime_text.setText(BmobTimeUtil.DateToString(startTime));
+                                    endTime_text.setText(BmobTimeUtil.DateToString(endTime));
                                     order.setEndTime(new BmobDate(endTime));
                                 }
                                 else {//小于入住时间

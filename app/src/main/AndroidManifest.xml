@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Hotel"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UI.Manage.OrderManage.ManageOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.Manage.RoomManage.ManageRoomActivity"
             android:exported="false" />
         <activity

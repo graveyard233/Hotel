@@ -151,8 +151,17 @@ public class RoomDetailActivity extends BaseActivity  {
 //                            timeList.add(BmobTimeUtil.StringToDate(orders.get(i).getStartTime().getDate()));
 //                            timeList.add(BmobTimeUtil.StringToDate(orders.get(i).getEndTime().getDate()));
 //                        }
-                        timeList = BmobTimeUtil.getDaysBetween(orders.get(0).getStartTime().getDate(),
-                                    orders.get(0).getEndTime().getDate());
+
+//                        timeList = BmobTimeUtil.getDaysBetween(orders.get(0).getStartTime().getDate(),
+//                                    orders.get(0).getEndTime().getDate());
+                        for (int i = 0; i < orders.size(); i++) {
+                            List<Date> list_temp = new ArrayList<>();
+                            list_temp = BmobTimeUtil.getDaysBetween(orders.get(i).getStartTime().getDate(),
+                                    orders.get(i).getEndTime().getDate());
+                            for (int j = 0; j < list_temp.size(); j++) {
+                                timeList.add(list_temp.get(j));
+                            }
+                        }
 
 
 

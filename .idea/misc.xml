@@ -14,9 +14,12 @@
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/drawable/item_room_border_layer.xml" value="0.1" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_book_the_room.xml" value="0.33" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_floor.xml" value="0.17552083333333332" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_login.xml" value="0.2871376811594203" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_manage.xml" value="0.25" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_manage_order.xml" value="0.33" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_manage_room.xml" value="0.22291666666666668" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_order_manage.xml" value="0.38697916666666665" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail.xml" value="0.33" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_calendar.xml" value="0.1824074074074074" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/activity_room_detail_comment.xml" value="0.25" />
@@ -29,9 +32,10 @@
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/dialog_choosedate_layout.xml" value="0.33" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/floor_recycler_item.xml" value="0.33" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_comment_manage.xml" value="0.21822916666666667" />
-        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_login.xml" value="0.13179347826086957" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_mine.xml" value="0.33" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_order.xml" value="0.25" />
+        <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_order_manage.xml" value="0.38697916666666665" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_register.xml" value="0.223731884057971" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_report.xml" value="0.21822916666666667" />
         <entry key="..\:/ForAndroid/Hotel/app/src/main/res/layout/fragment_room.xml" value="0.24114441416893734" />
