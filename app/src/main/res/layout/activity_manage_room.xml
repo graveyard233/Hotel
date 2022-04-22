@@ -2,45 +2,56 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manage_room_coord"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.Manage.RoomManage.ManageRoomActivity"
     android:padding="15dp">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_room_manage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchorGravity="end|bottom"
+        app:srcCompat="@drawable/ic_room_not_busy_24" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:divider="@drawable/divider_room_detail"
-        android:showDividers="middle"
-        android:dividerPadding="15dp">
+        android:dividerPadding="15dp"
+        android:orientation="vertical"
+        android:showDividers="middle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:divider="@drawable/divider_room_detail_comments"
             android:orientation="horizontal"
             android:paddingBottom="5dp"
-            android:divider="@drawable/divider_room_detail_comments"
             android:showDividers="middle">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/manage_room_number"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:hint="@string/room_number"
                 android:minWidth="@dimen/login_input_text_width">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="username"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true"
-                    android:autofillHints="username" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,20 +59,20 @@
                 android:id="@+id/manage_room_price"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:hint="@string/price"
                 android:minWidth="@dimen/login_input_text_width">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="username"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true"
-                    android:autofillHints="username" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,29 +81,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:divider="@drawable/divider_room_detail_comments"
             android:orientation="horizontal"
             android:paddingBottom="5dp"
-            android:divider="@drawable/divider_room_detail_comments"
             android:showDividers="middle">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/manage_room_is_busy"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:hint="状态"
                 android:minWidth="@dimen/login_input_text_width">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="username"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true"
-                    android:autofillHints="username" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,30 +111,42 @@
                 android:id="@+id/manage_room_type"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:hint="@string/room_type"
                 android:minWidth="@dimen/login_input_text_width">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="username"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true"
-                    android:autofillHints="username" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
         </LinearLayout>
 
-<!--        <com.squareup.timessquare.CalendarPickerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="339dp"/>-->
+        <com.squareup.timessquare.CalendarPickerView
+            android:id="@+id/manage_room_caldendar"
+            android:layout_width="match_parent"
+            android:layout_height="339dp"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:padding="15dp"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+        </com.squareup.timessquare.CalendarPickerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/manage_room_comment_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
