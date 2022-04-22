@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_report" />
     <fragment
         android:id="@+id/commentManageFragment"
-        android:name="com.example.hotel.UI.Manage.CommentManageFragment"
+        android:name="com.example.hotel.UI.Manage.CommentManage.CommentManageFragment"
         android:label="@string/comment_manage_fragment_title"
         tools:layout="@layout/fragment_comment_manage" />
 </navigation>

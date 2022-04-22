@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/comment_manage_parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTextRed"
-    tools:context=".UI.Manage.CommentManageFragment">
+    android:layout_gravity="right|top"
+    tools:context=".UI.Manage.CommentManage.CommentManageFragment">
 
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/comment_manage_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comment_manage_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab_comment_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_margin="16dp"
+        app:fab_addButtonColorNormal="@color/深竹月_浅色"
+        app:fab_addButtonColorPressed="@color/white"
+        app:fab_addButtonPlusIconColor="@color/月色白"
+        app:fab_addButtonSize="normal"
+        app:fab_labelsPosition="right">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_comment_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_post_add_25"
+            app:fab_colorNormal="@color/colorTextWhite"
+            app:fab_colorPressed="@color/月色白"
+            app:fab_title="FAB 1" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_comment_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_25"
+            app:fab_colorNormal="@color/colorTextWhite"
+            app:fab_colorPressed="@color/月色白"
+            app:fab_size="normal"
+            app:fab_title="FAB 2" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </FrameLayout>
