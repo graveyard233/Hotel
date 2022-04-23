@@ -21,6 +21,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.hotel.Bean.Order;
+import com.example.hotel.MyDraw.LineGraph;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Manage.ChangeDialog;
@@ -59,16 +61,32 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 
         Bmob.initialize(getApplicationContext(),"f6017516ea38b947a8214fa98dbec40f");
 
-        changeDialog = new ChangeDialog(this);
-        changeDialog.setOnItemClickListener((ChangeDialog.OnItemClickListener) this);
+//        changeDialog = new ChangeDialog(this);
+//        changeDialog.setOnItemClickListener((ChangeDialog.OnItemClickListener) this);
+//        changeDialog.setOldText("3333");
+//        changeDialog.show();
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Log.i("TAG", "onClick: ");
 //                handler.sendEmptyMessage(1);
-                changeDialog.setOldText("3333");
-                changeDialog.show();
+                LineGraph lg = findViewById(R.id.lg);
+                List<Order> list = new ArrayList<>();
+                Order order = new Order();
+                order.setPrice(30d);
+                list.add(order);
+                Order order1 = new Order();
+                order1.setPrice(15d);
+                list.add(order1);
+                Order order2 = new Order();
+                order2.setPrice(45d);
+                list.add(order2);
+                Order order3 = new Order();
+                order3.setPrice(0d);
+                list.add(order3);
+                lg.setOrderList(list);
+                lg.setVisibility(View.VISIBLE);
 
             }
         });

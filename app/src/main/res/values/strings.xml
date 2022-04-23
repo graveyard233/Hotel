@@ -64,5 +64,6 @@
     <string name="price">价格</string>
     <string name="room_type">房间类型</string>
 
+    <string name="title">标题</string>
 
 </resources>

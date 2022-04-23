@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseFragment;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class RoomManageFragment extends BaseFragment implements View.OnClickListener {
@@ -25,6 +26,8 @@ public class RoomManageFragment extends BaseFragment implements View.OnClickList
     private Button floor4;
     private Button floor5;
     private Button floor6;
+
+    private FloatingActionButton fab;
 
     @Override
     protected void initViews() {
@@ -38,6 +41,7 @@ public class RoomManageFragment extends BaseFragment implements View.OnClickList
         floor4 = find(R.id.floor4);
         floor5 = find(R.id.floor5);
         floor6 = find(R.id.floor6);
+        fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
 
         floor1.setOnClickListener(this);
         floor2.setOnClickListener(this);
@@ -45,6 +49,7 @@ public class RoomManageFragment extends BaseFragment implements View.OnClickList
         floor4.setOnClickListener(this);
         floor5.setOnClickListener(this);
         floor6.setOnClickListener(this);
+        fab.setOnClickListener(this);
     }
 
     @Override
@@ -72,6 +77,9 @@ public class RoomManageFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.floor6:
                 gotoFloor(6);
+                break;
+            case R.id.manage_activity_floatingActionButton:
+                System.out.println("RoomManageFragment");
                 break;
         }
     }

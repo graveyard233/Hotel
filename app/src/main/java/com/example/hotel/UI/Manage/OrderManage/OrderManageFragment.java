@@ -19,6 +19,7 @@ import com.example.hotel.UI.Base.BaseFragment;
 import com.example.hotel.UI.Order.OrderPresenter;
 import com.example.hotel.UI.Order.adapter.OrderRecyclerViewAdapter;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -45,16 +46,25 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
 
     private OrderPresenter presenter = new OrderPresenter();
 
+    private FloatingActionButton fab;
+
+
     @Override
     protected void initViews() {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.collapsingToolBarLayout))
                 .setTitle(getString(R.string.order_manage_fragment_title));
         ((ImageView) requireActivity().findViewById(R.id.toolbarIconImg))
                 .setImageResource(R.drawable.ic_list_manage_24);
-
+        fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
         refreshLayout = find(R.id.refreshLayout_order_manage);
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         refreshLayout.setOnRefreshListener(this);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("OrderManageFragment");
+            }
+        });
 
         recyclerView = find(R.id.order_manage_recyclerView);
         refreshView();
@@ -62,6 +72,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
 
     private void refreshView() {
         BmobQuery<Order> bmobQuery = new BmobQuery<>();
+        list_is_show.clear();
         bmobQuery.findObjects(new FindListener<Order>() {
             @Override
             public void done(List<Order> list, BmobException e) {

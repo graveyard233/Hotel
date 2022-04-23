@@ -65,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <com.example.hotel.VedioPlayingIcon
+                <com.example.hotel.MyDraw.VedioPlayingIcon
                     android:id="@+id/floor_room_is_busy"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
-import com.example.hotel.VedioPlayingIcon;
+import com.example.hotel.MyDraw.VedioPlayingIcon;
 
 import java.util.List;
 

@@ -27,6 +27,7 @@ import com.example.hotel.UI.Manage.UserManage.adapter.UserManageSimpleRecyclerVi
 import com.example.hotel.UI.Mine.MinePresenter;
 import com.example.hotel.UI.Mine.MineViewInterface;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ public class UserManageFragment extends BaseFragment {
     private UserManageSimpleRecyclerViewAdapter adapter;
     private MinePresenter presenter = new MinePresenter();
 
+    private FloatingActionButton fab;
+
     @Override
     protected void initViews() {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.collapsingToolBarLayout))
@@ -46,6 +49,14 @@ public class UserManageFragment extends BaseFragment {
         ((ImageView) requireActivity().findViewById(R.id.toolbarIconImg))
                 .setImageResource(R.drawable.ic_user_manage_24);
         recyclerView = find(R.id.user_manage_recyclerView);
+
+        fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("UserManageFragment");
+            }
+        });
 //        List<User> list = new ArrayList<>();
 //        User user = new User();
 //        user.setUsername("aaa");

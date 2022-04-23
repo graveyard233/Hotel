@@ -1,4 +1,4 @@
-package com.example.hotel;
+package com.example.hotel.MyDraw;
 
 import android.content.Context;
 import android.content.res.TypedArray;
