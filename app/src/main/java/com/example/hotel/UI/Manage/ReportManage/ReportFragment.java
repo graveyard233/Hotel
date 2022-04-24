@@ -145,8 +145,16 @@ public class ReportFragment extends BaseFragment {
             @Override
             public void getAllOrdersSucceed(List<Order> orders) {
 
+                List<Order> list_not_cancel = new ArrayList<>();
+
+                for (int i = 0; i < orders.size(); i++) {
+                    if (orders.get(i).getIsPay() != 3){
+                        list_not_cancel.add(orders.get(i));
+                    }
+                }
+
                 initXLable();
-                initPoint(orders);
+                initPoint(list_not_cancel);
                 initLine();
                 initXY();
 

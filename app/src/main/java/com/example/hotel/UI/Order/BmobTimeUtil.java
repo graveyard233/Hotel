@@ -25,8 +25,6 @@ public class BmobTimeUtil {
         int maxDate = 0;
         Date first = null;
 
-
-
         try {
             Calendar cal = Calendar.getInstance();
             first = sdf.parse(year + month);
@@ -94,6 +92,27 @@ public class BmobTimeUtil {
             e.printStackTrace();
         }
         return days;
+    }
+
+    public static Boolean checkTime(List<Date> list_choice,List<Date> list_ordered){
+        List<String> slist = new ArrayList<>();
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        if (list_ordered.size() <= 0){
+            return true;
+        } else {
+            for (int i = 0; i < list_ordered.size(); i++) {
+                String temp1 = sdf.format(list_ordered.get(i));
+                slist.add(temp1);
+            }
+        }
+
+        for (int i = 0; i < list_choice.size(); i++) {
+            String temp2 = sdf.format(list_choice.get(i));
+            if (slist.contains(temp2)){
+                return false;
+            }
+        }
+        return true;
     }
 
 

@@ -292,6 +292,17 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
                 Log.e(TAG, "onClick: " + order.toString());
 
+                List<Date> list_choice = new ArrayList<>();
+                list_choice = BmobTimeUtil.getDaysBetween(order.getStartTime().getDate(),order.getEndTime().getDate());
+
+                if (BmobTimeUtil.checkTime(list_choice,timeList)){
+                    System.out.println("所选时间没被预定");
+                } else {
+                    Toast.makeText(mContext,"所选时间已经被预定",Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
+
                 if (order.getStartTime() == null || order.getEndTime() == null)
                 {
                     order_is_empty = true;

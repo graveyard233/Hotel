@@ -1,5 +1,7 @@
 package com.example.hotel.UI.Order.adapter;
 
+import android.graphics.Color;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -47,6 +49,10 @@ public class OrderRecyclerViewAdapter extends BaseQuickAdapter<Order_isShow, Bas
         }
 
         helper.addOnClickListener(R.id.item_order_linearLayout_img);
+
+        if (item.getOrder().getIsPay() == 3){
+            helper.setBackgroundColor(R.id.order_recycler_cardView,Color.parseColor("#f1939c"));
+        }
 
 
         helper.setGone(R.id.item_hide_LinearLayout,item.isShow());

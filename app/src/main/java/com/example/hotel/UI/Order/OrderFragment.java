@@ -88,70 +88,77 @@ public class OrderFragment extends BaseFragment implements OnRefreshListener {
                         @Override
                         public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
                             View view1 = view;
-                            view1.setBackgroundColor(Color.parseColor("#DCDCDC"));
+                            if (list.get(position).getOrder().getIsPay() == 3){
+                                Snackbar.make(view,"改订单已经退了",Snackbar.LENGTH_SHORT).show();
+                            } else {
 
-                            Snackbar.make(view,"确定要退订吗",Snackbar.LENGTH_INDEFINITE)
-                                    .setAction("yes", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            // TODO: 2022/4/24
-                                            presenter.cancelOrder(orders.get(position), new OrderViewInterface() {
-                                                @Override
-                                                public void getAllOrdersSucceed(List<Order> orders) {
+                                view1.setBackgroundColor(Color.parseColor("#DCDCDC"));
 
-                                                }
+                                Snackbar.make(view,"确定要退订吗",Snackbar.LENGTH_INDEFINITE)
+                                        .setAction("确定", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                // TODO: 2022/4/24
+                                                list.get(position).getOrder().setIsPay(3);
+                                                presenter.cancelOrder(list.get(position).getOrder(), new OrderViewInterface() {
+                                                    @Override
+                                                    public void getAllOrdersSucceed(List<Order> orders) {
 
-                                                @Override
-                                                public void getAllOrderError() {
+                                                    }
 
-                                                }
+                                                    @Override
+                                                    public void getAllOrderError() {
 
-                                                @Override
-                                                public void getOrderById(List<Order> orders) {
+                                                    }
 
-                                                }
+                                                    @Override
+                                                    public void getOrderById(List<Order> orders) {
 
-                                                @Override
-                                                public void getOrderByIdError() {
+                                                    }
 
-                                                }
+                                                    @Override
+                                                    public void getOrderByIdError() {
 
-                                                @Override
-                                                public void addOrder(String objId, int i) {
+                                                    }
 
-                                                }
+                                                    @Override
+                                                    public void addOrder(String objId, int i) {
 
-                                                @Override
-                                                public void cancelOrder(String objId) {
+                                                    }
 
-                                                }
-                                            });
-                                            Toast.makeText(getActivity(),"yes",Toast.LENGTH_SHORT).show();
-                                            view1.setBackgroundColor(Color.WHITE);
-                                        }
-                                    })
-                                    .setCallback(new Snackbar.Callback(){
+                                                    @Override
+                                                    public void cancelOrder(String objId) {
+                                                        Toast.makeText(getActivity(),"yes",Toast.LENGTH_SHORT).show();
+                                                        view1.setBackgroundColor(getResources().getColor(R.color.春梅红));
+                                                    }
+                                                });
 
-                                        @Override
-                                        public void onShown(Snackbar sb) {
-                                            super.onShown(sb);
-                                        }
-
-                                        @Override
-                                        public void onDismissed(Snackbar transientBottomBar, int event) {
-                                            super.onDismissed(transientBottomBar, event);
-                                            switch (event) {
-
-                                                case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
-                                                case Snackbar.Callback.DISMISS_EVENT_MANUAL:
-                                                case Snackbar.Callback.DISMISS_EVENT_SWIPE:
-                                                    Toast.makeText(getActivity(), "撤销退订成功", Toast.LENGTH_SHORT).show();
-                                                    view1.setBackgroundColor(Color.WHITE);
-                                                    break;
                                             }
-                                        }
-                                    })
-                                    .show();
+                                        })
+                                        .setCallback(new Snackbar.Callback(){
+
+                                            @Override
+                                            public void onShown(Snackbar sb) {
+                                                super.onShown(sb);
+                                            }
+
+                                            @Override
+                                            public void onDismissed(Snackbar transientBottomBar, int event) {
+                                                super.onDismissed(transientBottomBar, event);
+                                                switch (event) {
+
+                                                    case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
+                                                    case Snackbar.Callback.DISMISS_EVENT_MANUAL:
+                                                    case Snackbar.Callback.DISMISS_EVENT_SWIPE:
+                                                        Toast.makeText(getActivity(), "撤销退订成功", Toast.LENGTH_SHORT).show();
+                                                        view1.setBackgroundColor(Color.WHITE);
+                                                        break;
+                                                }
+                                            }
+                                        })
+                                        .show();
+                            }
+
                             return false;
                         }
                     });
