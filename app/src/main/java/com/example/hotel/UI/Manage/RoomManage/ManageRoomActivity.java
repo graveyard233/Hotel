@@ -142,6 +142,11 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
             public void addOrder(String objId, int i) {
 
             }
+
+            @Override
+            public void cancelOrder(String objId) {
+
+            }
         });
 
     }

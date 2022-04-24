@@ -1,15 +1,51 @@
 package com.example.hotel.UI.Order;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import cn.bmob.v3.datatype.BmobDate;
+
 public class BmobTimeUtil {
+
+    public static Date[] getAllDateThisMonth(String year,String month){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+        int maxDate = 0;
+        Date first = null;
+
+
+
+        try {
+            Calendar cal = Calendar.getInstance();
+            first = sdf.parse(year + month);
+            cal.setTime(first);
+            maxDate = cal.getMaximum(Calendar.DAY_OF_MONTH);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date[] dates =new Date[maxDate];
+        for (int i = 1; i <=  maxDate; i++) {
+            dates[i - 1] = new Date(first.getTime());
+            first.setDate(first.getDate() + 1);
+        }
+
+
+
+        return dates;
+    }
+
     public static Date getDateAfterMonth(int how_many){
         Calendar next = Calendar.getInstance();
         next.add(Calendar.MONTH,how_many);

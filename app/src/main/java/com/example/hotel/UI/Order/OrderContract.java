@@ -11,4 +11,6 @@ public interface OrderContract {//回调数据
     void getOrdersById(List<Order> orders);
 
     void addOrder(String objId,int i);
+
+    void cancelOrder(String objId,int i);
 }

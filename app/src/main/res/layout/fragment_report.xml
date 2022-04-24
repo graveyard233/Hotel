@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTextGray"
-    tools:context=".UI.Manage.ReportFragment">
+    tools:context=".UI.Manage.ReportManage.ReportFragment">
 
-    <TextView
-        android:text="@string/report_fragment_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="月度收入"
+            android:textColor="@color/深竹月"
+            android:textSize="35dp"
+            android:paddingLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/chart_income"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:visibility="gone"/>
+
+        <View
+            android:background="@color/分割线"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </LinearLayout>
 
 
-
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

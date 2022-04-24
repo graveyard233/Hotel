@@ -211,6 +211,11 @@ public class RoomDetailActivity extends BaseActivity  {
                     public void addOrder(String objId, int i) {
 
                     }
+
+                    @Override
+                    public void cancelOrder(String objId) {
+
+                    }
                 });
             }
         });

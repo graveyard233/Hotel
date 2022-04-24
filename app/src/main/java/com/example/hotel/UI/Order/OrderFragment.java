@@ -1,5 +1,6 @@
 package com.example.hotel.UI.Order;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseFragment;
 import com.example.hotel.UI.Order.adapter.OrderRecyclerViewAdapter;
 import com.example.hotel.UI.Room.adapter.RoomRecyclerViewAdapter;
+import com.google.android.material.snackbar.Snackbar;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
@@ -53,17 +55,7 @@ public class OrderFragment extends BaseFragment implements OnRefreshListener {
         refreshView();
 
     }
-
-    private void initList(){
-        Order order = new Order();
-        order.setMsgId("111");
-        order.setPrice(20d);
-        list.add(new Order_isShow(order));
-        list.add(new Order_isShow(order));
-        list.add(new Order_isShow(order));
-        list.add(new Order_isShow(order));
-    }
-
+    //https://s1.ax1x.com/2022/04/24/L4qIXt.jpg 图片
     private void refreshView(){
         presenter.getOrderModel(new OrderViewInterface() {
             @Override
@@ -92,6 +84,78 @@ public class OrderFragment extends BaseFragment implements OnRefreshListener {
                         }
                     });
 
+                    adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                            View view1 = view;
+                            view1.setBackgroundColor(Color.parseColor("#DCDCDC"));
+
+                            Snackbar.make(view,"确定要退订吗",Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("yes", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            // TODO: 2022/4/24
+                                            presenter.cancelOrder(orders.get(position), new OrderViewInterface() {
+                                                @Override
+                                                public void getAllOrdersSucceed(List<Order> orders) {
+
+                                                }
+
+                                                @Override
+                                                public void getAllOrderError() {
+
+                                                }
+
+                                                @Override
+                                                public void getOrderById(List<Order> orders) {
+
+                                                }
+
+                                                @Override
+                                                public void getOrderByIdError() {
+
+                                                }
+
+                                                @Override
+                                                public void addOrder(String objId, int i) {
+
+                                                }
+
+                                                @Override
+                                                public void cancelOrder(String objId) {
+
+                                                }
+                                            });
+                                            Toast.makeText(getActivity(),"yes",Toast.LENGTH_SHORT).show();
+                                            view1.setBackgroundColor(Color.WHITE);
+                                        }
+                                    })
+                                    .setCallback(new Snackbar.Callback(){
+
+                                        @Override
+                                        public void onShown(Snackbar sb) {
+                                            super.onShown(sb);
+                                        }
+
+                                        @Override
+                                        public void onDismissed(Snackbar transientBottomBar, int event) {
+                                            super.onDismissed(transientBottomBar, event);
+                                            switch (event) {
+
+                                                case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
+                                                case Snackbar.Callback.DISMISS_EVENT_MANUAL:
+                                                case Snackbar.Callback.DISMISS_EVENT_SWIPE:
+                                                    Toast.makeText(getActivity(), "撤销退订成功", Toast.LENGTH_SHORT).show();
+                                                    view1.setBackgroundColor(Color.WHITE);
+                                                    break;
+                                            }
+                                        }
+                                    })
+                                    .show();
+                            return false;
+                        }
+                    });
+
                 }
             }
 
@@ -112,6 +176,11 @@ public class OrderFragment extends BaseFragment implements OnRefreshListener {
 
             @Override
             public void addOrder(String objId, int i) {
+
+            }
+
+            @Override
+            public void cancelOrder(String objId) {
 
             }
         });
@@ -183,6 +252,11 @@ public class OrderFragment extends BaseFragment implements OnRefreshListener {
 
             @Override
             public void addOrder(String objId, int i) {
+
+            }
+
+            @Override
+            public void cancelOrder(String objId) {
 
             }
         });

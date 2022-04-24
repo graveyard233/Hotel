@@ -18,6 +18,31 @@ public class RoomPresenter{
                         viewInterface.getRoomsSucceed(rooms);
                 }
             }
+
+            @Override
+            public void getRoomsByType(List<Room> rooms) {
+
+            }
+        });
+    }
+
+    public void getRoomsByType(String type,RoomViewInterface viewInterface){
+        roomModel = new RoomModel();
+        roomModel.searchRoomByType(type, new RoomContract() {
+            @Override
+            public void getRooms(List<Room> rooms) {
+
+            }
+
+            @Override
+            public void getRoomsByType(List<Room> rooms) {
+                if (rooms.size() > 0){
+                    viewInterface.getRoomsSucceed(rooms);
+                }
+                else {
+                    viewInterface.getRoomError();
+                }
+            }
         });
     }
 

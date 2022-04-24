@@ -172,6 +172,7 @@ public class LineGraph extends View {
     }
 
     private void drawText(Canvas canvas) {
+        paint_text.setTextSize(45);
         canvas.drawText("100",basePointX + 6,2 * margin_10,paint_text);
         canvas.drawText("0",basePointX + 6,basePointY - 6,paint_text);
         canvas.drawText("50",basePointX + 6,(basePointY + margin_10) / 2,paint_text);

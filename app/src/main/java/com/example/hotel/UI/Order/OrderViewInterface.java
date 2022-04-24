@@ -13,4 +13,6 @@ public interface OrderViewInterface {
     void getOrderByIdError();
 
     void addOrder(String objId,int i);
+
+    void cancelOrder(String objId);
 }

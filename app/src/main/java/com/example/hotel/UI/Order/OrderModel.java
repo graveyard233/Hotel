@@ -16,6 +16,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class OrderModel {
 
@@ -146,6 +147,28 @@ public class OrderModel {
                     //回调list，让上一层实现这个接口的方法达成list数据传递回去
                     if (orderContract != null){
                         orderContract.addOrder(e.getMessage(),2);
+                    }
+                }
+            }
+        });
+
+        return null;
+    }
+
+    public List<Order> cancelOrder(Order order,OrderContract orderContract){
+        order.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null){
+                    Log.i("TAG", "update: ");
+                    if (orderContract != null){
+                        orderContract.cancelOrder(order.getObjectId(), 1);
+                    }
+                }
+                else {
+                    Log.i("TAG", "error: " + e.getMessage());
+                    if (orderContract != null){
+                        orderContract.cancelOrder(e.getMessage(), 2);
                     }
                 }
             }

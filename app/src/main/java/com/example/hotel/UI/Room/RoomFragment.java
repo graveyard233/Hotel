@@ -2,7 +2,12 @@ package com.example.hotel.UI.Room;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +29,10 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private RoomPresenter roomPresenter = new RoomPresenter();
 
-    private RoomModel roomModel = new RoomModel();
+
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    private EditText search_edit;
 
     @Override
     protected int getLayoutId() {
@@ -61,6 +68,29 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             @Override
             public void getRoomError() {
 
+            }
+        });
+
+        search_edit = find(R.id.edit_query);
+        search_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH){
+                    System.out.println("search " + textView.getText());
+
+                    roomPresenter.getRoomsByType(textView.getText().toString(), new RoomViewInterface() {
+                        @Override
+                        public void getRoomsSucceed(List<Room> rooms) {
+                            adapter.setRooms(rooms);
+                        }
+
+                        @Override
+                        public void getRoomError() {
+                            Toast.makeText(getActivity(),"搜索错误",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                return false;
             }
         });
     }

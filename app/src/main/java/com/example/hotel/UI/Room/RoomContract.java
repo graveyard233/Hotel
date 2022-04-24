@@ -10,4 +10,8 @@ public interface RoomContract {
 //    }
 
     void getRooms(List<Room> rooms);
+
+    void getRoomsByType(List<Room> rooms);
+
+
 }

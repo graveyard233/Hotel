@@ -1,5 +1,8 @@
 package com.example.hotel.UI;
 
+import android.view.View;
+import android.widget.ImageView;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -10,6 +13,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.google.android.material.navigation.NavigationView;
+
+import cn.bmob.v3.BmobUser;
 
 public class ManageActivity extends BaseActivity {
 
@@ -34,16 +39,18 @@ public class ManageActivity extends BaseActivity {
         NavigationView navigationView = findViewById(R.id.navigationView);
         NavigationUI.setupWithNavController(navigationView,navController);
 
-    }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_manage;
+
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_manage;
     }
 }

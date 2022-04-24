@@ -163,6 +163,11 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                     public void addOrder(String objId, int i) {
 
                     }
+
+                    @Override
+                    public void cancelOrder(String objId) {
+
+                    }
                 });
 
 
@@ -279,7 +284,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 if (message.getEditText().getText().toString().equals("")){
                     order.setUserMassage("此用户没有要求");
                 } else {
-                    order.setUserMassage(message.getEditText().toString());
+                    order.setUserMassage(message.getEditText().getText().toString());
                 }
 
 
@@ -330,6 +335,11 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
                             finish();
                             System.out.println("ffff");
+                        }
+
+                        @Override
+                        public void cancelOrder(String objId) {
+
                         }
 
                     });

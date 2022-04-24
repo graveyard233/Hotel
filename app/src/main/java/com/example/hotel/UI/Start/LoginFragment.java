@@ -42,8 +42,8 @@ public class LoginFragment extends BaseFragment {
 //        BmobUser.logOut();
         username_input = find(R.id.login_username_layout);
         password_input = find(R.id.login_password_layout);
-        username_input.getEditText().setText("admin");
-        password_input.getEditText().setText("admin");
+        username_input.getEditText().setText("we");
+        password_input.getEditText().setText("we");
         btn_login = find(R.id.login_btn_login);
         if (BmobUser.isLogin()){
             User user = BmobUser.getCurrentUser(User.class);

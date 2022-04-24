@@ -17,6 +17,7 @@ import java.util.concurrent.CountDownLatch;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 
 public class RoomModel {
@@ -132,6 +133,33 @@ public class RoomModel {
             }
 
 
+        });
+        return null;
+    }
+
+
+    public List<Room> searchRoomByType(String type,RoomContract roomContract){
+        BmobQuery<Room> bmobQuery = new BmobQuery<>();
+        bmobQuery.addWhereEqualTo("type",type);
+        bmobQuery.findObjects(new FindListener<Room>() {
+            @Override
+            public void done(List<Room> list, BmobException e) {
+                if (e == null){
+                    if (list.size() > 0){
+                        Log.i("TAG", "search done: ");
+                        if (roomContract != null){
+                            roomContract.getRoomsByType(list);
+                        }
+                    } else {
+                        Log.i("TAG", "done: but list is null");
+                        roomContract.getRoomsByType(list);
+                    }
+
+                } else {
+                    Log.e("TAG", "search error: " + e.getMessage());
+                    roomContract.getRoomsByType(list);
+                }
+            }
         });
         return null;
     }

@@ -41,6 +41,11 @@ public class OrderPresenter {
 
             }
 
+            @Override
+            public void cancelOrder(String objId, int i) {
+
+            }
+
 
         });
 
@@ -68,6 +73,11 @@ public class OrderPresenter {
             public void addOrder(String objId, int i) {
 
             }
+
+            @Override
+            public void cancelOrder(String objId, int i) {
+
+            }
         });
     }
 
@@ -90,6 +100,40 @@ public class OrderPresenter {
             @Override
             public void addOrder(String objId, int i) {
                 viewInterface.addOrder(objId,i);
+            }
+
+            @Override
+            public void cancelOrder(String objId, int i) {
+
+            }
+        });
+    }
+
+    public void cancelOrder(Order order,OrderViewInterface viewInterface){
+        orderModel = OrderModel.get();
+        orderModel.cancelOrder(order, new OrderContract() {
+            @Override
+            public void getAllOrders(List<Order> orders) {
+
+            }
+
+            @Override
+            public void getOrdersById(List<Order> orders) {
+
+            }
+
+            @Override
+            public void addOrder(String objId, int i) {
+
+            }
+
+            @Override
+            public void cancelOrder(String objId, int i) {
+                if (i == 1){
+                    viewInterface.cancelOrder(objId);
+                } else {
+                    viewInterface.cancelOrder(objId);
+                }
             }
         });
     }

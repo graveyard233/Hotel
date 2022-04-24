@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/orderManageFragment">
+    app:startDestination="@id/userManageFragment">
 
     <fragment
         android:id="@+id/orderManageFragment"
@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_room_manage" />
     <fragment
         android:id="@+id/reportFragment"
-        android:name="com.example.hotel.UI.Manage.ReportFragment"
+        android:name="com.example.hotel.UI.Manage.ReportManage.ReportFragment"
         android:label="@string/report_fragment_title"
         tools:layout="@layout/fragment_report" />
     <fragment
