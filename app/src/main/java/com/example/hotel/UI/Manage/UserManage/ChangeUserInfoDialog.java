@@ -34,7 +34,7 @@ public class ChangeUserInfoDialog extends AlertDialog implements View.OnClickLis
         super(context,0);
     }
 
-    protected ChangeUserInfoDialog(@NonNull Context context, User user) {
+    public ChangeUserInfoDialog(@NonNull Context context, User user) {
         super(context, 0);
         user_dialog = user;
     }

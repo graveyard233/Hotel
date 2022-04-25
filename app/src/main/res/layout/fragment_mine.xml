@@ -196,7 +196,7 @@
             android:paddingBottom="@dimen/mine_table_TableRow_BottomPadding">
 
             <TextView
-                android:text="修改个人信息请联系管理员"
+                android:text="修改密码请联系管理员"
                 android:textSize="@dimen/mine_total_text_size"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -220,6 +220,14 @@
         android:paddingRight="12dp"
         android:paddingBottom="4dp"
         android:clipToPadding="false">
+
+        <Button
+            android:id="@+id/btn_change_user_info"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="修改信息" />
 
 
         <Button

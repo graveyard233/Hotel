@@ -276,7 +276,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 order.setUser(user);
                 order.setRoomId(thisRoom.getRoomId());
 
-                order.setPrice(thisRoom.getPrice() * thisRoom.getDiscount());
+
 
                 order.setIsPay(0);
 
@@ -301,7 +301,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                     Toast.makeText(mContext,"所选时间已经被预定",Toast.LENGTH_SHORT).show();
                     break;
                 }
-
+                order.setPrice(thisRoom.getPrice() * list_choice.size() * thisRoom.getDiscount());
 
                 if (order.getStartTime() == null || order.getEndTime() == null)
                 {

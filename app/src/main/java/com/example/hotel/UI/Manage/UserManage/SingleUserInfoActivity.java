@@ -166,7 +166,7 @@ public class SingleUserInfoActivity extends BaseActivity implements View.OnClick
     }
 
     private void updateUserInfo() {
-        user_this.update(new UpdateListener() {
+        user_this.update("b7bf3f9892",new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if(e==null){
