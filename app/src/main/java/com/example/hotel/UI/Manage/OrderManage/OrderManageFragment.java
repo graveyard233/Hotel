@@ -59,6 +59,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
         refreshLayout = find(R.id.refreshLayout_order_manage);
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         refreshLayout.setOnRefreshListener(this);
+        fab.setVisibility(View.GONE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

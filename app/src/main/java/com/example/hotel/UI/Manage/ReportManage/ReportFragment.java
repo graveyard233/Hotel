@@ -19,6 +19,7 @@ import com.example.hotel.UI.Order.BmobTimeUtil;
 import com.example.hotel.UI.Order.OrderPresenter;
 import com.example.hotel.UI.Order.OrderViewInterface;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,6 +50,8 @@ public class ReportFragment extends BaseFragment {
     private LineChartData data;
     private ArrayList<Line> lines;
 
+    private FloatingActionButton fab;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void initViews() {
@@ -56,6 +59,9 @@ public class ReportFragment extends BaseFragment {
                 .setTitle(getString(R.string.report_fragment_title));
         ((ImageView) requireActivity().findViewById(R.id.toolbarIconImg))
                 .setImageResource(R.drawable.ic_report_24);
+
+        fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
+        fab.setVisibility(View.GONE);
 
         dates = BmobTimeUtil.getAllDateThisMonth("2022","04");
         for (int i = 0; i < dates.length; i++) {

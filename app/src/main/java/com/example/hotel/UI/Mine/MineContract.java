@@ -8,5 +8,5 @@ public interface MineContract {//回调数据
 
     void getAllUserList(List<User> users);
 
-
+    void getUserByUserName(User user);
 }

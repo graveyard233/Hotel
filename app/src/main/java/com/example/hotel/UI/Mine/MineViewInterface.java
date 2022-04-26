@@ -8,4 +8,8 @@ public interface MineViewInterface {
     void getAllUsersSucceed(List<User> users);
 
     void getAllUsersError();
+
+    void getUserByUserNameSucceed(User user);
+
+    void getUserByUserNameError();
 }

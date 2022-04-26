@@ -54,6 +54,7 @@ public class CommentManageFragment extends BaseFragment implements View.OnClickL
 
 
         fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
+        fab.setVisibility(View.VISIBLE);
         fab.setOnClickListener(this);
 
         refreshLayout = find(R.id.refreshLayout_comment_manage);

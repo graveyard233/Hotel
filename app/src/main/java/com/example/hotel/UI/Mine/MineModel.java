@@ -53,4 +53,28 @@ public class MineModel {
         });
         return null;
     }
+
+    public List<User> getUserByUserName(String username,MineContract mineContract){
+        BmobQuery<User> bmobQuery = new BmobQuery<>();
+        bmobQuery.addWhereEqualTo("username",username);
+        bmobQuery.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (e == null && list.size() > 0) {
+                    Log.i("TAG", "done: " + list.get(0).getUsername());
+                    //回调list，让上一层实现这个接口的方法达成list数据传递回去
+                    if (mineContract != null){
+                        mineContract.getUserByUserName(list.get(0));
+                    }
+                } else {
+                    if (mineContract != null){
+                        mineContract.getUserByUserName(null);
+                    }
+                }
+
+
+            }
+        });
+        return null;
+    }
 }
