@@ -73,22 +73,7 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 
                 Log.i("TAG", "onClick: ");
 //                handler.sendEmptyMessage(1);
-                LineGraph lg = findViewById(R.id.lg);
-                List<Order> list = new ArrayList<>();
-                Order order = new Order();
-                order.setPrice(30d);
-                list.add(order);
-                Order order1 = new Order();
-                order1.setPrice(15d);
-                list.add(order1);
-                Order order2 = new Order();
-                order2.setPrice(45d);
-                list.add(order2);
-                Order order3 = new Order();
-                order3.setPrice(0d);
-                list.add(order3);
-                lg.setOrderList(list);
-                lg.setVisibility(View.VISIBLE);
+
 
             }
         });
