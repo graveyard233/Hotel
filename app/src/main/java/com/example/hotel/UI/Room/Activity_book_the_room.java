@@ -157,7 +157,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                             temp_list = BmobTimeUtil.getDaysBetween(orders.get(i).getStartTime().getDate(),
                                     orders.get(i).getEndTime().getDate());
                             for (int j = 0; j < temp_list.size(); j++) {
-                                temp_list.add(temp_list.get(j));
+                                timeList.add(temp_list.get(j));
                             }
                         }
                         System.out.println(timeList);
@@ -303,6 +303,10 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 Log.e(TAG, "onClick: " + order.toString());
 
                 List<Date> list_choice = new ArrayList<>();
+                if (order.getStartTime() == null || order.getEndTime() == null){
+                    Toast.makeText(mContext,"入住时间没有选择",Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 list_choice = BmobTimeUtil.getDaysBetween(order.getStartTime().getDate(),order.getEndTime().getDate());
 
                 if (BmobTimeUtil.checkTime(list_choice,timeList)){

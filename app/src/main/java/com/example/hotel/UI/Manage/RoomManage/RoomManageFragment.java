@@ -44,6 +44,7 @@ public class RoomManageFragment extends BaseFragment implements View.OnClickList
         fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
         fab.setVisibility(View.GONE);
 
+
         floor1.setOnClickListener(this);
         floor2.setOnClickListener(this);
         floor3.setOnClickListener(this);
