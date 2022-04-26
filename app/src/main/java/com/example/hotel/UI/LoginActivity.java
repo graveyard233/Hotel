@@ -24,6 +24,7 @@ import android.widget.ImageView;
 
 import com.example.hotel.Bean.Order;
 import com.example.hotel.MyDraw.LineGraph;
+import com.example.hotel.MyDraw.StepView;
 import com.example.hotel.R;
 import com.example.hotel.Service.InitRoomIsBusyIntentService;
 import com.example.hotel.UI.Base.BaseActivity;
@@ -73,7 +74,7 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 
                 Log.i("TAG", "onClick: ");
 //                handler.sendEmptyMessage(1);
-
+                StepView stepView = findViewById(R.id.sv);
 
             }
         });

@@ -72,6 +72,11 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
+                <com.example.hotel.MyDraw.StepView
+                    android:id="@+id/sv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+
                 <com.example.hotel.MyDraw.LineGraph
                     android:id="@+id/lg"
                     android:visibility="gone"
