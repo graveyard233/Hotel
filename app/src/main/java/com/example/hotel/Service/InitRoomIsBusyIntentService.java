@@ -66,6 +66,10 @@ public class InitRoomIsBusyIntentService extends IntentService {
                                     //拿到这个房间已被预定的时间列表
                                     List<Date> timelistAll = new ArrayList<>();
                                     for (int j = 0; j < orders.size(); j++) {
+                                        if (orders.get(j).getIsPay() == 3)//这个订单被退了
+                                        {
+                                            continue;
+                                        }
                                         List<Date> temp_list = new ArrayList<>();
                                         temp_list = BmobTimeUtil.getDaysBetween(orders.get(j).getStartTime().getDate(),
                                                 orders.get(j).getEndTime().getDate());

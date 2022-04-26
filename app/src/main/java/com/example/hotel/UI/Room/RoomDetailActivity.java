@@ -155,6 +155,10 @@ public class RoomDetailActivity extends BaseActivity  {
 //                        timeList = BmobTimeUtil.getDaysBetween(orders.get(0).getStartTime().getDate(),
 //                                    orders.get(0).getEndTime().getDate());
                         for (int i = 0; i < orders.size(); i++) {
+                            if (orders.get(i).getIsPay() == 3)//这个订单被退了
+                            {
+                                continue;
+                            }
                             List<Date> list_temp = new ArrayList<>();
                             list_temp = BmobTimeUtil.getDaysBetween(orders.get(i).getStartTime().getDate(),
                                     orders.get(i).getEndTime().getDate());

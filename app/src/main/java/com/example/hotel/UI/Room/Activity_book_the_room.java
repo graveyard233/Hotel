@@ -149,6 +149,10 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                     public void getOrderById(List<Order> orders) {
                         //拿到已被预定的时间列表
                         for (int i = 0; i < orders.size(); i++) {
+                            if (orders.get(i).getIsPay() == 3)//这个订单被退了
+                            {
+                                continue;
+                            }
                             List<Date> temp_list = new ArrayList<>();
                             temp_list = BmobTimeUtil.getDaysBetween(orders.get(i).getStartTime().getDate(),
                                     orders.get(i).getEndTime().getDate());
