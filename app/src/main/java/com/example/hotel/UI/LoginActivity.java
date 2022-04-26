@@ -9,6 +9,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import com.example.hotel.Bean.Order;
 import com.example.hotel.MyDraw.LineGraph;
 import com.example.hotel.R;
+import com.example.hotel.Service.InitRoomIsBusyIntentService;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Manage.ChangeDialog;
 import com.example.hotel.UI.Start.LoginFragment;
@@ -90,6 +92,10 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 
             }
         });
+
+        //初始化房间状态数据
+        Intent intent = new Intent(this, InitRoomIsBusyIntentService.class);
+        startService(intent);
     }
 
     @Override

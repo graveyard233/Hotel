@@ -148,15 +148,21 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                     @Override
                     public void getOrderById(List<Order> orders) {
                         //拿到已被预定的时间列表
-                        timeList = BmobTimeUtil.getDaysBetween(orders.get(0).getStartTime().getDate(),
-                                orders.get(0).getEndTime().getDate());
+                        for (int i = 0; i < orders.size(); i++) {
+                            List<Date> temp_list = new ArrayList<>();
+                            temp_list = BmobTimeUtil.getDaysBetween(orders.get(i).getStartTime().getDate(),
+                                    orders.get(i).getEndTime().getDate());
+                            for (int j = 0; j < temp_list.size(); j++) {
+                                temp_list.add(temp_list.get(j));
+                            }
+                        }
                         System.out.println(timeList);
 
                     }
 
                     @Override
                     public void getOrderByIdError() {
-
+                        Log.i(TAG, "getOrderByIdError: 这个房间没被预定过");
                     }
 
                     @Override

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.example.hotel.Bean.User;
 import com.example.hotel.R;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Manage.ChangeDialog;
+import com.example.hotel.UI.Manage.OrderManage.ManageOrderActivity;
 import com.example.hotel.UI.Order.adapter.OrderRecyclerViewAdapter;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.textfield.TextInputLayout;
@@ -111,6 +113,20 @@ public class SingleUserInfoActivity extends BaseActivity implements View.OnClick
                             }
                             adapter.setNewData(list_order);
 
+                        }
+                    });
+
+
+                    adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                            System.out.println("fuck");
+                            Order order = list.get(position);
+                            Gson gson = new Gson();
+                            String orderJson = gson.toJson(order);
+                            Intent to_order_manage = new Intent(getApplicationContext(), ManageOrderActivity.class);
+                            to_order_manage.putExtra("orderJson",orderJson);
+                            startActivity(to_order_manage);
                         }
                     });
                 } else {
