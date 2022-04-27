@@ -70,6 +70,13 @@ public class StepView extends View {
     private RectF rectF3;
     private List<RectF> list_rectF = new ArrayList<>();
 
+    private List<Boolean> list_whichComplete = new ArrayList<>();
+
+    public void setList_whichComplete(List<Boolean> list_whichComplete) {
+        this.list_whichComplete = list_whichComplete;
+        invalidate();
+    }
+
     public void setStep(int step) {
         this.step = step;
         invalidate();
@@ -151,6 +158,7 @@ public class StepView extends View {
         drawWhitePoint(canvas);
         drawPassPoint(canvas);
         drawBreathePoint(canvas);
+        setStepDoNotComplete(canvas);
     }
 
     protected void drawBreathePoint(Canvas canvas) {
@@ -208,8 +216,18 @@ public class StepView extends View {
                 paint_startLine);
     }
 
-    public void setStepDoNotComplete(int which){
-        // TODO: 2022/4/27  
+    protected void setStepDoNotComplete(Canvas canvas){
+        if (list_whichComplete.size() == 3){
+            for (int i = 0; i <= 2 ; i++) {//为真就代表完成，假就没有完成
+                if (!list_whichComplete.get(i)){
+                    canvas.drawCircle(basePointX * list_step[i],
+                            basePointY,
+                            smallPoint_r,
+                            paint_smallPoint);
+                }
+            }
+        }
+
     }
 
     @Override

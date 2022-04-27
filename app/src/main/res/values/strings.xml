@@ -66,4 +66,6 @@
 
     <string name="title">标题</string>
 
+    <string name="room_type_and_name">房间型号</string>
+
 </resources>

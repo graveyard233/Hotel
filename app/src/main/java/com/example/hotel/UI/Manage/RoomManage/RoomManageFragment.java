@@ -42,7 +42,7 @@ public class RoomManageFragment extends BaseFragment implements View.OnClickList
         floor5 = find(R.id.floor5);
         floor6 = find(R.id.floor6);
         fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
-        fab.setVisibility(View.GONE);
+//        fab.setVisibility(View.GONE);
 
 
         floor1.setOnClickListener(this);
@@ -82,6 +82,8 @@ public class RoomManageFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.manage_activity_floatingActionButton:
                 System.out.println("RoomManageFragment");
+                Intent to_add_new = new Intent(getActivity(),AddNewRoomActivity.class);
+                startActivity(to_add_new);
                 break;
         }
     }

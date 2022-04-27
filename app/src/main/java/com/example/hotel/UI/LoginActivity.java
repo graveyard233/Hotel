@@ -68,6 +68,7 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 //        changeDialog.setOnItemClickListener((ChangeDialog.OnItemClickListener) this);
 //        changeDialog.setOldText("3333");
 //        changeDialog.show();
+        List<Boolean> list_b = new ArrayList<>();
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +80,10 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        list_b.add(true);
+                        list_b.add(false);
+                        list_b.add(false);
+                        stepView.setList_whichComplete(list_b);
                         stepView.setStep(1);
                     }
                 },2000);

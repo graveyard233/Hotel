@@ -19,4 +19,6 @@
     <dimen name="floor_recycle_item_textsize">30dp</dimen>
     <dimen name="fab_margin_right_and_bottom">20dp</dimen>
     <dimen name="announcement_bottom_icon_size">35dp</dimen>
+
+    <dimen name="add_new_room_step_title">30dp</dimen>
 </resources>
