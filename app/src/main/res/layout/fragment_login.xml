@@ -74,8 +74,9 @@
 
                 <com.example.hotel.MyDraw.StepView
                     android:id="@+id/sv"
+                    android:background="@color/月色白"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
+                    android:layout_height="100dp"/>
 
                 <com.example.hotel.MyDraw.LineGraph
                     android:id="@+id/lg"
