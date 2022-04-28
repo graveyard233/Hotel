@@ -25,10 +25,22 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
-            <include layout="@layout/add_new_room_step1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/add_new_room_step1"/>
+
+                <include layout="@layout/add_new_room_step2"/>
+
+                <include layout="@layout/add_room_step3"/>
+
+            </LinearLayout>
 
         </ScrollView>
     </LinearLayout>

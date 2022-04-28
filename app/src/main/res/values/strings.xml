@@ -67,5 +67,8 @@
     <string name="title">标题</string>
 
     <string name="room_type_and_name">房间型号</string>
+    <string name="room_content">房间内容</string>
+    <string name="room_pre_comment">预设评论</string>
+    <string name="img_url">图片URL</string>
 
 </resources>
