@@ -38,7 +38,7 @@
 
                 <include layout="@layout/add_new_room_step2"/>
 
-                <include layout="@layout/add_room_step3"/>
+                <include layout="@layout/add_new_room_step3"/>
 
             </LinearLayout>
 
