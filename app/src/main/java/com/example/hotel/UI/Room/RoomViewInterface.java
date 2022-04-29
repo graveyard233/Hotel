@@ -9,4 +9,6 @@ public interface RoomViewInterface {
     void getRoomsSucceed(List<Room> rooms);
     void getRoomError();
 
+    void addRoomSucceed(String objId);
+    void addRoomError();
 }

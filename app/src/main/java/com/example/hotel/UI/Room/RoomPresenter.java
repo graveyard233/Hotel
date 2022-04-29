@@ -23,6 +23,11 @@ public class RoomPresenter{
             public void getRoomsByType(List<Room> rooms) {
 
             }
+
+            @Override
+            public void addNewRoom(int i, String msg) {
+
+            }
         });
     }
 
@@ -43,7 +48,38 @@ public class RoomPresenter{
                     viewInterface.getRoomError();
                 }
             }
+
+            @Override
+            public void addNewRoom(int i, String msg) {
+
+            }
         });
     }
+
+    public void addRoom(Room room,RoomViewInterface viewInterface){
+        roomModel = new RoomModel();
+        roomModel.addNewRoom(room, new RoomContract() {
+            @Override
+            public void getRooms(List<Room> rooms) {
+
+            }
+
+            @Override
+            public void getRoomsByType(List<Room> rooms) {
+
+            }
+
+            @Override
+            public void addNewRoom(int i, String msg) {
+                if (i == 1){
+                    viewInterface.addRoomSucceed(msg);
+                } else {
+                    viewInterface.addRoomError();
+                }
+            }
+        });
+    }
+
+
 
 }

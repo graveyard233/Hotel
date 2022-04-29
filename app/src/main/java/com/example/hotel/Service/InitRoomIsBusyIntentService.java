@@ -172,6 +172,16 @@ public class InitRoomIsBusyIntentService extends IntentService {
                 public void getRoomError() {
 
                 }
+
+                @Override
+                public void addRoomSucceed(String objId) {
+
+                }
+
+                @Override
+                public void addRoomError() {
+
+                }
             });
         }
     }

@@ -70,5 +70,7 @@
     <string name="room_content">房间内容</string>
     <string name="room_pre_comment">预设评论</string>
     <string name="img_url">图片URL</string>
+    <string name="room_img">房间图片</string>
+    <string name="add">添加</string>
 
 </resources>

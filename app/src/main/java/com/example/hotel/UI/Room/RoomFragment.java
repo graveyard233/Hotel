@@ -69,6 +69,16 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             public void getRoomError() {
 
             }
+
+            @Override
+            public void addRoomSucceed(String objId) {
+
+            }
+
+            @Override
+            public void addRoomError() {
+
+            }
         });
 
         search_edit = find(R.id.edit_query);
@@ -87,6 +97,16 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         @Override
                         public void getRoomError() {
                             Toast.makeText(getActivity(),"搜索错误",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void addRoomSucceed(String objId) {
+
+                        }
+
+                        @Override
+                        public void addRoomError() {
+
                         }
                     });
                 }
@@ -109,6 +129,16 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
             @Override
             public void getRoomError() {
+
+            }
+
+            @Override
+            public void addRoomSucceed(String objId) {
+
+            }
+
+            @Override
+            public void addRoomError() {
 
             }
         });

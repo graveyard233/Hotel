@@ -19,6 +19,7 @@ import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SQLQueryListener;
+import cn.bmob.v3.listener.SaveListener;
 
 public class RoomModel {
 
@@ -162,6 +163,21 @@ public class RoomModel {
             }
         });
         return null;
+    }
+
+    public void addNewRoom(Room room,RoomContract roomContract){
+        room.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null){
+                    if (roomContract != null)
+                        roomContract.addNewRoom(1,s);
+                } else {
+                    if (roomContract != null)
+                        roomContract.addNewRoom(2,e.getMessage());
+                }
+            }
+        });
     }
 
 

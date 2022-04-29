@@ -51,7 +51,7 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
 
     private Date startTime;
     private Date endTime;
-    private List<Date> timeList;
+    private List<Date> timeList = new ArrayList<>();
     private OrderPresenter orderPresenter = new OrderPresenter();
 
     private TravellerAndIDcardView tv_1;
@@ -309,12 +309,17 @@ public class Activity_book_the_room extends BaseActivity implements View.OnClick
                 }
                 list_choice = BmobTimeUtil.getDaysBetween(order.getStartTime().getDate(),order.getEndTime().getDate());
 
-                if (BmobTimeUtil.checkTime(list_choice,timeList)){
-                    System.out.println("所选时间没被预定");
+                if (timeList.size() != 0){//房间被预定过了
+                    if (BmobTimeUtil.checkTime(list_choice,timeList)){
+                        System.out.println("所选时间没被预定");
+                    } else {
+                        Toast.makeText(mContext,"所选时间已经被预定",Toast.LENGTH_SHORT).show();
+                        break;
+                    }
                 } else {
-                    Toast.makeText(mContext,"所选时间已经被预定",Toast.LENGTH_SHORT).show();
-                    break;
+                    System.out.println("房间从未被预定过");
                 }
+
                 order.setPrice(thisRoom.getPrice() * list_choice.size() * thisRoom.getDiscount());
 
                 if (order.getStartTime() == null || order.getEndTime() == null)

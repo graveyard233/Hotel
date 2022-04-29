@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/step3_title"
 
-            android:text="@string/room_type_and_name"
+            android:text="@string/room_img"
             android:textSize="@dimen/add_new_room_step_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

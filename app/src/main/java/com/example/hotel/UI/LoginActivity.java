@@ -93,7 +93,7 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 
         //初始化房间状态数据
         Intent intent = new Intent(this, InitRoomIsBusyIntentService.class);
-//        startService(intent);
+        startService(intent);
     }
 
     @Override

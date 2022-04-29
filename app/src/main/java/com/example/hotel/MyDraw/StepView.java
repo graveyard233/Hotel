@@ -72,6 +72,10 @@ public class StepView extends View {
 
     private List<Boolean> list_whichComplete = new ArrayList<>();
 
+    public Boolean isStep1OnClick = false;
+    public Boolean isStep2OnClick = false;
+    public Boolean isStep3OnClick = false;
+
     public void setList_whichComplete(List<Boolean> list_whichComplete) {
         this.list_whichComplete = list_whichComplete;
         invalidate();
@@ -282,13 +286,31 @@ public class StepView extends View {
                 float y =  event.getY();
                 Log.i("down", "onTouchEvent: " + x + "," + y);
                 if (x > rectF1.left && x < rectF1.right && y < rectF1.top && y > rectF1.bottom){
-                    step = 0;
+                    if (list_whichComplete.get(0)){
+                        step = 0;
+                        isStep1OnClick = true;
+                        isStep2OnClick = false;
+                        isStep3OnClick = false;
+                    }
+
                 }
                 if (x > rectF2.left && x < rectF2.right && y < rectF2.top && y > rectF2.bottom){
-                    step = 1;
+                    if (list_whichComplete.get(1)
+                            || (!list_whichComplete.get(1) && list_whichComplete.get(0))){
+                        step = 1;
+                        isStep1OnClick = false;
+                        isStep2OnClick = true;
+                        isStep3OnClick = false;
+                    }
                 }
                 if (x > rectF3.left && x < rectF3.right && y < rectF3.top && y > rectF3.bottom){
-                    step = 2;
+                    if (list_whichComplete.get(2)
+                            || (!list_whichComplete.get(2) && list_whichComplete.get(1))){
+                        step = 2;
+                        isStep1OnClick = false;
+                        isStep2OnClick = false;
+                        isStep3OnClick = true;
+                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:

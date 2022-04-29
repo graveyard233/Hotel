@@ -55,9 +55,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="username"
+                    android:autofillHints="phone"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 

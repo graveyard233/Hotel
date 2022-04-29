@@ -13,5 +13,7 @@ public interface RoomContract {
 
     void getRoomsByType(List<Room> rooms);
 
+    void addNewRoom(int i,String msg);
+
 
 }
