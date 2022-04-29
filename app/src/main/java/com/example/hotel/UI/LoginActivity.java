@@ -75,25 +75,14 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 
                 Log.i("TAG", "onClick: ");
 //                handler.sendEmptyMessage(1);
-                StepView stepView = findViewById(R.id.sv);
-                stepView.setStep(0);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        list_b.add(true);
-                        list_b.add(false);
-                        list_b.add(false);
-                        stepView.setList_whichComplete(list_b);
-                        stepView.setStep(1);
-                    }
-                },2000);
+
 
             }
         });
 
         //初始化房间状态数据
         Intent intent = new Intent(this, InitRoomIsBusyIntentService.class);
-        startService(intent);
+//        startService(intent);
     }
 
     @Override

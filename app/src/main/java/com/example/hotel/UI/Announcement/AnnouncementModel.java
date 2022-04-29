@@ -4,12 +4,17 @@ import android.util.Log;
 
 import com.example.hotel.Bean.Announcement;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -65,8 +70,8 @@ public class AnnouncementModel {
     public Announcement getAllAnnouncement(int i,AnnouncementContract contract){
         String bql = "select * from Announcement";
         BmobQuery<Announcement> bmobQuery = new BmobQuery<>();
-        bmobQuery.setSQL(bql);
         if (i == 1){
+            bmobQuery.setSQL(bql);
             bmobQuery.doSQLQuery(new SQLQueryListener<Announcement>() {
                 @Override
                 public void done(BmobQueryResult<Announcement> bmobQueryResult, BmobException e) {
@@ -90,6 +95,31 @@ public class AnnouncementModel {
                     }
                 }
             });
+        } else if (i == 2){
+            Calendar beforeTwoMonth = Calendar.getInstance();
+            beforeTwoMonth.add(Calendar.MONTH,-2);
+            BmobDate start = new BmobDate(beforeTwoMonth.getTime());
+            BmobDate end = new BmobDate(new Date());
+            BmobQuery<Announcement> anStart = new BmobQuery<>();
+            anStart.addWhereGreaterThanOrEqualTo("createdAt",start);
+            BmobQuery<Announcement> anEnd = new BmobQuery<>();
+            anEnd.addWhereLessThanOrEqualTo("createdAt",end);
+            List<BmobQuery<Announcement>> queries = new ArrayList<>();
+            queries.add(anStart);
+            queries.add(anEnd);
+
+            bmobQuery.and(queries);
+            bmobQuery.findObjects(new FindListener<Announcement>() {
+                @Override
+                public void done(List<Announcement> list, BmobException e) {
+                    if (e == null){
+                        // TODO: 2022/4/29
+                    } else {
+
+                    }
+                }
+            });
+
         }
 
 

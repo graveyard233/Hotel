@@ -69,6 +69,9 @@ public class AddNewRoomActivity extends BaseActivity implements View.OnClickList
 
     private Room room_new;
     private RoomPresenter presenter;
+
+    private List<String> list_title = new ArrayList<>();
+
     @Override
     protected void initViews() {
         stepView = findViewById(R.id.add_step);
@@ -102,6 +105,12 @@ public class AddNewRoomActivity extends BaseActivity implements View.OnClickList
         step2_view.setOnClickListener(this);
         step3_view.setOnClickListener(this);
         btn_add.setOnClickListener(this);
+
+        list_title.add(getResources().getString(R.string.room_type_and_name));
+        list_title.add(getResources().getString(R.string.room_content));
+        list_title.add(getResources().getString(R.string.room_img));
+
+        stepView.setList_title(list_title);
 
         step1_hide.setVisibility(View.VISIBLE);
         roomImgUrl.getEditText().setText("https://pic.iyingdi.com/post/cover/2022/04/28/12225831/dc529661-fad4-483b-96e7-97b4cd660017_w_443_h_244.jpg?imageMogr2/format/jpg|imageMogr2/quality/60");

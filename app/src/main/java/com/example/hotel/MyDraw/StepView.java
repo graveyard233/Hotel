@@ -51,6 +51,11 @@ public class StepView extends View {
     private float breathePoint_r;
     private int breathePoint_color = Color.parseColor("#d15d5e");
 
+    private Paint paint_pointTitle;
+    private float pointTitle_width = 10;
+    private int pointTitle_color = Color.parseColor("#9bae86");
+    private int pointTitle_choice_color = Color.parseColor("#d15d5e");
+
     private float line_chang;
 
     private float view_height;
@@ -75,6 +80,13 @@ public class StepView extends View {
     public Boolean isStep1OnClick = false;
     public Boolean isStep2OnClick = false;
     public Boolean isStep3OnClick = false;
+
+    private List<String> list_title = new ArrayList<>();
+
+    public void setList_title(List<String> list_title) {
+        this.list_title = list_title;
+        invalidate();
+    }
 
     public void setList_whichComplete(List<Boolean> list_whichComplete) {
         this.list_whichComplete = list_whichComplete;
@@ -139,6 +151,14 @@ public class StepView extends View {
         paint_breathePoint.setAntiAlias(true);
         paint_breathePoint.setStrokeWidth(breathePoint_r);
 
+        paint_pointTitle = new Paint();
+        paint_pointTitle.setAntiAlias(true);
+        paint_pointTitle.setStrokeWidth(pointTitle_width);
+        paint_pointTitle.setColor(pointTitle_color);
+        paint_pointTitle.setTextSize(60);
+        paint_pointTitle.setTextAlign(Paint.Align.LEFT);
+
+
         rectF1 = new RectF();
         rectF2 = new RectF();
         rectF3 = new RectF();
@@ -172,6 +192,13 @@ public class StepView extends View {
                 basePointY,
                 breathePoint_r,
                 paint_breathePoint);
+//        paint_pointTitle.setTextSize(75);
+        paint_pointTitle.setColor(pointTitle_choice_color);
+        canvas.drawText(list_title.get(step),basePointX * list_step[step] - breathePoint_r * 2.4f,
+                basePointY + breathePoint_r * 2.5f,paint_pointTitle);
+//        paint_pointTitle.setTextSize(60);
+        paint_pointTitle.setColor(pointTitle_color);
+
     }
 
     protected void drawWhitePoint(Canvas canvas) {
@@ -189,6 +216,9 @@ public class StepView extends View {
                     basePointY + breathePoint_r * rectF_temp,
                     basePointX * list_step[i] + breathePoint_r * rectF_temp,
                     basePointY - breathePoint_r * rectF_temp);
+
+            canvas.drawText(list_title.get(i),basePointX * list_step[i] - breathePoint_r * 2.4f,
+                    basePointY + breathePoint_r * 2.5f,paint_pointTitle);
 //            canvas.drawRect(list_rectF.get(i),paint_startLine);
         }
     }
@@ -199,7 +229,6 @@ public class StepView extends View {
                     basePointY,
                     passPoint_r,
                     paint_passPoint);
-
         }
 
     }

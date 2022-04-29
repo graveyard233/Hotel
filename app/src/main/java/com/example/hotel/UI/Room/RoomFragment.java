@@ -13,11 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.hotel.Bean.Announcement;
 import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
+import com.example.hotel.UI.Announcement.AnnouncementPresenter;
 import com.example.hotel.UI.Base.BaseFragment;
+import com.example.hotel.UI.Room.adapter.AnnouncementBannerAdapter;
 import com.example.hotel.UI.Room.adapter.RoomRecyclerViewAdapter;
 import com.google.gson.Gson;
+import com.youth.banner.Banner;
+import com.youth.banner.indicator.CircleIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +38,11 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private EditText search_edit;
+
+    private Banner banner;
+    private List<Announcement> announcements = new ArrayList<>();
+    private AnnouncementPresenter announcementPresenter;
+
 
     @Override
     protected int getLayoutId() {
@@ -113,6 +123,25 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 return false;
             }
         });
+
+        for (int i = 0; i < 3; i++) {
+            Announcement a = new Announcement();
+            String text = "title";
+            a.setTitle(String.valueOf(i) + text);
+            announcements.add(a);
+        }
+        // TODO: 2022/4/29  
+//        announcementPresenter.getAllAnnouncement();
+        AnnouncementBannerAdapter adapter = new AnnouncementBannerAdapter(getActivity(),announcements);
+        banner = find(R.id.announcement_banner);
+        banner.setAdapter(adapter)
+                .addBannerLifecycleObserver(this)
+                .setIndicator(new CircleIndicator(getActivity()))
+                .setOnBannerListener((data, position) -> {
+//                    Snackbar.make(banner, ((DataBean) data).title, Snackbar.LENGTH_SHORT).show();
+//                    LogUtils.d("position：" + position);
+                    Log.i(TAG, "initViews: position" + position);
+                });
     }
 
 
