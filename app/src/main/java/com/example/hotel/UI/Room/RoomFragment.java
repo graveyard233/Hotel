@@ -17,6 +17,7 @@ import com.example.hotel.Bean.Announcement;
 import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
 import com.example.hotel.UI.Announcement.AnnouncementPresenter;
+import com.example.hotel.UI.Announcement.AnnouncementViewInterface;
 import com.example.hotel.UI.Base.BaseFragment;
 import com.example.hotel.UI.Room.adapter.AnnouncementBannerAdapter;
 import com.example.hotel.UI.Room.adapter.RoomRecyclerViewAdapter;
@@ -41,7 +42,7 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private Banner banner;
     private List<Announcement> announcements = new ArrayList<>();
-    private AnnouncementPresenter announcementPresenter;
+    private AnnouncementPresenter announcementPresenter = new AnnouncementPresenter();
 
 
     @Override
@@ -124,24 +125,51 @@ public class RoomFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             }
         });
 
-        for (int i = 0; i < 3; i++) {
-            Announcement a = new Announcement();
-            String text = "title";
-            a.setTitle(String.valueOf(i) + text);
-            announcements.add(a);
-        }
         // TODO: 2022/4/29  
-//        announcementPresenter.getAllAnnouncement();
-        AnnouncementBannerAdapter adapter = new AnnouncementBannerAdapter(getActivity(),announcements);
-        banner = find(R.id.announcement_banner);
-        banner.setAdapter(adapter)
-                .addBannerLifecycleObserver(this)
-                .setIndicator(new CircleIndicator(getActivity()))
-                .setOnBannerListener((data, position) -> {
+        announcementPresenter.getAllAnnouncement(2, new AnnouncementViewInterface() {
+            @Override
+            public void addAnnouncement(String objId, int i) {
+
+            }
+
+            @Override
+            public void getAllAnnouncementSucceed(List<Announcement> list) {
+                for (int i = 0; i < list.size(); i++) {
+
+                    if (i == 3){
+                        break;
+                    }
+                    announcements.add(list.get(list.size() - i - 1));
+                }
+                AnnouncementBannerAdapter adapter = new AnnouncementBannerAdapter(getActivity(),announcements);
+                banner = find(R.id.announcement_banner);
+                banner.setAdapter(adapter)
+                        .addBannerLifecycleObserver(getViewLifecycleOwner())
+                        .setIndicator(new CircleIndicator(getActivity()))
+                        .setLoopTime(8000)
+                        .setIndicatorSelectedColorRes(R.color.深竹月)
+                        .setIndicatorNormalColorRes(R.color.月色白)
+                        ;
+            }
+
+            @Override
+            public void getAllAnnouncementError() {
+                Announcement a = new Announcement();
+                a.setTitle("加载错误");
+                announcements.add(a);
+                AnnouncementBannerAdapter adapter = new AnnouncementBannerAdapter(getActivity(),announcements);
+                banner = find(R.id.announcement_banner);
+                banner.setAdapter(adapter)
+                        .addBannerLifecycleObserver(getViewLifecycleOwner())
+                        .setIndicator(new CircleIndicator(getActivity()))
+                        .setOnBannerListener((data, position) -> {
 //                    Snackbar.make(banner, ((DataBean) data).title, Snackbar.LENGTH_SHORT).show();
 //                    LogUtils.d("position：" + position);
-                    Log.i(TAG, "initViews: position" + position);
-                });
+                            Log.i(TAG, "initViews: position" + position);
+                        });
+            }
+        });
+
     }
 
 

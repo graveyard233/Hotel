@@ -114,8 +114,11 @@ public class AnnouncementModel {
                 public void done(List<Announcement> list, BmobException e) {
                     if (e == null){
                         // TODO: 2022/4/29
+                        if (contract != null){
+                            contract.getAllAnnouncement(list);
+                        }
                     } else {
-
+                        Log.e(TAG, "error: " + e.getMessage());
                     }
                 }
             });
