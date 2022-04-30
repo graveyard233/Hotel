@@ -41,6 +41,8 @@ public class RoomDetailActivity extends BaseActivity  {
 
     private TextView book_text;
 
+    private TextView roomId;
+
     List<Date> timeList = new ArrayList<>();
 
     Gson gson = new Gson();
@@ -238,6 +240,9 @@ public class RoomDetailActivity extends BaseActivity  {
 
             }
         });
+
+        roomId = findViewById(R.id.room_detail_roomId);
+        roomId.setText("房间号:" + this_room.getRoomId());
 
 //        orderPresenter.getOrderModel(new OrderViewInterface() {
 //            @Override

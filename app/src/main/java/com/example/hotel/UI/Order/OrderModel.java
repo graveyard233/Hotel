@@ -48,7 +48,7 @@ public class OrderModel {
     }
 
     public List<Order> getAllOrderList(OrderContract orderContract) {
-        String bql = "select * from Order";
+        String bql = "select * from Order ";
         BmobQuery<Order> bmobQuery = new BmobQuery<Order>();
 
         bmobQuery.setSQL(bql);
