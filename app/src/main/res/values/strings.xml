@@ -72,5 +72,9 @@
     <string name="img_url">图片URL</string>
     <string name="room_img">房间图片</string>
     <string name="add">添加</string>
+    <string name="order_canceled">已取消</string>
+    <string name="order_finished">已完成</string>
+    <string name="order_doing">正在进行</string>
+    <string name="discount">折扣</string>
 
 </resources>

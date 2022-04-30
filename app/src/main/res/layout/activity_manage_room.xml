@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:autofillHints="username"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -101,7 +101,30 @@
                     android:layout_height="wrap_content"
                     android:autofillHints="username"
                     android:imeOptions="actionNext"
+                    android:focusable="false"
                     android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_room_discount_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:hint="@string/discount"
+                android:minWidth="@dimen/login_input_text_width">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/manage_room_discount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
                     android:maxLines="1"
                     android:singleLine="true" />
 

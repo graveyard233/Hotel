@@ -207,10 +207,14 @@ public class AddNewRoomActivity extends BaseActivity implements View.OnClickList
             case R.id.btn_add_new_room:
                 if (checkInput()){
                     System.out.println("complete all");
-                    initRoom();
-                    addNewRoom();
+                    if (initRoom()){
+                        addNewRoom();
+                    } else {
+                        Toast.makeText(this,"输入有误",Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
-                    System.out.println("error");
+                    Toast.makeText(this,"输入有误",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.add_step:
@@ -273,11 +277,23 @@ public class AddNewRoomActivity extends BaseActivity implements View.OnClickList
         });
     }
 
-    private void initRoom() {
+    private Boolean initRoom() {
         room_new = new Room();
         room_new.setRoomId(roomId.getEditText().getText().toString());
         room_new.setType(roomType.getEditText().getText().toString());
-        room_new.setPrice(Double.valueOf(roomPrice.getEditText().getText().toString()));
+        String text_price = roomPrice.getEditText().getText().toString();
+        if (text_price.matches("^[-\\+]?[.\\d]*$")){
+            Double price = Double.valueOf(roomPrice.getEditText().getText().toString());
+            if (price > 0){
+                room_new.setPrice(price);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+
         room_new.setIsBusy("空闲");
         room_new.setDiscount(1d);
         List<String> list_comment = new ArrayList<>();
@@ -289,6 +305,8 @@ public class AddNewRoomActivity extends BaseActivity implements View.OnClickList
             list_comment.add(comment3.getEditText().getText().toString());
         room_new.setCommentList(list_comment);
         room_new.setImgUrl(roomImgUrl.getEditText().getText().toString());
+
+        return true;
     }
 
     private boolean checkInput() {

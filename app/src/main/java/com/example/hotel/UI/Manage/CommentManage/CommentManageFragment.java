@@ -29,6 +29,7 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -37,7 +38,7 @@ public class CommentManageFragment extends BaseFragment implements View.OnClickL
 
     private AnnouncementPresenter ap = new AnnouncementPresenter();
 
-    private List<Announcement> list = new ArrayList<>();
+    private List<Announcement> list_public = new ArrayList<>();
     private RecyclerView recyclerView;
     private AnnouncementRecyclerAdapter adapter;
 
@@ -60,34 +61,6 @@ public class CommentManageFragment extends BaseFragment implements View.OnClickL
         refreshLayout = find(R.id.refreshLayout_comment_manage);
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         refreshLayout.setOnRefreshListener(this);
-
-
-//        initRecyclerView();
-    }
-
-    private void initRecyclerView() {
-        recyclerView = find(R.id.comment_manage_recycler);
-        ap.getAllAnnouncement(1, new AnnouncementViewInterface() {
-            @Override
-            public void addAnnouncement(String objId, int i) {
-
-            }
-
-            @Override
-            public void getAllAnnouncementSucceed(List<Announcement> list) {
-                adapter = new AnnouncementRecyclerAdapter(list);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                recyclerView.setAdapter(adapter);
-
-
-
-            }
-
-            @Override
-            public void getAllAnnouncementError() {
-
-            }
-        });
     }
 
     @Override
@@ -112,7 +85,12 @@ public class CommentManageFragment extends BaseFragment implements View.OnClickL
 
             @Override
             public void getAllAnnouncementSucceed(List<Announcement> list) {
-                adapter = new AnnouncementRecyclerAdapter(list);
+                list_public.clear();
+                for (int i = 0; i < list.size(); i++) {
+                    list_public.add(list.get(i));
+                }
+                Collections.reverse(list_public);
+                adapter = new AnnouncementRecyclerAdapter(list_public);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setAdapter(adapter);
                 refreshLayout.finishRefresh(1500);

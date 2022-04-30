@@ -1,10 +1,13 @@
 package com.example.hotel.UI.Manage.RoomManage;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import com.example.hotel.UI.Order.OrderViewInterface;
 import com.example.hotel.UI.Room.SampleDecorator;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.squareup.timessquare.CalendarCellDecorator;
@@ -49,7 +53,10 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
     private TextInputLayout roomNumber;
     private TextInputLayout roomPrice;
     private TextInputLayout roomIsBusy;
+    private TextInputLayout roomDiscount;
     private TextInputLayout roomType;
+
+    private TextInputEditText inputDiscount;
 
     private FloatingActionButton fab;
 
@@ -65,7 +72,9 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
         roomNumber = findViewById(R.id.manage_room_number);
         roomPrice = findViewById(R.id.manage_room_price);
         roomIsBusy = findViewById(R.id.manage_room_is_busy);
+        roomDiscount = findViewById(R.id.manage_room_discount_layout);
         roomType = findViewById(R.id.manage_room_type);
+        inputDiscount = findViewById(R.id.manage_room_discount);
 
         fab = findViewById(R.id.floatingActionButton_room_manage);
 
@@ -73,6 +82,44 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
         roomPrice.getEditText().setText(room_this.getPrice().toString());
         roomType.getEditText().setText(room_this.getType());
         roomIsBusy.getEditText().setText(room_this.getIsBusy());
+        roomDiscount.getEditText().setText(room_this.getDiscount().toString());
+        inputDiscount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                float max = 1f;
+                float min = 0f;
+                String pre_s = editable.toString().trim();
+                if (pre_s.matches("^[-\\+]?[.\\d]*$")){//文本正确
+                    int index_point = pre_s.indexOf(".");
+                    if (index_point < 0){
+                        return;
+                    }
+                    if (pre_s.length() - index_point - 1 > 2){
+                        editable.delete(index_point + 3,index_point + 4);
+                    }
+                    String s_afterDelete = editable.toString().trim();
+                    Double discount_pre = Double.parseDouble(s_afterDelete);
+                    if (discount_pre > max){
+                        editable.replace(0,editable.length(),String.valueOf(max));
+                    } else if (discount_pre < min){
+                        editable.replace(0,editable.length(),String.valueOf(min));
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "折扣输入错误",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         fab.setOnClickListener(this);
 
@@ -164,22 +211,45 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.floatingActionButton_room_manage:
-                room_this.setRoomId(roomNumber.getEditText().getText().toString());
-                room_this.setPrice(Double.parseDouble(roomPrice.getEditText().getText().toString()));
-                room_this.setType(roomType.getEditText().getText().toString());
-                room_this.setIsBusy(roomIsBusy.getEditText().getText().toString());
-
-                room_this.update(new UpdateListener() {
-                    @Override
-                    public void done(BmobException e) {
-                        if (e == null){
-                            Snackbar.make(findViewById(R.id.manage_room_coord),"更新成功",Snackbar.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Snackbar.make(findViewById(R.id.manage_room_coord),"更新失败:" + e.getMessage(),Snackbar.LENGTH_SHORT).show();
-                        }
+                if (checkAll()){
+                    room_this.setRoomId(roomNumber.getEditText().getText().toString());
+                    room_this.setPrice(Double.parseDouble(roomPrice.getEditText().getText().toString()));
+                    room_this.setType(roomType.getEditText().getText().toString());
+                    Double discount = Double.valueOf(roomDiscount.getEditText().getText().toString());
+                    if (discount < 0 || discount > 1){
+                        discount = 1d;
+                        Toast.makeText(getApplicationContext(),
+                                "折扣应该在0~1之间",Toast.LENGTH_SHORT).show();
                     }
-                });
+                    room_this.setDiscount(discount);
+                    room_this.setIsBusy(roomIsBusy.getEditText().getText().toString());
+
+                    room_this.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null){
+                                Snackbar.make(findViewById(R.id.manage_room_coord),"更新成功",Snackbar.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Snackbar.make(findViewById(R.id.manage_room_coord),"更新失败:" + e.getMessage(),Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Snackbar.make(findViewById(R.id.manage_room_coord),"有信息没输入完整",Snackbar.LENGTH_SHORT).show();
+                }
+
+        }
+    }
+
+    private Boolean checkAll(){
+        if (roomNumber.getEditText().getText().toString().equals("") ||
+                roomPrice.getEditText().getText().toString().equals("") ||
+                roomType.getEditText().getText().toString().equals("") ||
+                roomDiscount.getEditText().getText().toString().equals("")){
+            return false;
+        } else {
+            return true;
         }
     }
 }

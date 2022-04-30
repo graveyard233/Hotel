@@ -115,5 +115,26 @@ public class BmobTimeUtil {
         return true;
     }
 
+    //今天在这个list中的化返回true 否则返回false
+    public static Boolean checkTimeTodayIsInDateList(List<Date> list_ordered){
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String today = sdf.format(new Date());
+        List<String> slist = new ArrayList<>();
+        if (list_ordered.size() <= 0){
+            return false;
+        } else {
+            for (int i = 0; i < list_ordered.size(); i++) {
+                String temp1 = sdf.format(list_ordered.get(i));
+                slist.add(temp1);
+            }
+        }
+
+        if (slist.contains(today)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }
