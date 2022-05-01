@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -145,6 +146,13 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
                             orders.get(i).getEndTime().getDate());
                     for (int j = 0; j < list_temp.size(); j++) {
                         timeList.add(list_temp.get(j));
+                    }
+                }
+                Date today = new Date();
+                for (int i = 0; i < timeList.size(); i++) {
+                    if (today.before(timeList.get(i))){//今天之后还有订单，则不能修改房间，因为客户会奇怪订单被修改
+                        Log.e("TAG", "getOrderById: "+ timeList.get(i).toString());
+                        roomNumber.getEditText().setFocusable(false);
                     }
                 }
 

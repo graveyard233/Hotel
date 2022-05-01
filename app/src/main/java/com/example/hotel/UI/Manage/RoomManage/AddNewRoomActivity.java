@@ -386,11 +386,43 @@ public class AddNewRoomActivity extends BaseActivity implements View.OnClickList
     }
 
     private void checkFinish(){
-        if (list_boolean.get(0) && list_boolean.get(1) && list_boolean.get(2))
-            btn_layout.setVisibility(View.VISIBLE);
+        if (list_boolean.get(0) && list_boolean.get(1) && list_boolean.get(2)){
+            presenter = new RoomPresenter();
+            presenter.getRoomsPresenter(new RoomViewInterface() {
+                @Override
+                public void getRoomsSucceed(List<Room> rooms) {
+                    int flag = 1;
+                    for (int i = 0; i < rooms.size(); i++) {
+                        if (roomId.getEditText().getText().toString().equals(rooms.get(i).getRoomId())){
+                            Snackbar.make(findViewById(R.id.btn_add_new_room),"房间号相同",Snackbar.LENGTH_SHORT).show();
+                            flag = 2;
+                        }
+                    }
+                    if (flag == 1)
+                        btn_layout.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void getRoomError() {
+
+                }
+
+                @Override
+                public void addRoomSucceed(String objId) {
+
+                }
+
+                @Override
+                public void addRoomError() {
+
+                }
+            });
+        }
+
         else
             btn_layout.setVisibility(View.GONE);
     }
+
 
     @Override
     protected int getLayoutId() {
