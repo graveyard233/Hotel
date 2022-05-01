@@ -11,15 +11,21 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="月度收入"
-            android:textColor="@color/深竹月"
-            android:textSize="35dp"
-            android:paddingLeft="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:text="月度收入/每日化"
+            android:textColor="@color/深竹月"
+            android:textSize="35dp" />
 
         <lecho.lib.hellocharts.view.LineChartView
             android:id="@+id/chart_income"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:visibility="gone"/>
+
+        <lecho.lib.hellocharts.view.ColumnChartView
+            android:id="@+id/columnChart"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:visibility="gone"/>

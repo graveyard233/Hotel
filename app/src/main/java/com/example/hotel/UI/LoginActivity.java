@@ -29,6 +29,7 @@ import com.example.hotel.R;
 import com.example.hotel.Service.InitRoomIsBusyIntentService;
 import com.example.hotel.UI.Base.BaseActivity;
 import com.example.hotel.UI.Manage.ChangeDialog;
+import com.example.hotel.UI.Manage.ReportManage.DrawColumn;
 import com.example.hotel.UI.Start.LoginFragment;
 import com.example.hotel.UI.Start.RegisterFragment;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -75,14 +76,14 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 
                 Log.i("TAG", "onClick: ");
 //                handler.sendEmptyMessage(1);
-
-
+                //初始化房间状态数据
+                Intent intent = new Intent(getApplicationContext(), InitRoomIsBusyIntentService.class);
+//                startService(intent);
+//                DrawColumn.getThisMonthOrderList();
             }
         });
 
-        //初始化房间状态数据
-        Intent intent = new Intent(this, InitRoomIsBusyIntentService.class);
-//        startService(intent);
+
     }
 
     @Override
