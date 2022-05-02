@@ -77,4 +77,7 @@
     <string name="order_doing">正在进行</string>
     <string name="discount">折扣</string>
 
+    <string name="income">收入</string>
+    <string name="cancel_order">已取消</string>
+    <string name="day_livein_present">日入住率</string>
 </resources>

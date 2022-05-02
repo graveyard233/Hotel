@@ -8,9 +8,14 @@ import androidx.annotation.RequiresApi;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.hotel.Bean.Order;
 import com.example.hotel.Bean.Room;
@@ -44,6 +49,8 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 
 public class ReportFragment extends BaseFragment {
+
+    private TextView lineChartTitle;
 
     private LineChartView chart_income;
     private ColumnChartView columnChartView;
@@ -82,6 +89,9 @@ public class ReportFragment extends BaseFragment {
                 .setTitle(getString(R.string.report_fragment_title));
         ((ImageView) requireActivity().findViewById(R.id.toolbarIconImg))
                 .setImageResource(R.drawable.ic_report_24);
+        lineChartTitle = find(R.id.lineChart_title);
+        lineChartTitle.append(SpanTextUtil.changeText(getResources().getString(R.string.income),getResources().getColor(R.color.深竹月)));
+        lineChartTitle.append(SpanTextUtil.changeText(getResources().getString(R.string.cancel_order),getResources().getColor(R.color.春梅红)));
 
         fab = getActivity().findViewById(R.id.manage_activity_floatingActionButton);
         fab.setVisibility(View.GONE);
@@ -143,12 +153,10 @@ public class ReportFragment extends BaseFragment {
     private void setYValue(Float[] y, List<Order> orderList, List<Room> list_room){
         List<OrderWithRoomPrice> list_with_price = new ArrayList<>();
         for (int i = 0; i < orderList.size(); i++) {
-            for (int j = 0; j < list_room.size(); j++) {
-                if (list_room.get(j).getRoomId().equals(orderList.get(i).getRoomId())){
-                    list_with_price.add(new OrderWithRoomPrice(orderList.get(i),list_room.get(j).getPrice()));
-                    break;
-                }
-            }
+            List<Date> temp_date = BmobTimeUtil.getDaysBetween(orderList.get(i).getStartTime().getDate(),
+                    orderList.get(i).getEndTime().getDate());
+            list_with_price.add(new OrderWithRoomPrice(orderList.get(i),
+                    orderList.get(i).getPrice() / temp_date.size()));
         }
 
         for (int i = 0; i < orderList.size(); i++) {
@@ -245,7 +253,7 @@ public class ReportFragment extends BaseFragment {
                                 initPoint(list_not_cancel,list_cancel,list);
                                 initLine();
                                 initXY();
-
+                                cal_day_livein_present(list);
                                 chart_income.setLineChartData(data);
                                 chart_income.setInteractive(true);
                                 chart_income.setZoomType(ZoomType.HORIZONTAL);
@@ -295,6 +303,27 @@ public class ReportFragment extends BaseFragment {
         });
     }
 
+    private void cal_day_livein_present(List<Room> list) {
+        float live = 0;
+        float empty = 0;
+        float all = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getIsBusy().equals("空闲")){
+                empty++;
+            } else {
+                live++;
+            }
+            all++;
+        }
+        String s_livein = " " + String.valueOf((int) live);
+        String s_mid = " / " + String.valueOf(list.size()) + " = ";
+        String result = String.valueOf(live / all * 100) + "%";
+        System.out.println(s_livein + s_mid + result);
+        TextView textView = find(R.id.daily_livein);
+        textView.append(SpanTextUtil.changeText(s_livein,getResources().getColor(R.color.深竹月_浅色)));
+        textView.append(SpanTextUtil.changeText(s_mid,getResources().getColor(R.color.水貂灰)));
+        textView.append(SpanTextUtil.changeText(result,getResources().getColor(R.color.深竹月)));
+    }
 
 
     final Handler handler = new Handler(Looper.getMainLooper()){

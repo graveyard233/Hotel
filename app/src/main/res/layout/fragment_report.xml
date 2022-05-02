@@ -11,12 +11,22 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/daily_livein"
+            android:text="@string/day_livein_present"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/水貂灰"
+            android:textSize="25dp"
+            android:paddingLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/lineChart_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
-            android:text="月度收入/每日化"
-            android:textColor="@color/深竹月"
-            android:textSize="35dp" />
+            android:text="月度收入 "
+            android:textColor="@color/水貂灰"
+            android:textSize="25dp" />
 
         <lecho.lib.hellocharts.view.LineChartView
             android:id="@+id/chart_income"
