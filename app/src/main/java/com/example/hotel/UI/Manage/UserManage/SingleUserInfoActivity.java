@@ -33,6 +33,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -97,6 +98,7 @@ public class SingleUserInfoActivity extends BaseActivity implements View.OnClick
                     for (int i = 0; i < list.size(); i++) {
                         list_order.add(new Order_isShow(list.get(i)));
                     }
+                    Collections.reverse(list_order);
                     adapter = new OrderRecyclerViewAdapter(list_order);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setAdapter(adapter);

@@ -161,6 +161,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
                     for (int i = 0; i < list.size(); i++) {
                         list_is_show.add(new Order_isShow(list.get(i)));
                     }
+                    Collections.reverse(list_is_show);
                     adapter = new OrderRecyclerViewAdapter(list_is_show);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(adapter);
@@ -220,6 +221,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
                     for (int i = 0; i < list.size(); i++) {
                         list_is_show.add(new Order_isShow(list.get(i)));
                     }
+                    Collections.reverse(list_is_show);
                     adapter = new OrderRecyclerViewAdapter(list_is_show);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(adapter);

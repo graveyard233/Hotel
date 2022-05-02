@@ -78,7 +78,7 @@ public class LoginActivity extends BaseActivity implements ChangeDialog.OnItemCl
 //                handler.sendEmptyMessage(1);
                 //初始化房间状态数据
                 Intent intent = new Intent(getApplicationContext(), InitRoomIsBusyIntentService.class);
-//                startService(intent);
+                startService(intent);
 //                DrawColumn.getThisMonthOrderList();
             }
         });

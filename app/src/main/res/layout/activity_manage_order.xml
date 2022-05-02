@@ -7,221 +7,250 @@
     android:layout_height="match_parent"
     tools:context=".UI.Manage.OrderManage.ManageOrderActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <LinearLayout
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider_room_detail_comments"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:showDividers="middle">
-
-            <TextView
-                android:id="@+id/manage_order_book_time"
-                android:text="@string/order_book_time"
-                android:textSize="15dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"/>
-
-
-
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/manage_order_roomId"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:hint="@string/room_id"
-            android:minWidth="@dimen/login_input_text_width">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="username"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/manage_order_price"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:hint="@string/price"
-            android:minWidth="@dimen/login_input_text_width">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="username"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/manage_order_choiceStart"
-                android:text="用户入住时间"
-                android:textSize="@dimen/RoomBookText"
-                android:gravity="center_horizontal"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="#20000000"/>
-
-            <TextView
-                android:id="@+id/manage_order_choiceEnd"
-                android:text="用户退房时间"
-                android:textSize="@dimen/RoomBookText"
-                android:gravity="center_horizontal"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            android:padding="16sp"
-            >
-
-            <TextView
-                android:id="@+id/manage_order_start_time"
-                android:text="入住时间"
-                android:textSize="@dimen/RoomBookText"
-                android:gravity="center_horizontal"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="#20000000"/>
-
-            <TextView
-                android:id="@+id/manage_order_end_time"
-                android:text="退房时间"
-                android:textSize="@dimen/RoomBookText"
-                android:gravity="center_horizontal"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.example.hotel.UI.Room.TravellerAndIDcardView
-                android:id="@+id/manage_order_traveller_info_1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
-
-
-
-            <com.example.hotel.UI.Room.TravellerAndIDcardView
-                android:id="@+id/manage_order_traveller_info_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                />
-
-            <com.example.hotel.UI.Room.TravellerAndIDcardView
-                android:id="@+id/manage_order_traveller_info_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                />
-
-            <com.example.hotel.UI.Room.TravellerAndIDcardView
-                android:id="@+id/manage_order_traveller_info_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                />
-
-            <com.example.hotel.UI.Room.TravellerAndIDcardView
-                android:id="@+id/manage_order_traveller_info_5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TextView
                 android:layout_marginTop="15dp"
-                android:text="用户留言"
-                android:textSize="@dimen/RoomBookTitle"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:divider="@drawable/divider_room_detail_comments"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:showDividers="middle">
 
-            <TextView
-                android:layout_marginTop="15dp"
-                android:text="order comment"
-                android:textSize="25dp"
-                android:textColor="@color/colorTextBlackLight"
-                android:gravity="center"
-                android:id="@+id/manage_order_comment"
+                <TextView
+                    android:id="@+id/manage_order_book_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:gravity="center"
+                    android:text="@string/order_book_time"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_order_roomId"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/room_id"
+                android:minWidth="@dimen/login_input_text_width">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:id="@+id/manage_order_roomID_radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                </RadioGroup>
+
+            </HorizontalScrollView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_order_price"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/price"
+                android:minWidth="@dimen/login_input_text_width">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/manage_order_choiceStart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:text="用户入住时间"
+
+                    android:textSize="@dimen/RoomBookText" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#20000000" />
+
+                <TextView
+                    android:id="@+id/manage_order_choiceEnd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:text="用户退房时间"
+                    android:textSize="@dimen/RoomBookText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:padding="16sp">
+
+                <TextView
+                    android:id="@+id/manage_order_start_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="入住时间"
+                    android:textSize="@dimen/RoomBookText" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#20000000" />
+
+                <TextView
+                    android:id="@+id/manage_order_end_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="退房时间"
+                    android:textSize="@dimen/RoomBookText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:id="@+id/manage_order_traveller_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/manage_order_traveller_info_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/manage_order_traveller_info_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/manage_order_traveller_info_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/manage_order_traveller_info_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <com.example.hotel.UI.Room.TravellerAndIDcardView
+                    android:id="@+id/manage_order_traveller_info_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="用户留言"
+                    android:textSize="@dimen/RoomBookTitle" />
+
+                <TextView
+                    android:id="@+id/manage_order_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="order comment"
+                    android:textColor="@color/colorTextBlackLight"
+                    android:textSize="25dp" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
+    </ScrollView>
 
-
-    </LinearLayout>
 
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
