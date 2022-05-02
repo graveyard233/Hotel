@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hotel.Bean.User;
 import com.example.hotel.R;
@@ -34,7 +35,7 @@ public class MineFragment extends BaseFragment implements ChangeUserInfoDialog.O
         user =  BmobUser.getCurrentUser(User.class);
         username = find(R.id.mine_username);
         objId = find(R.id.mine_objId);
-        gender = find(R.id.mine_IDcard);
+        gender = find(R.id.mine_gender);
         IDcard = find(R.id.mine_IDcard);
         phone = find(R.id.mine_phone);
         age = find(R.id.mine_age);
@@ -80,8 +81,13 @@ public class MineFragment extends BaseFragment implements ChangeUserInfoDialog.O
                 System.out.println("ok");
                 changeUserInfoDialog.dismiss();
                 user = changeUserInfoDialog.getChangeUser();
-                updateUserInfo();
-                refreshUserInfo();
+                if (user == null){
+                    Toast.makeText(getActivity(), "数据没填写完", Toast.LENGTH_SHORT).show();
+                } else {
+                    updateUserInfo();
+                    refreshUserInfo();
+                }
+
                 break;
             case R.id.change_user_info_cancel:
                 System.out.println("cancel");
@@ -97,8 +103,10 @@ public class MineFragment extends BaseFragment implements ChangeUserInfoDialog.O
             public void done(BmobException e) {
                 if(e==null){
                     Log.i("TAG", "done: " + user.toString());
+                    Toast.makeText(getActivity(), "更新成功，"+ user.toString(), Toast.LENGTH_SHORT).show();
                 }else{
                     Log.e("TAG", "更新失败," + e.getMessage());
+                    Toast.makeText(getActivity(), "更新失败," + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

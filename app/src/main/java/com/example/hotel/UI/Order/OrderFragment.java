@@ -95,7 +95,7 @@ public class OrderFragment extends BaseFragment implements OnRefreshListener {
                 if (isFanzhuan){
                     Collections.reverse(list);
                 }
-                adapter = new OrderRecyclerViewAdapter(list);
+                adapter = new OrderRecyclerViewAdapter(list,getActivity());
                 recyclerView = find(R.id.order_recyclerView);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setAdapter(adapter);
@@ -281,7 +281,7 @@ public class OrderFragment extends BaseFragment implements OnRefreshListener {
                         list.add(new Order_isShow(orders.get(i)));
                     }
                 }
-                adapter = new OrderRecyclerViewAdapter(list);
+                adapter = new OrderRecyclerViewAdapter(list,getActivity());
                 recyclerView = find(R.id.order_recyclerView);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setAdapter(adapter);

@@ -102,7 +102,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
                                 List<Order_isShow> newlist = new ArrayList<>();
                                 newlist.add(new Order_isShow(list.get(0)));
                                 //必须重新设置新的adapter，别问，问就是会出变色bug
-                                adapter = new OrderRecyclerViewAdapter(newlist);
+                                adapter = new OrderRecyclerViewAdapter(newlist,getActivity());
                                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                 recyclerView.setAdapter(adapter);
 
@@ -120,11 +120,9 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
                                     }
                                 });
 
-
                                 adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                            System.out.println("fuck");
                                         Order order = list.get(position);
                                         Gson gson = new Gson();
                                         String orderJson = gson.toJson(order);
@@ -133,6 +131,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
                                         startActivity(to_order_manage);
                                     }
                                 });
+
                             } else {
                                 Toast.makeText(getActivity(),"订单不存在",Toast.LENGTH_SHORT).show();
                             }
@@ -162,7 +161,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
                         list_is_show.add(new Order_isShow(list.get(i)));
                     }
                     Collections.reverse(list_is_show);
-                    adapter = new OrderRecyclerViewAdapter(list_is_show);
+                    adapter = new OrderRecyclerViewAdapter(list_is_show,getActivity());
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(adapter);
 
@@ -222,7 +221,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
                         list_is_show.add(new Order_isShow(list.get(i)));
                     }
                     Collections.reverse(list_is_show);
-                    adapter = new OrderRecyclerViewAdapter(list_is_show);
+                    adapter = new OrderRecyclerViewAdapter(list_is_show,getActivity());
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(adapter);
 
@@ -324,7 +323,7 @@ public class OrderManageFragment extends BaseFragment implements OnRefreshListen
     }
 
     private void remakeAdapter(List<Order_isShow> list_remake){
-        adapter = new OrderRecyclerViewAdapter(list_remake);
+        adapter = new OrderRecyclerViewAdapter(list_remake,getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 

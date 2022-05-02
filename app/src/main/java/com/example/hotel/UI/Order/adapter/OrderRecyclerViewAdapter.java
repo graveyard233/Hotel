@@ -1,6 +1,10 @@
 package com.example.hotel.UI.Order.adapter;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
+import android.view.View;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -14,11 +18,14 @@ import java.util.List;
 
 public class OrderRecyclerViewAdapter extends BaseQuickAdapter<Order_isShow, BaseViewHolder> {
 
+    private Context context;
+
     private List<Integer> list_traveller_id = new ArrayList<>();
 
 
-    public OrderRecyclerViewAdapter(List<Order_isShow> data) {
+    public OrderRecyclerViewAdapter(List<Order_isShow> data,Context context) {
         super(R.layout.order_recycler_item,data);
+        this.context = context;
     }
 
 
@@ -57,5 +64,15 @@ public class OrderRecyclerViewAdapter extends BaseQuickAdapter<Order_isShow, Bas
 
         helper.setGone(R.id.item_hide_LinearLayout,item.isShow());
 
+        TextView order_objId = helper.getView(R.id.item_order_orderId);
+
+        order_objId.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                cmb.setText(order_objId.getText());
+                return false;
+            }
+        });
     }
 }

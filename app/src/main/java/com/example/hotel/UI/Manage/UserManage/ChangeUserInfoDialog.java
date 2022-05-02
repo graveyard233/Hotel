@@ -95,14 +95,29 @@ public class ChangeUserInfoDialog extends AlertDialog implements View.OnClickLis
     }
 
     public User getChangeUser(){
-        user_dialog.setUsername(username_input.getEditText().getText().toString());
-        user_dialog.setIDcard(IDcard_input.getEditText().getText().toString());
-        if (r1.isChecked()){
-            user_dialog.setSex("男");
+        if (checkUserInput()){
+            user_dialog.setUsername(username_input.getEditText().getText().toString());
+            user_dialog.setIDcard(IDcard_input.getEditText().getText().toString());
+            if (r1.isChecked()){
+                user_dialog.setSex("男");
+            } else {
+                user_dialog.setSex("女");
+            }
+            user_dialog.setPhone(phone_input.getEditText().getText().toString());
+            return user_dialog;
+        } else
+            return null;
+
+    }
+
+    private Boolean checkUserInput(){
+        if (username_input.getEditText().getText().toString().equals("") ||
+        IDcard_input.getEditText().getText().toString().equals("") ||
+        phone_input.getEditText().getText().toString().equals("")){
+            return false;
         } else {
-            user_dialog.setSex("女");
+            return true;
         }
-        user_dialog.setPhone(phone_input.getEditText().getText().toString());
-        return user_dialog;
+
     }
 }

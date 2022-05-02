@@ -99,7 +99,7 @@ public class SingleUserInfoActivity extends BaseActivity implements View.OnClick
                         list_order.add(new Order_isShow(list.get(i)));
                     }
                     Collections.reverse(list_order);
-                    adapter = new OrderRecyclerViewAdapter(list_order);
+                    adapter = new OrderRecyclerViewAdapter(list_order,getApplicationContext());
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setAdapter(adapter);
 
