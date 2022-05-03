@@ -1,17 +1,28 @@
 package com.example.hotel.UI.Manage.RoomManage;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.hotel.Bean.Order;
 import com.example.hotel.Bean.Room;
 import com.example.hotel.R;
@@ -61,6 +72,10 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
 
     private FloatingActionButton fab;
 
+    private TextInputLayout roomImgUrl;
+    private ImageView roomImg;
+    private Boolean isImgCanLoad = true;
+
     @Override
     protected void initViews() {
         String roomJson = getIntent().getStringExtra("roomJson");
@@ -76,6 +91,8 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
         roomDiscount = findViewById(R.id.manage_room_discount_layout);
         roomType = findViewById(R.id.manage_room_type);
         inputDiscount = findViewById(R.id.manage_room_discount);
+        roomImgUrl = findViewById(R.id.manage_room_imgUrl);
+        roomImg = findViewById(R.id.manage_room_img);
 
         fab = findViewById(R.id.floatingActionButton_room_manage);
 
@@ -84,6 +101,49 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
         roomType.getEditText().setText(room_this.getType());
         roomIsBusy.getEditText().setText(room_this.getIsBusy());
         roomDiscount.getEditText().setText(room_this.getDiscount().toString());
+        roomImgUrl.getEditText().setText(room_this.getImgUrl());
+
+        Glide.with(getApplicationContext())
+                .load(room_this.getImgUrl())
+                .placeholder(R.drawable.ic_bottom_room_24)
+                .error(R.drawable.ic_error_25)
+                .into(roomImg);
+        roomImgUrl.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                isImgCanLoad = false;
+                Glide.with(getApplicationContext())
+                        .load(roomImgUrl.getEditText().getText().toString())
+                        .placeholder(R.drawable.ic_bottom_room_24)
+                        .addListener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                isImgCanLoad = false;
+                                Log.e("TAG", "onLoadFailed: " );
+                                roomImg.setImageResource(R.drawable.ic_error_25);
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                isImgCanLoad = true;
+                                Log.e("TAG", "onResourceReady: ");
+                                return false;
+                            }
+                        })
+                        .into(roomImg);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         inputDiscount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -219,7 +279,7 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.floatingActionButton_room_manage:
-                if (checkAll()){
+                if (checkAll() && isImgCanLoad){
                     room_this.setRoomId(roomNumber.getEditText().getText().toString());
                     room_this.setPrice(Double.parseDouble(roomPrice.getEditText().getText().toString()));
                     room_this.setType(roomType.getEditText().getText().toString());
@@ -231,7 +291,7 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
                     }
                     room_this.setDiscount(discount);
                     room_this.setIsBusy(roomIsBusy.getEditText().getText().toString());
-
+                    room_this.setImgUrl(roomImgUrl.getEditText().getText().toString());
                     room_this.update(new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
@@ -254,7 +314,8 @@ public class ManageRoomActivity extends BaseActivity implements View.OnClickList
         if (roomNumber.getEditText().getText().toString().equals("") ||
                 roomPrice.getEditText().getText().toString().equals("") ||
                 roomType.getEditText().getText().toString().equals("") ||
-                roomDiscount.getEditText().getText().toString().equals("")){
+                roomDiscount.getEditText().getText().toString().equals("") ||
+                roomImgUrl.getEditText().getText().toString().equals("")  ){
             return false;
         } else {
             return true;

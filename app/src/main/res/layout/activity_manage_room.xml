@@ -17,160 +17,200 @@
         app:layout_anchorGravity="end|bottom"
         app:srcCompat="@drawable/ic_room_not_busy_24" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@drawable/divider_room_detail"
-        android:dividerPadding="15dp"
-        android:orientation="vertical"
-        android:showDividers="middle">
+
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider_room_detail_comments"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider_room_detail"
+            android:dividerPadding="15dp"
+            android:orientation="vertical"
             android:showDividers="middle">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/manage_room_number"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:hint="@string/room_number"
-                android:minWidth="@dimen/login_input_text_width">
+                android:divider="@drawable/divider_room_detail_comments"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:showDividers="middle">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_room_number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:hint="@string/room_number"
+                    android:minWidth="@dimen/login_input_text_width">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_room_price"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:hint="@string/price"
+                    android:minWidth="@dimen/login_input_text_width">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/divider_room_detail_comments"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:showDividers="middle">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_room_is_busy"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:hint="状态"
+                    android:minWidth="@dimen/login_input_text_width">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:imeOptions="actionNext"
+                        android:focusable="false"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_room_discount_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:hint="@string/discount"
+                    android:minWidth="@dimen/login_input_text_width">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/manage_room_discount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_room_type"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:hint="@string/room_type"
+                    android:minWidth="@dimen/login_input_text_width">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_room_imgUrl"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="username"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:hint="@string/img_url"
+                    android:minWidth="@dimen/login_input_text_width">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/manage_room_price"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:hint="@string/price"
-                android:minWidth="@dimen/login_input_text_width">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <ImageView
+                    android:id="@+id/manage_room_img"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="username"
-                    android:imeOptions="actionNext"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:layout_height="100dp"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <com.squareup.timessquare.CalendarPickerView
+                android:id="@+id/manage_room_caldendar"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:padding="5dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+            </com.squareup.timessquare.CalendarPickerView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/manage_room_comment_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider_room_detail_comments"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:showDividers="middle">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/manage_room_is_busy"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:hint="状态"
-                android:minWidth="@dimen/login_input_text_width">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="username"
-                    android:imeOptions="actionNext"
-                    android:focusable="false"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/manage_room_discount_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:hint="@string/discount"
-                android:minWidth="@dimen/login_input_text_width">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/manage_room_discount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="username"
-                    android:imeOptions="actionNext"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/manage_room_type"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:hint="@string/room_type"
-                android:minWidth="@dimen/login_input_text_width">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="username"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
-        </LinearLayout>
 
-        <com.squareup.timessquare.CalendarPickerView
-            android:id="@+id/manage_room_caldendar"
-            android:layout_width="match_parent"
-            android:layout_height="339dp"
-            android:fadingEdge="none"
-            android:overScrollMode="never"
-            android:padding="15dp"
-            android:scrollbars="none"
-            android:visibility="gone">
-
-        </com.squareup.timessquare.CalendarPickerView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/manage_room_comment_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
